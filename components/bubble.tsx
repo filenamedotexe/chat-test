@@ -45,6 +45,7 @@ export const Bubble = () => {
     stop,
     setMessages,
   } = useChat({
+    api: "/api/chat-langchain",
     keepLastMessageOnError: true,
   });
 

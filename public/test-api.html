@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        button { margin: 10px 0; padding: 10px 20px; cursor: pointer; }
+        .result { margin: 20px 0; padding: 20px; background: #f0f0f0; border-radius: 5px; }
+        .error { background: #ffe0e0; }
+        .success { background: #e0ffe0; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>API Route Tests</h1>
+    
+    <button onclick="testHello()">Test Hello API</button>
+    <button onclick="testLangChain()">Test LangChain API</button>
+    <button onclick="testChatLangChain()">Test Chat LangChain API</button>
+    <button onclick="setupDatabase()" style="background: #0066cc; color: white;">Setup Database Schema</button>
+    <button onclick="testMemory()">Test Memory Persistence</button>
+    <button onclick="testStreamingLangChain()" style="background: #00aa00; color: white;">Test Streaming LangChain</button>
+    
+    <div id="result"></div>
+
+    <script>
+        async function testHello() {
+            const resultDiv = document.getElementById('result');
+            try {
+                const response = await fetch('/api/hello');
+                const data = await response.json();
+                resultDiv.innerHTML = `<div class="result success"><h3>Hello API Test</h3><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>Hello API Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+
+        async function testLangChain() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result">Testing LangChain... This may take a moment...</div>';
+            try {
+                const response = await fetch('/api/test-langchain');
+                const data = await response.json();
+                const className = data.success ? 'success' : 'error';
+                resultDiv.innerHTML = `<div class="result ${className}"><h3>LangChain API Test</h3><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>LangChain API Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+
+        async function testChatLangChain() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result">Testing Chat LangChain... This may take a moment...</div>';
+            try {
+                const response = await fetch('/api/chat-langchain', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: 'user', content: 'Say "Hello from LangChain!" if you can hear me.' }
+                        ]
+                    })
+                });
+                const data = await response.json();
+                resultDiv.innerHTML = `<div class="result success"><h3>Chat LangChain API Test</h3><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>Chat LangChain API Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+
+        async function setupDatabase() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result">Setting up database schema... This may take a moment...</div>';
+            try {
+                const response = await fetch('/api/setup-database', { method: 'POST' });
+                const data = await response.json();
+                const className = data.success ? 'success' : 'error';
+                resultDiv.innerHTML = `<div class="result ${className}"><h3>Database Setup</h3><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>Database Setup Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+
+        async function testMemory() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result">Testing Memory Persistence... This may take a moment...</div>';
+            try {
+                const response = await fetch('/api/test-memory');
+                const data = await response.json();
+                const className = data.success ? 'success' : 'error';
+                resultDiv.innerHTML = `<div class="result ${className}"><h3>Memory Persistence Test</h3><pre>${JSON.stringify(data, null, 2)}</pre></div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>Memory Test Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+
+        async function testStreamingLangChain() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<div class="result">Testing Streaming LangChain... Watch for real-time tokens...</div>';
+            
+            try {
+                const response = await fetch('/api/chat-langchain', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: 'user', content: 'Tell me a short story about a robot learning to paint. Stream your response token by token.' }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const reader = response.body?.getReader();
+                if (!reader) {
+                    throw new Error('No response body reader available');
+                }
+
+                let fullResponse = '';
+                let tokenCount = 0;
+                const startTime = Date.now();
+
+                resultDiv.innerHTML = `
+                    <div class="result success">
+                        <h3>Streaming LangChain Test</h3>
+                        <div>Status: <span id="stream-status">Streaming...</span></div>
+                        <div>Tokens: <span id="token-count">0</span></div>
+                        <div>Duration: <span id="duration">0s</span></div>
+                        <div style="margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px;">
+                            <strong>Response:</strong><br>
+                            <div id="stream-content" style="white-space: pre-wrap; font-family: monospace;"></div>
+                        </div>
+                    </div>
+                `;
+
+                const streamContent = document.getElementById('stream-content');
+                const tokenCountSpan = document.getElementById('token-count');
+                const durationSpan = document.getElementById('duration');
+                const statusSpan = document.getElementById('stream-status');
+
+                const updateDuration = setInterval(() => {
+                    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+                    durationSpan.textContent = elapsed + 's';
+                }, 100);
+
+                try {
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        
+                        if (done) {
+                            clearInterval(updateDuration);
+                            statusSpan.textContent = 'Completed';
+                            break;
+                        }
+
+                        const chunk = new TextDecoder().decode(value);
+                        const lines = chunk.split('\n');
+                        
+                        for (const line of lines) {
+                            if (line.startsWith('data: ')) {
+                                const data = line.slice(6);
+                                if (data === '[DONE]') {
+                                    clearInterval(updateDuration);
+                                    statusSpan.textContent = 'Completed';
+                                    break;
+                                }
+                                
+                                try {
+                                    const parsed = JSON.parse(data);
+                                    if (parsed.choices?.[0]?.delta?.content) {
+                                        const token = parsed.choices[0].delta.content;
+                                        fullResponse += token;
+                                        tokenCount++;
+                                        
+                                        streamContent.textContent = fullResponse;
+                                        tokenCountSpan.textContent = tokenCount;
+                                    }
+                                    if (parsed.error) {
+                                        throw new Error(parsed.error.message);
+                                    }
+                                } catch (parseError) {
+                                    // Ignore parsing errors for non-JSON chunks
+                                }
+                            }
+                        }
+                    }
+                } finally {
+                    reader.releaseLock();
+                    clearInterval(updateDuration);
+                }
+
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="result error"><h3>Streaming LangChain Error</h3><pre>${error.message}</pre></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
