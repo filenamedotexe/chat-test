@@ -1,6 +1,6 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ConversationChain } from "langchain/chains";
-import { BufferMemory } from "langchain/memory";
+import { BufferMemory, ConversationSummaryMemory } from "langchain/memory";
 import { 
   ChatPromptTemplate, 
   SystemMessagePromptTemplate, 
@@ -10,13 +10,17 @@ import {
 import { NeonChatMessageHistory } from "./neon-memory";
 import { StreamingCallbackHandler, SimpleStreamingHandler } from "./streaming";
 import { BaseCallbackHandler } from "@langchain/core/callbacks/base";
+import { getPromptTemplate, getDefaultPrompt } from "./prompts";
 
 interface ConversationChainOptions {
   sessionId: string;
   streaming?: boolean;
   systemPrompt?: string;
+  promptTemplateId?: string;
   temperature?: number;
   modelName?: string;
+  memoryType?: "buffer" | "summary";
+  maxTokenLimit?: number;
 }
 
 /**
@@ -26,10 +30,21 @@ export async function createConversationChain(options: ConversationChainOptions)
   const {
     sessionId,
     streaming = true,
-    systemPrompt = "You are a helpful assistant created by Neon.tech and Aceternity. Your job is to answer questions asked by the user in a polite and respectful manner. Always answer in markdown.",
+    systemPrompt,
+    promptTemplateId = "default",
     temperature = 0.7,
-    modelName = "gpt-4-turbo"
+    modelName = "gpt-4-turbo",
+    memoryType = "buffer",
+    maxTokenLimit = 2000
   } = options;
+
+  // Get the system prompt from template or use provided one
+  let finalSystemPrompt = systemPrompt;
+  if (!finalSystemPrompt && promptTemplateId) {
+    const template = getPromptTemplate(promptTemplateId);
+    finalSystemPrompt = template?.prompt || getDefaultPrompt();
+  }
+  finalSystemPrompt = finalSystemPrompt || getDefaultPrompt();
 
   // Initialize the chat model
   const model = new ChatOpenAI({
@@ -45,28 +60,67 @@ export async function createConversationChain(options: ConversationChainOptions)
     databaseUrl: process.env.DATABASE_URL || "",
   });
 
-  const memory = new BufferMemory({
-    chatHistory,
-    returnMessages: true,
-    memoryKey: "history",
-  });
+  // Create memory based on type
+  let memory;
+  if (memoryType === "summary") {
+    memory = new ConversationSummaryMemory({
+      llm: model,
+      chatHistory,
+      returnMessages: false,
+      memoryKey: "history",
+    });
+  } else {
+    memory = new BufferMemory({
+      chatHistory,
+      returnMessages: true,
+      memoryKey: "history",
+    });
+  }
 
-  // Create the prompt template
-  const prompt = ChatPromptTemplate.fromMessages([
-    SystemMessagePromptTemplate.fromTemplate(systemPrompt),
-    new MessagesPlaceholder("history"),
-    HumanMessagePromptTemplate.fromTemplate("{input}"),
-  ]);
+  // Create the prompt template based on memory type
+  const prompt = memoryType === "summary" 
+    ? ChatPromptTemplate.fromMessages([
+        SystemMessagePromptTemplate.fromTemplate(finalSystemPrompt + "\n\nConversation Summary:\n{history}"),
+        HumanMessagePromptTemplate.fromTemplate("{input}"),
+      ])
+    : ChatPromptTemplate.fromMessages([
+        SystemMessagePromptTemplate.fromTemplate(finalSystemPrompt),
+        new MessagesPlaceholder("history"),
+        HumanMessagePromptTemplate.fromTemplate("{input}"),
+      ]);
 
   // Create the conversation chain
   const chain = new ConversationChain({
     llm: model,
     memory,
     prompt,
-    verbose: false, // Set to true for debugging
+    verbose: true, // Set to true for debugging
   });
 
-  return { chain, memory, chatHistory };
+  // Load existing messages into memory
+  const memoryVars = await memory.loadMemoryVariables({});
+  console.log(`Memory loaded for session ${sessionId} (${memoryType}):`, JSON.stringify(memoryVars, null, 2));
+
+  // For summary memory, if we have history, create a summary
+  if (memoryType === "summary" && chatHistory) {
+    const messages = await chatHistory.getMessages();
+    if (messages.length > 0) {
+      console.log(`Found ${messages.length} messages for summary memory`);
+      // Load messages into memory to create summary
+      for (let i = 0; i < messages.length; i += 2) {
+        if (messages[i] && messages[i + 1]) {
+          await memory.saveContext(
+            { input: messages[i].content },
+            { output: messages[i + 1].content }
+          );
+        }
+      }
+      const newMemoryVars = await memory.loadMemoryVariables({});
+      console.log(`Memory after loading history:`, JSON.stringify(newMemoryVars, null, 2));
+    }
+  }
+
+  return { chain, memory, chatHistory, memoryType };
 }
 
 /**
@@ -157,4 +211,49 @@ export async function clearConversationHistory(sessionId: string) {
   });
   
   await chatHistory.clear();
+}
+
+/**
+ * Get memory summary if using ConversationSummaryMemory
+ */
+export async function getMemorySummary(
+  sessionId: string,
+  memoryType: "buffer" | "summary" = "buffer"
+): Promise<string | null> {
+  if (memoryType !== "summary") {
+    return null;
+  }
+
+  const model = new ChatOpenAI({
+    openAIApiKey: process.env.OPENAI_API_KEY,
+    modelName: "gpt-4-turbo",
+    temperature: 0.7,
+  });
+
+  const chatHistory = new NeonChatMessageHistory({
+    sessionId,
+    databaseUrl: process.env.DATABASE_URL || "",
+  });
+
+  const memory = new ConversationSummaryMemory({
+    llm: model,
+    chatHistory,
+    returnMessages: true,
+    memoryKey: "history",
+  });
+
+  try {
+    const buffer = await memory.loadMemoryVariables({});
+    const messages = buffer.history;
+    
+    if (Array.isArray(messages) && messages.length > 0) {
+      // Get the summary from the memory buffer
+      const summaryBuffer = await memory.loadMemoryVariables({});
+      return summaryBuffer.history || null;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error getting memory summary:", error);
+    return null;
+  }
 }

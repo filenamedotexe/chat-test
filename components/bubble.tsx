@@ -11,6 +11,9 @@ import {
   IconTerminal2,
   IconX,
   IconMaximize,
+  IconSettings,
+  IconBrain,
+  IconDatabase,
 } from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -34,6 +37,13 @@ export const Bubble = () => {
   const [isUserScrolledUp, setIsUserScrolledUp] = useState(false);
   const messageHistoryRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [memoryType, setMemoryType] = useState<"buffer" | "summary">("buffer");
+  const [maxTokenLimit, setMaxTokenLimit] = useState(2000);
+  const [sessionId, setSessionId] = useState<string>("");
+  const [memorySummary, setMemorySummary] = useState<string>("");
+  const [promptTemplateId, setPromptTemplateId] = useState<string>("default");
+  const [promptTemplates, setPromptTemplates] = useState<any[]>([]);
 
   const {
     messages,
@@ -47,6 +57,12 @@ export const Bubble = () => {
   } = useChat({
     api: "/api/chat-langchain",
     keepLastMessageOnError: true,
+    body: {
+      memoryType,
+      maxTokenLimit,
+      sessionId: sessionId || undefined,
+      promptTemplateId,
+    },
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -86,6 +102,49 @@ export const Bubble = () => {
 
     handleSubmit();
   };
+
+  // Generate session ID on mount
+  useEffect(() => {
+    if (!sessionId) {
+      const newSessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      setSessionId(newSessionId);
+    }
+  }, [sessionId]);
+
+  // Fetch prompt templates
+  useEffect(() => {
+    const fetchPromptTemplates = async () => {
+      try {
+        const response = await fetch("/api/prompts");
+        const data = await response.json();
+        if (data.templates) {
+          setPromptTemplates(data.templates);
+        }
+      } catch (error) {
+        console.error("Error fetching prompt templates:", error);
+      }
+    };
+    fetchPromptTemplates();
+  }, []);
+
+  // Fetch memory summary when memory type changes to summary
+  useEffect(() => {
+    const fetchMemorySummary = async () => {
+      if (memoryType === "summary" && sessionId && messages.length > 0) {
+        try {
+          const response = await fetch(`/api/memory?sessionId=${sessionId}&action=summary&memoryType=summary`);
+          const data = await response.json();
+          if (data.summary) {
+            setMemorySummary(data.summary);
+          }
+        } catch (error) {
+          console.error("Error fetching memory summary:", error);
+        }
+      }
+    };
+
+    fetchMemorySummary();
+  }, [memoryType, sessionId, messages.length]);
 
   useEffect(() => {
     const handleUserScroll = () => {
@@ -189,7 +248,7 @@ export const Bubble = () => {
               exit={{ opacity: 0, y: 20, rotateX: -10 }}
               transition={{ duration: 0.2 }}
               className={cn(
-                "mb-4 h-screen md:h-[46vh] min-h-[76vh] w-full md:w-[30rem] bg-gray-100 rounded-lg flex flex-col justify-between overflow-hidden",
+                "mb-4 h-screen md:h-[46vh] min-h-[76vh] w-full md:w-[30rem] bg-gray-100 rounded-lg flex flex-col justify-between overflow-visible",
                 isExpanded && "w-full h-full md:h-full md:w-full min-h-0 mb-0"
               )}
             >
@@ -206,6 +265,12 @@ export const Bubble = () => {
                     className="hover:bg-gray-800 p-1 rounded-full transition-colors"
                   >
                     <IconMaximize className="h-4 w-4 text-white" />
+                  </button>
+                  <button 
+                    onClick={() => setShowSettings(!showSettings)}
+                    className="hover:bg-gray-800 p-1 rounded-full transition-colors"
+                  >
+                    <IconSettings className="h-4 w-4 text-white" />
                   </button>
                 </div>
                 <div className="flex items-center gap-2">
@@ -244,6 +309,118 @@ export const Bubble = () => {
                   )}
                 </div>
               </div>
+
+              {/* Settings Panel */}
+              <AnimatePresence>
+                {showSettings && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="bg-gray-50 border-b border-gray-200"
+                  >
+                  <div className="px-4 py-3">
+                    <div className="space-y-3">
+                      <div className="space-y-2">
+                        <span className="text-sm font-medium text-gray-700">Assistant Personality</span>
+                        <select
+                          value={promptTemplateId}
+                          onChange={(e) => setPromptTemplateId(e.target.value)}
+                          className="w-full px-2 py-1 text-xs border border-gray-300 rounded bg-white"
+                        >
+                          {promptTemplates.map((template) => (
+                            <option key={template.id} value={template.id}>
+                              {template.icon} {template.name} - {template.description}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-medium text-gray-700">Memory Type</span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => setMemoryType("buffer")}
+                              className={cn(
+                                "flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors",
+                                memoryType === "buffer" 
+                                  ? "bg-blue-100 text-blue-700 border border-blue-200" 
+                                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                              )}
+                            >
+                              <IconDatabase className="h-3 w-3" />
+                              Buffer
+                            </button>
+                            <button
+                              onClick={() => setMemoryType("summary")}
+                              className={cn(
+                                "flex items-center gap-1 px-2 py-1 rounded text-xs transition-colors",
+                                memoryType === "summary" 
+                                  ? "bg-purple-100 text-purple-700 border border-purple-200" 
+                                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                              )}
+                            >
+                              <IconBrain className="h-3 w-3" />
+                              Summary
+                            </button>
+                          </div>
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {memoryType === "buffer" ? (
+                            <span>Buffer keeps the exact conversation history. Best for detailed discussions where every word matters.</span>
+                          ) : (
+                            <span>Summary creates a condensed version of the conversation. Saves tokens for longer chats.</span>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {memoryType === "summary" && (
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-xs text-gray-600">Token Limit</span>
+                            <input
+                              type="number"
+                              value={maxTokenLimit}
+                              onChange={(e) => setMaxTokenLimit(parseInt(e.target.value) || 2000)}
+                              className="w-20 px-2 py-1 text-xs border border-gray-300 rounded"
+                              min="500"
+                              max="8000"
+                              step="500"
+                            />
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            Maximum tokens for the summary. Higher = more detail retained.
+                          </div>
+                          {memorySummary && (
+                            <div className="text-xs text-gray-600 bg-purple-50 p-2 rounded border">
+                              <div className="font-medium mb-1">Current Summary:</div>
+                              <div className="line-clamp-2">{memorySummary}</div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center justify-between pt-1 border-t border-gray-200">
+                        <span className="text-xs text-gray-500">Session: {sessionId.slice(-9)}</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1">
+                            <span className="text-xs text-gray-500">
+                              {promptTemplates.find(t => t.id === promptTemplateId)?.icon || "🤖"}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <div className={cn("w-2 h-2 rounded-full", memoryType === "buffer" ? "bg-blue-500" : "bg-purple-500")}></div>
+                            <span className="text-xs text-gray-500">{memoryType}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {!messages.length && (
                 <div className="px-5 py-10 grid grid-cols-1 md:grid-cols-2 gap-2  overflow-y-auto">
