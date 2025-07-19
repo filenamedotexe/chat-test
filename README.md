@@ -1,60 +1,102 @@
-# Neon x Aceternity Chatbot Template - LangChain Enhanced
+# Chat Monorepo - Enterprise-Grade AI Chat Platform
 
-A modern, interactive chatbot template built with Next.js, LangChain, AI SDK, Aceternity UI, and Neon's serverless Postgres.
+A production-ready monorepo architecture for building scalable AI chat applications with Next.js 14, LangChain, Turborepo, and Neon Postgres.
 
-![Banner](https://neon-chatbot.vercel.app/banner.png)
+![Architecture](https://img.shields.io/badge/Architecture-Monorepo-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
+![Next.js](https://img.shields.io/badge/Next.js-14.2-black)
+![Turborepo](https://img.shields.io/badge/Turborepo-2.5-red)
+![LangChain](https://img.shields.io/badge/LangChain-0.3-green)
 
-## 🚀 New LangChain Features
+## 🏗️ Monorepo Architecture
 
-- 🧠 **Dual Memory Systems**: Choose between Buffer Memory (exact history) or Summary Memory (condensed conversations)
-- 🎭 **8 Personality Templates**: Switch between Default, Technical Expert, Creative Writer, Teacher, Concise Expert, Data Analyst, Coach, and Socratic Questioner
-- 💾 **Persistent Conversations**: Automatic session management with database-backed memory
-- ⚡ **Optimized Streaming**: ~745ms to first token with 15 tokens/second throughput
-- 🛡️ **Robust Error Handling**: Retry logic, rate limit handling, and graceful error recovery
-- 📊 **Performance Optimized**: Database indexes and query optimization for scalability
-
-## Features
-
-- 🤖 Real-time streaming responses with LangChain
-- 💾 Persistent chat history storage with Neon serverless Postgres
-- ✨ Beautiful UI components from Aceternity UI
-- 🎨 Fully customizable with Tailwind CSS
-- 📱 Responsive design for all devices
-- ⚡ Built on Next.js 14 with App Router
-- 🔄 Automatic memory management with conversation context
-
-## Prerequisites
-
-- Node.js 18+ 
-- A [Neon](https://neon.tech/) account to create a Postgres database
-- An [OpenAI](https://openai.com/) API key
-
-## Getting Started
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/neondatabase/neon-chatbot.git
-cd neon-chatbot-template
+```
+chat-monorepo/
+├── apps/
+│   └── base-template/          # Base chat application template
+├── packages/
+│   ├── ui/                     # Shared UI components library
+│   ├── langchain-core/         # LangChain logic & configurations
+│   ├── database/               # Database schemas & utilities
+│   └── shared-types/           # TypeScript type definitions
+├── turbo.json                  # Turborepo configuration
+├── package.json                # Workspace configuration
+└── pnpm-workspace.yaml         # PNPM workspace config (optional)
 ```
 
-2. Install dependencies:
+## 🚀 Features
+
+### Core Features
+- 🏭 **Turborepo Monorepo**: Optimized build system with caching and parallel execution
+- 🤖 **LangChain Integration**: Advanced conversational AI with GPT-4
+- 💾 **Dual Memory Systems**: Buffer (exact history) & Summary (condensed) modes
+- 🎭 **8 AI Personalities**: Customizable prompt templates
+- ⚡ **Optimized Performance**: ~745ms to first token, 15 tokens/second
+- 🔄 **Real-time Streaming**: Smooth conversational experience
+- 📊 **Neon Postgres**: Serverless database with automatic scaling
+- 🎨 **Shared Component Library**: Reusable UI components across apps
+- 🛡️ **Enterprise Error Handling**: Retry logic, rate limiting, graceful degradation
+- 📱 **Responsive Design**: Mobile-first approach with Tailwind CSS
+
+### Developer Experience
+- 🔥 **Hot Module Replacement**: Instant feedback during development
+- 📦 **Shared Dependencies**: Centralized package management
+- 🧪 **TypeScript**: Full type safety across the monorepo
+- 🚀 **Parallel Builds**: Turborepo caching for faster builds
+- 🎯 **Workspace Commands**: Run specific apps or all at once
+- 📝 **Comprehensive Documentation**: This file + CLAUDE.md
+
+## 📋 Prerequisites
+
+- **Node.js**: 18.17 or later
+- **npm**: 10.2.4 or later (specified in packageManager)
+- **Git**: For version control
+- **Neon Account**: For Postgres database ([Sign up free](https://neon.tech))
+- **OpenAI API Key**: For GPT-4 access ([Get API key](https://platform.openai.com))
+
+## 🛠️ Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/chat-monorepo.git
+cd chat-monorepo
+```
+
+### 2. Install Dependencies
+
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
 ```
 
-3. Create a `.env.local` file in the root directory with the following variables:
+This will install all dependencies for the workspace and all packages.
+
+### 3. Environment Setup
+
+Create `.env.local` in the root directory:
+
 ```bash
-DATABASE_URL="your-neon-database-url"
-OPENAI_API_KEY="your-openai-api-key"
+# Database
+DATABASE_URL="postgresql://username:password@host/database?sslmode=require"
+
+# OpenAI
+OPENAI_API_KEY="sk-..."
+
+# Optional: Analytics, Monitoring
+NEXT_PUBLIC_ANALYTICS_ID="..."
 ```
 
-4. Set up the database schema (automatic via API or run manually):
+Copy to base-template:
+```bash
+cp .env.local apps/base-template/
+```
+
+### 4. Database Setup
+
+The database schema is automatically created on first run, or manually:
+
 ```sql
+-- Run in Neon console or via migration
 CREATE TABLE IF NOT EXISTS chat_history (
   id SERIAL PRIMARY KEY,
   user_message TEXT NOT NULL,
@@ -64,116 +106,294 @@ CREATE TABLE IF NOT EXISTS chat_history (
   metadata JSONB
 );
 
--- Create indexes for better performance
-CREATE INDEX IF NOT EXISTS idx_chat_history_session_id ON chat_history(session_id);
-CREATE INDEX IF NOT EXISTS idx_chat_history_created_at ON chat_history(created_at DESC);
+-- Performance indexes
+CREATE INDEX idx_chat_history_session_id ON chat_history(session_id);
+CREATE INDEX idx_chat_history_created_at ON chat_history(created_at DESC);
+CREATE INDEX idx_chat_history_composite ON chat_history(session_id, created_at DESC);
 ```
 
-5. Run the development server:
+## 🚀 Development
+
+### Start Development Server
+
 ```bash
+# Run all apps
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
+# Run specific app
+npm run dev -- --filter=@chat/base-template
+
+# Run with specific port
+PORT=3001 npm run dev -- --filter=@chat/base-template
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Available Scripts
 
-## 🎮 Using the Chatbot
-
-### Memory Types
-- **Buffer Memory**: Stores exact conversation history, ideal for short conversations
-- **Summary Memory**: Creates condensed summaries, perfect for long conversations to save tokens
-
-### Personality Templates
-Click the settings icon (⚙️) in the chat interface to:
-- Switch between 8 different AI personalities
-- Toggle between Buffer and Summary memory
-- Adjust token limits for summary memory
-- View your current session ID
-
-### API Endpoints
-
-- `POST /api/chat-langchain` - Main chat endpoint with LangChain integration
-- `GET /api/prompts` - Get available personality templates
-- `GET /api/memory?sessionId=xxx` - Retrieve conversation history
-- `POST /api/setup-database` - Automatically set up database schema
-
-## Project Structure
-
-- `/app` - Next.js 14 app directory containing routes and layouts
-- `/components` - Reusable UI components including the enhanced chat bubble
-- `/lib/langchain` - LangChain configuration, memory management, and prompt templates
-- `/public` - Static assets and test utilities
-- `/styles` - Global styles and Tailwind CSS configuration
-
-## Key Technologies
-
-- [Next.js](https://nextjs.org/) - React framework
-- [LangChain](https://langchain.com/) - LLM application framework
-- [Neon](https://neon.tech/) - Serverless Postgres database
-- [OpenAI](https://openai.com/) - GPT-4 language model
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Aceternity UI](https://ui.aceternity.com/) - UI components
-
-## Performance Metrics
-
-- **First Token Latency**: ~745ms average
-- **Streaming Throughput**: ~15 tokens/second
-- **Database Query Time**: ~240ms for history retrieval
-- **Memory Comparison**: Summary memory 73% faster than buffer for long conversations
-
-## Deployment
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new).
-
-1. Push your code to a GitHub repository
-2. Import your repository to Vercel
-3. Add your environment variables in the Vercel dashboard
-4. Deploy!
-
-### Environment Variables for Production
-```
-DATABASE_URL=your-neon-database-url
-OPENAI_API_KEY=your-openai-api-key
+```bash
+npm run build          # Build all apps and packages
+npm run lint           # Lint all code
+npm run dev            # Start dev servers
+npm run start          # Start production servers
 ```
 
-## Advanced Configuration
+### Turborepo Commands
 
-### Custom Prompt Templates
-Add new personalities in `/lib/langchain/prompts.ts`:
+```bash
+# Build specific app
+turbo build --filter=@chat/base-template
 
-```typescript
+# Run with verbose output
+turbo dev --log-level=debug
+
+# Clear cache
+turbo daemon clean
+
+# Run in specific scope
+turbo dev --scope=@chat/ui
+```
+
+## 📦 Creating New Apps
+
+### 1. Copy Base Template
+
+```bash
+cp -r apps/base-template apps/my-custom-chat
+```
+
+### 2. Update Package.json
+
+```json
 {
-  id: "custom",
-  name: "Custom Assistant",
-  description: "Your custom personality",
-  prompt: "Your custom system prompt...",
-  icon: "🎯"
+  "name": "@chat/my-custom-chat",
+  "version": "0.1.0",
+  "dependencies": {
+    "@chat/ui": "*",
+    "@chat/langchain-core": "*",
+    "@chat/shared-types": "*"
+  }
 }
 ```
 
+### 3. Customize Your App
+
+- **Prompts**: Modify personality templates in your app
+- **UI**: Override components or create new ones
+- **Features**: Add app-specific functionality
+- **Styling**: Customize Tailwind config
+
+### 4. Run Your New App
+
+```bash
+npm run dev -- --filter=@chat/my-custom-chat
+```
+
+## 🧩 Package Structure
+
+### @chat/ui
+Shared UI components with Framer Motion animations:
+- `Bubble`: Main chat interface component
+- `Hero`: Landing page hero section
+- `BackgroundGrids`: Visual background effects
+- Utilities: `cn()` for className merging
+
+### @chat/langchain-core
+Core LangChain functionality:
+- `config.ts`: OpenAI model configuration
+- `conversation.ts`: Conversation chain management
+- `neon-memory.ts`: Database-backed memory
+- `prompts.ts`: AI personality templates
+- `streaming.ts`: Response streaming handlers
+- `error-handler.ts`: Comprehensive error management
+
+### @chat/database
+Database utilities and schemas:
+- SQL migration files
+- Schema definitions
+- Database optimization queries
+
+### @chat/shared-types
+TypeScript type definitions:
+- `ChatMessage`: Message structure
+- `PromptTemplate`: AI personality types
+- `MemoryType`: Memory system types
+- `ChatSessionConfig`: Session configuration
+
+## 🎯 API Reference
+
+### Chat Endpoint
+`POST /api/chat-langchain`
+
+```typescript
+{
+  messages: ChatMessage[];
+  memoryType?: "buffer" | "summary";
+  maxTokenLimit?: number;
+  sessionId?: string;
+  promptTemplateId?: string;
+}
+```
+
+### Prompts Endpoint
+`GET /api/prompts`
+
+Returns available AI personality templates.
+
+### Memory Endpoint
+`GET /api/memory?sessionId=xxx&action=history`
+
+Retrieves conversation history for a session.
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+
+1. Push to GitHub
+2. Import to Vercel
+3. Configure environment variables
+4. Set root directory to `apps/base-template`
+5. Deploy
+
+### Build Settings
+```json
+{
+  "buildCommand": "cd ../.. && turbo build --filter=@chat/base-template",
+  "outputDirectory": "apps/base-template/.next",
+  "installCommand": "npm install"
+}
+```
+
+### Environment Variables (Production)
+```
+DATABASE_URL=
+OPENAI_API_KEY=
+NODE_ENV=production
+```
+
+## 🔧 Advanced Configuration
+
+### Custom Memory Strategies
+
+```typescript
+// In your app's API route
+import { createConversationChain } from "@chat/langchain-core";
+
+const chain = await createConversationChain({
+  memoryType: "summary",
+  maxTokenLimit: 4000,
+  customPrompt: "Your custom system prompt"
+});
+```
+
+### Adding New Personalities
+
+```typescript
+// packages/langchain-core/src/prompts.ts
+export const CUSTOM_TEMPLATE = {
+  id: "specialist",
+  name: "Domain Specialist",
+  description: "Expert in specific domain",
+  prompt: "You are an expert in...",
+  icon: "🎯"
+};
+```
+
 ### Database Optimization
-Run the optimization queries in `/lib/langchain/optimize-db.sql` for better performance at scale.
 
-## Troubleshooting
+For high-traffic applications:
+```sql
+-- Run periodically
+VACUUM ANALYZE chat_history;
+REINDEX INDEX idx_chat_history_session_id;
+```
 
-- **Streaming not working**: Ensure your OpenAI API key has access to streaming endpoints
-- **Memory not persisting**: Check database connection and run setup-database endpoint
-- **Slow responses**: Consider switching to Summary Memory for long conversations
+## 📊 Performance Optimization
 
-## Contributing
+### Build Optimization
+- Turborepo caches build outputs
+- Parallel execution of independent tasks
+- Incremental builds on changes
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Runtime Optimization
+- Database connection pooling
+- Optimized SQL queries with indexes
+- Summary memory for long conversations
+- Response streaming for better UX
 
-## Acknowledgments
+### Monitoring
+- Response time tracking
+- Token usage monitoring
+- Error rate tracking
+- Database query performance
 
-- [LangChain](https://langchain.com/) for the powerful LLM framework
-- [Aceternity UI](https://ui.aceternity.com/) for the beautiful UI components
-- [Neon.tech](https://neon.tech/) for the serverless Postgres database
+## 🧪 Testing
 
-## License
+```bash
+# Unit tests (when implemented)
+npm test
 
-MIT License - feel free to use this template for your own projects!
+# Integration tests
+npm run test:integration
+
+# E2E tests
+npm run test:e2e
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **"OPENAI_API_KEY is not set"**
+   - Ensure `.env.local` exists in app directory
+   - Check environment variable name
+
+2. **Database Connection Failed**
+   - Verify DATABASE_URL format
+   - Check Neon dashboard for connection string
+
+3. **Styles Not Loading**
+   - Ensure Tailwind config includes package paths
+   - Clear `.next` cache and rebuild
+
+4. **Package Not Found**
+   - Run `npm install` from root
+   - Check workspace configuration
+
+### Debug Mode
+
+```bash
+# Enable debug logging
+DEBUG=* npm run dev
+
+# Turborepo specific debugging
+TURBO_LOG_LEVEL=debug npm run dev
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing`)
+5. Open Pull Request
+
+### Code Style
+- TypeScript for all code
+- Prettier for formatting
+- ESLint for linting
+- Conventional commits
+
+## 📄 License
+
+MIT License - see LICENSE file for details
+
+## 🙏 Acknowledgments
+
+- [Turborepo](https://turbo.build) - Build system
+- [LangChain](https://langchain.com) - LLM framework
+- [Neon](https://neon.tech) - Serverless Postgres
+- [Vercel](https://vercel.com) - Deployment platform
+- [Aceternity UI](https://ui.aceternity.com) - UI components
+
+---
+
+Built with ❤️ using modern web technologies

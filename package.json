@@ -1,12 +1,17 @@
 {
-  "name": "nextjs",
+  "name": "chat-monorepo",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@10.2.4",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "turbo start",
+    "lint": "turbo lint"
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.71",
@@ -37,6 +42,7 @@
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
+    "turbo": "^2.5.5",
     "typescript": "^5"
   }
 }

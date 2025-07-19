@@ -1,0 +1,53 @@
+
+> @chat/base-template@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.13
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/15) ...
+   Generating static pages (3/15) 
+   Generating static pages (7/15) 
+   Generating static pages (11/15) 
+Response 1: {
+  response: "Hello Test User! It's great to meet you. How's everything going at TestCorp? What do you do there?"
+}
+Response 2: {
+  response: "That's fascinating! Working on AI projects must be quite intriguing. Are there any specific applications or types of AI technologies you're currently focusing on at TestCorp? How do you feel about the advancements in AI, especially in your field?"
+}
+Response 3: {
+  response: "Hello again! You mentioned that you work at TestCorp as a senior developer focusing on AI projects. How are things going with your work there? What specific applications or types of AI technologies are you currently working on? Also, I'd love to hear your thoughts on the recent advancements in AI, especially in your field."
+}
+Memory variables: {
+  history: "Test User introduces themselves and mentions they work at TestCorp as a senior developer focusing on AI projects. The AI greets Test User, inquires about their role, how things are at TestCorp, and expresses interest in the specific applications or types of AI technologies Test User is working on. The AI also asks how Test User feels about the advancements in AI, especially in their field. When Test User asks the AI what it remembers about them, the AI reiterates its knowledge of Test User's role and continues to show interest in the developments and applications of AI at TestCorp, specifically asking for updates and Test User's perspectives on recent AI advancements."
+}
+ ✓ Generating static pages (15/15)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    120 kB          207 kB
+├ ○ /_not-found                          876 B            88 kB
+├ ƒ /api/chat-langchain                  0 B                0 B
+├ ○ /api/hello                           0 B                0 B
+├ ƒ /api/memory                          0 B                0 B
+├ ○ /api/prompts                         0 B                0 B
+├ ƒ /api/setup-database                  0 B                0 B
+├ ○ /api/simple-test                     0 B                0 B
+├ ○ /api/test-langchain                  0 B                0 B
+├ ○ /api/test-memory                     0 B                0 B
+├ ○ /api/test-summary                    0 B                0 B
+└ ○ /test-langchain                      656 B          87.8 kB
++ First Load JS shared by all            87.1 kB
+  ├ chunks/1dd3208c-4a52b26086920bc8.js  53.7 kB
+  ├ chunks/286-70381a4511a2ae17.js       31.6 kB
+  └ other shared chunks (total)          1.89 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
