@@ -3,11 +3,14 @@ import { getToken } from 'next-auth/jwt';
 
 // Paths that don't require authentication
 const publicPaths = [
+  '/',
   '/login',
   '/register',
   '/api/auth',
   '/api/setup-auth-database',
   '/api/debug-register',
+  '/api/migrate-user-pages',
+  '/api/verify-migration',
   '/_next',
   '/favicon.ico',
 ];

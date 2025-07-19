@@ -4,6 +4,9 @@ import type { User, App, UserAppPermission, ChatHistory } from './types';
 
 const sql = neon(process.env.DATABASE_URL!);
 
+// Export user pages queries
+export * from './queries/user-pages';
+
 // User queries
 export const userQueries = {
   async findByEmail(email: string): Promise<User | null> {

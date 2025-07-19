@@ -2,6 +2,19 @@
 
 This document provides comprehensive guidelines for AI assistants (like Claude) working on this monorepo. It contains project-specific patterns, conventions, and best practices to ensure consistent, high-quality code generation.
 
+## 🚨 CRITICAL WARNING - NEVER DELETE THESE APPS 🚨
+
+**NEVER EVER DELETE OR MODIFY THE FOLLOWING DIRECTORIES:**
+- `apps/base-template/` - The main chat application (SACRED - DO NOT TOUCH)
+- `apps/base-template-backup/` - Backup of the main app (SACRED - DO NOT TOUCH)
+
+**THESE ARE CORE APPLICATIONS THAT MUST BE PRESERVED AT ALL COSTS!**
+
+When adding new apps or sample data:
+- Always use `INSERT ... ON CONFLICT (slug) DO NOTHING` or `ON CONFLICT DO UPDATE SET`
+- Never use `DELETE`, `DROP`, or destructive operations on these apps
+- If in doubt, ask before making any changes that could affect these directories
+
 ## 📋 Table of Contents
 
 1. [Project Overview](#project-overview)
@@ -668,3 +681,75 @@ Remember: When in doubt, check existing patterns in the codebase!
 ---
 
 *Last updated: 2025 - Turborepo 2.5, Next.js 14.2, LangChain 0.3*
+
+## 🚀 Current Project Status & Commands
+
+### Development Commands
+```bash
+# Development server (auto-detects available port 3000-3002)
+cd apps/base-template && npm run dev
+
+# Type checking (run before commits)
+cd apps/base-template && npx tsc --noEmit
+
+# Linting (base-template only, other packages have lint issues)
+cd apps/base-template && npm run lint
+
+# Build all packages
+npm run build
+```
+
+### Database Commands
+```bash
+# User Pages Migration (creates 10 new tables)
+curl -X POST http://localhost:3000/api/migrate-user-pages
+
+# Verify Migration Success
+curl -X GET http://localhost:3000/api/verify-migration
+```
+
+### Recent Implementation: User Management System
+✅ **Phase 1 Complete** - Backend Foundation:
+- 10 new database tables (user_sessions, user_activity, user_preferences, etc.)
+- 23 API endpoints across Profile, Apps, and Settings
+- Comprehensive data access functions in `packages/database/src/queries/user-pages.ts`
+- All endpoints authenticated with NextAuth sessions
+- TypeScript strict mode compliant
+
+### API Endpoints Available
+**Profile APIs** (6 endpoints):
+- `GET /api/user/profile` - Extended profile with activity stats
+- `PUT /api/user/profile` - Update name, bio, avatar
+- `GET /api/user/sessions` - Active session management
+- `DELETE /api/user/sessions/:id` - Revoke specific session
+- `GET /api/user/activity` - User activity history
+- `PUT /api/user/change-password` - Secure password change
+
+**Apps APIs** (8 endpoints):
+- `GET /api/user/apps/available` - All apps with permission status
+- `GET /api/user/apps/favorites` - User's favorited apps
+- `POST /api/user/apps/favorite` - Add/remove favorites
+- `GET /api/user/apps/recent` - Recently launched apps
+- `POST /api/user/apps/request-access` - Request app permissions
+- `GET /api/user/apps/requests` - Access request status
+- `POST /api/user/apps/launch` - Record app launch
+- `GET /api/apps/:slug/details` - Detailed app information
+
+**Settings APIs** (9 endpoints):
+- `GET /api/user/settings` - All user settings
+- `PUT /api/user/settings/preferences` - UI preferences
+- `PUT /api/user/settings/chat` - Chat settings
+- `POST /api/user/settings/export-data` - Export all user data
+- `DELETE /api/user/settings/account` - Delete account
+- `POST /api/user/settings/clear-chat-history` - Clear chat history
+- `GET /api/user/settings/login-history` - Login audit trail
+- `POST /api/user/settings/api-keys` - Create API keys
+- `DELETE /api/user/settings/api-keys/:id` - Revoke API keys
+
+### Known Issues
+- Root `npm run lint` fails on empty packages (ui, database, etc.)
+- Use individual package linting: `cd apps/base-template && npm run lint`
+- Server may use ports 3001-3002 if 3000 is occupied
+
+### Next Phase
+**Phase 2**: Profile Page Implementation - Frontend components for user profile management

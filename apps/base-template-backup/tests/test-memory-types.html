@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Type Testing</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .test-section { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .memory-type { display: inline-block; padding: 5px 10px; border-radius: 4px; font-weight: bold; }
+        .buffer { background: #e3f2fd; color: #1976d2; }
+        .summary { background: #f3e5f5; color: #7b1fa2; }
+        button { background: #4CAF50; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; margin: 5px; }
+        button:hover { background: #45a049; }
+        .response { background: #f9f9f9; padding: 15px; margin: 10px 0; border-radius: 4px; border-left: 4px solid #4CAF50; }
+        .error { border-left-color: #f44336; background: #ffebee; }
+        #results { max-height: 400px; overflow-y: auto; }
+        .loading { color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LangChain Memory Type Testing</h1>
+        <p>This page tests both Buffer and Summary memory types to ensure they work correctly.</p>
+        
+        <div class="test-section">
+            <h2>Test Controls</h2>
+            <div>
+                <button onclick="testBufferMemory()">Test Buffer Memory</button>
+                <button onclick="testSummaryMemory()">Test Summary Memory</button>
+                <button onclick="testMemoryComparison()">Compare Both Types</button>
+                <button onclick="clearResults()">Clear Results</button>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Test Results</h2>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        let sessionCounter = 1;
+
+        function addResult(title, content, type = 'success') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = `response ${type === 'error' ? 'error' : ''}`;
+            div.innerHTML = `
+                <strong>${title}</strong><br>
+                <pre style="white-space: pre-wrap; margin: 10px 0;">${content}</pre>
+                <small style="color: #666;">${new Date().toLocaleTimeString()}</small>
+            `;
+            results.appendChild(div);
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function addLoading(title) {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = 'response loading';
+            div.id = 'loading';
+            div.innerHTML = `<strong>${title}</strong><br>Testing in progress...`;
+            results.appendChild(div);
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function removeLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) loading.remove();
+        }
+
+        async function testMemoryType(memoryType, sessionId, testName) {
+            const messages = [
+                "Hello, my name is Alice and I'm a software engineer.",
+                "I work at a tech company in San Francisco.",
+                "I love working with React and Node.js.",
+                "Can you summarize what you know about me?"
+            ];
+
+            addLoading(`Testing ${testName}`);
+
+            try {
+                let allResponses = [];
+                
+                for (let i = 0; i < messages.length; i++) {
+                    const response = await fetch('/api/chat-langchain', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            messages: [{ role: 'user', content: messages[i] }],
+                            memoryType,
+                            sessionId,
+                            maxTokenLimit: 2000
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder();
+                    let fullResponse = '';
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        fullResponse += decoder.decode(value, { stream: true });
+                    }
+
+                    allResponses.push({
+                        user: messages[i],
+                        assistant: fullResponse
+                    });
+                }
+
+                removeLoading();
+                
+                let resultText = `Memory Type: ${memoryType.toUpperCase()}\nSession: ${sessionId}\n\n`;
+                allResponses.forEach((exchange, i) => {
+                    resultText += `Exchange ${i + 1}:\n`;
+                    resultText += `User: ${exchange.user}\n`;
+                    resultText += `Assistant: ${exchange.assistant}\n\n`;
+                });
+
+                addResult(`✅ ${testName} - SUCCESS`, resultText);
+
+                // Test memory retrieval
+                if (memoryType === 'summary') {
+                    try {
+                        const memoryResponse = await fetch(`/api/memory?sessionId=${sessionId}&action=summary&memoryType=summary`);
+                        const memoryData = await memoryResponse.json();
+                        if (memoryData.summary) {
+                            addResult(`📋 ${testName} - Memory Summary`, memoryData.summary);
+                        }
+                    } catch (error) {
+                        console.error('Error fetching memory summary:', error);
+                    }
+                }
+
+            } catch (error) {
+                removeLoading();
+                addResult(`❌ ${testName} - ERROR`, error.message, 'error');
+            }
+        }
+
+        async function testBufferMemory() {
+            const sessionId = `buffer-test-${sessionCounter++}`;
+            await testMemoryType('buffer', sessionId, 'Buffer Memory');
+        }
+
+        async function testSummaryMemory() {
+            const sessionId = `summary-test-${sessionCounter++}`;
+            await testMemoryType('summary', sessionId, 'Summary Memory');
+        }
+
+        async function testMemoryComparison() {
+            const bufferSessionId = `comparison-buffer-${sessionCounter}`;
+            const summarySessionId = `comparison-summary-${sessionCounter}`;
+            sessionCounter++;
+
+            addResult('🔄 Memory Comparison Test', 'Starting comparison between Buffer and Summary memory types...');
+            
+            await testMemoryType('buffer', bufferSessionId, 'Buffer Memory (Comparison)');
+            await testMemoryType('summary', summarySessionId, 'Summary Memory (Comparison)');
+            
+            addResult('🏁 Comparison Complete', 'Both memory types have been tested. Compare the responses above to see the differences.');
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // Add initial info
+        addResult('🚀 Memory Type Testing Ready', 'Click the buttons above to test different memory types. The Buffer memory stores exact conversation history, while Summary memory creates condensed summaries to optimize token usage.');
+    </script>
+</body>
+</html>
