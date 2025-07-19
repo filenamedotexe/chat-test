@@ -278,18 +278,18 @@
   - Filter responses by user permissions
   Notes: ✅ Already implemented - chat-langchain API passes session.user.id to createConversationChain (line 66), NeonChatMessageHistory saves user_id with messages (lines 124, 130). Verified user_id column exists and new chats will be linked to users
 
-- [ ] **Step 7.2**: Create user API endpoints
+- [x] **Step 7.2**: Create user API endpoints
   - GET /api/user/me - current user info
   - GET /api/user/apps - user's accessible apps
   - PUT /api/user/profile - update profile
-  Notes:
+  Notes: ✅ Created all three user endpoints. /api/user/me returns full user data excluding password. /api/user/apps returns permitted apps for users (all apps for admins). /api/user/profile allows updating user name.
 
-- [ ] **Step 7.3**: Build admin API endpoints
+- [x] **Step 7.3**: Build admin API endpoints
   - GET /api/admin/users - list all users
   - PUT /api/admin/users/:id - update user
   - POST /api/admin/permissions - grant permissions
   - DELETE /api/admin/permissions - revoke permissions
-  Notes:
+  Notes: ✅ All admin endpoints already exist and are properly secured. GET /api/admin/users returns all users. PUT /api/admin/users/:id allows updating role, is_active, and name. Permissions endpoints handle granting/revoking with proper admin checks.
 
 ### Phase 8: App Registry & Dynamic Loading
 - [ ] **Step 8.1**: Create app discovery system
