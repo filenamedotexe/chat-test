@@ -7,7 +7,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@chat/auth": ["../../packages/auth/src"],
+      "@chat/auth/middleware": ["../../packages/auth/src/middleware"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

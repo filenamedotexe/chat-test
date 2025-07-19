@@ -21,6 +21,7 @@ interface ConversationChainOptions {
   modelName?: string;
   memoryType?: "buffer" | "summary";
   maxTokenLimit?: number;
+  userId?: number;
 }
 
 /**
@@ -35,7 +36,8 @@ export async function createConversationChain(options: ConversationChainOptions)
     temperature = 0.7,
     modelName = "gpt-4-turbo",
     memoryType = "buffer",
-    maxTokenLimit = 2000
+    maxTokenLimit = 2000,
+    userId
   } = options;
 
   // Get the system prompt from template or use provided one
@@ -58,6 +60,7 @@ export async function createConversationChain(options: ConversationChainOptions)
   const chatHistory = new NeonChatMessageHistory({
     sessionId,
     databaseUrl: process.env.DATABASE_URL || "",
+    userId,
   });
 
   // Create memory based on type

@@ -15,6 +15,7 @@
     "clsx": "*",
     "framer-motion": "*",
     "next": "*",
+    "next-auth": "*",
     "react": "*",
     "react-dom": "*",
     "react-markdown": "*",

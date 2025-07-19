@@ -9,15 +9,23 @@ import {
   formatErrorResponse,
   withRetry 
 } from "@chat/langchain-core";
+import { getServerSession } from "@chat/auth";
 
 export async function POST(req: Request) {
   try {
+    // Check authentication
+    const session = await getServerSession();
+    if (!session) {
+      return new Response('Unauthorized', { status: 401 });
+    }
+    
     const { 
       messages, 
       memoryType = "buffer", 
       maxTokenLimit = 2000, 
       sessionId: providedSessionId,
-      promptTemplateId = "default"
+      promptTemplateId = "default",
+      userId
     } = await req.json();
     
     // Validate input
@@ -55,6 +63,7 @@ export async function POST(req: Request) {
         promptTemplateId,
         memoryType: memoryType as "buffer" | "summary",
         maxTokenLimit,
+        userId: session.user.id ? parseInt(session.user.id) : undefined,
       }),
       2,  // max retries
       1000 // initial delay

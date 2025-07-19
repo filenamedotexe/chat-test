@@ -1,0 +1,25 @@
+{
+  "name": "@chat/auth",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./middleware": "./src/middleware.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@auth/neon-adapter": "*",
+    "@neondatabase/serverless": "*",
+    "bcryptjs": "*",
+    "next": "*",
+    "next-auth": "*"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "*",
+    "@types/node": "*",
+    "typescript": "*"
+  }
+}

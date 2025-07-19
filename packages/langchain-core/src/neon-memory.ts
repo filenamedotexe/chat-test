@@ -6,6 +6,7 @@ export interface NeonChatMessageHistoryOptions {
   sessionId: string;
   databaseUrl: string;
   tableName?: string;
+  userId?: number;
 }
 
 export class NeonChatMessageHistory extends BaseListChatMessageHistory {
@@ -14,11 +15,13 @@ export class NeonChatMessageHistory extends BaseListChatMessageHistory {
   private sessionId: string;
   private sql: any;
   private tableName: string;
+  private userId?: number;
 
   constructor(options: NeonChatMessageHistoryOptions) {
     super();
     this.sessionId = options.sessionId;
     this.tableName = options.tableName || "chat_history";
+    this.userId = options.userId;
     
     // Initialize Neon connection
     if (!options.databaseUrl || options.databaseUrl === "your-neon-database-url") {
@@ -118,16 +121,18 @@ export class NeonChatMessageHistory extends BaseListChatMessageHistory {
             session_id,
             user_message,
             assistant_message,
+            user_id,
             created_at
           ) VALUES (
             ${this.sessionId},
             ${userMessage},
             ${assistantMessage},
+            ${this.userId || null},
             NOW()
           )
         `;
       } catch (columnError) {
-        console.log("session_id column doesn't exist, using original schema");
+        console.log("user_id column doesn't exist, trying without it");
         await this.sql`
           INSERT INTO chat_history (
             user_message,
@@ -147,9 +152,10 @@ export class NeonChatMessageHistory extends BaseListChatMessageHistory {
 }
 
 // Helper function to create memory with current database URL
-export function createNeonMemory(sessionId: string): NeonChatMessageHistory {
+export function createNeonMemory(sessionId: string, userId?: number): NeonChatMessageHistory {
   return new NeonChatMessageHistory({
     sessionId,
     databaseUrl: process.env.DATABASE_URL || "",
+    userId,
   });
 }

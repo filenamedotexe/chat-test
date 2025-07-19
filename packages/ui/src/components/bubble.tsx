@@ -25,8 +25,12 @@ import {
 import { useChat } from "ai/react";
 import Markdown from "react-markdown";
 import { cn } from "../utils";
+import { useSession } from "next-auth/react";
+import { UserMenu } from "./auth/UserMenu";
+import { RoleIndicator } from "./auth/RoleIndicator";
 
 export const Bubble = () => {
+  const { data: session, status } = useSession();
   const [open, setOpen] = useState(true);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   // const [inputFocus, setInputFocus] = useState(false);
@@ -62,6 +66,7 @@ export const Bubble = () => {
       maxTokenLimit,
       sessionId: sessionId || undefined,
       promptTemplateId,
+      userId: session?.user?.id,
     },
   });
 
@@ -205,6 +210,29 @@ export const Bubble = () => {
     }
   };
 
+  if (status === "loading") {
+    return (
+      <div className="fixed bottom-10 right-10 flex flex-col items-end z-30">
+        <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg">
+          <div className="animate-pulse text-white">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    return (
+      <div className="fixed bottom-10 right-10 flex flex-col items-end z-30">
+        <div className="bg-gray-800/50 backdrop-blur-sm p-4 rounded-lg">
+          <div className="text-white">Please sign in to use chat</div>
+          <a href="/login" className="text-purple-400 hover:text-purple-300 text-sm">
+            Sign In →
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cn(
       "fixed bottom-10 right-10 flex flex-col items-end z-30 bubble-container",
@@ -266,14 +294,22 @@ export const Bubble = () => {
                   >
                     <IconMaximize className="h-4 w-4 text-white" />
                   </button>
-                  <button 
-                    onClick={() => setShowSettings(!showSettings)}
-                    className="hover:bg-gray-800 p-1 rounded-full transition-colors"
-                  >
-                    <IconSettings className="h-4 w-4 text-white" />
-                  </button>
+                  {session?.user?.role === 'admin' && (
+                    <button 
+                      onClick={() => setShowSettings(!showSettings)}
+                      className="hover:bg-gray-800 p-1 rounded-full transition-colors"
+                    >
+                      <IconSettings className="h-4 w-4 text-white" />
+                    </button>
+                  )}
+                  {session && (
+                    <div className="ml-2">
+                      <RoleIndicator />
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center gap-2">
+                  {session && <UserMenu />}
                   {messages.length > 0 && (
                     <motion.button
                       className="rounded-full bg-black text-white px-2 py-0.5 text-sm flex items-center justify-center gap-1 overflow-hidden"
