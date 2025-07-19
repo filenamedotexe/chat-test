@@ -12,7 +12,6 @@
    Generating static pages (0/15) ...
    Generating static pages (3/15) 
    Generating static pages (7/15) 
-   Generating static pages (11/15) 
 Response 1: {
   response: "Hello Test User! It's great to meet you. How's everything going at TestCorp? What do you do there?"
 }
@@ -25,6 +24,7 @@ Response 3: {
 Memory variables: {
   history: "Test User introduces themselves and mentions they work at TestCorp as a senior developer focusing on AI projects. The AI greets Test User, inquires about their role, how things are at TestCorp, and expresses interest in the specific applications or types of AI technologies Test User is working on. The AI also asks how Test User feels about the advancements in AI, especially in their field. When Test User asks the AI what it remembers about them, the AI reiterates its knowledge of Test User's role and continues to show interest in the developments and applications of AI at TestCorp, specifically asking for updates and Test User's perspectives on recent AI advancements."
 }
+   Generating static pages (11/15) 
  ✓ Generating static pages (15/15)
    Finalizing page optimization ...
    Collecting build traces ...
