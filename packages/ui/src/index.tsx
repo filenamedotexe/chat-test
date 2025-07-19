@@ -7,3 +7,6 @@ export { cn } from './utils';
 export { UserMenu } from './components/auth/UserMenu';
 export { RoleIndicator } from './components/auth/RoleIndicator';
 export { SessionProvider } from './components/auth/SessionProvider';
+
+// Navigation
+export { Navigation } from './components/Navigation';

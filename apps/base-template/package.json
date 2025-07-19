@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:security": "node tests/security-audit.js",
+    "test:auth": "jest tests/auth-test-suite.test.js"
   },
   "dependencies": {
     "@ai-sdk/openai": "*",
@@ -26,6 +29,8 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
+    "jest": "^29.7.0",
+    "@jest/globals": "^29.7.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
     "typescript": "^5"

@@ -1,0 +1,609 @@
+
+> chat-monorepo@0.1.0 dev
+> turbo dev
+
+turbo 2.5.5
+
+• Packages in scope: @chat/auth, @chat/base-template, @chat/dashboard-app, @chat/database, @chat/langchain-core, @chat/notes-app, @chat/shared-types, @chat/ui
+• Running dev in 8 packages
+• Remote caching disabled
+@chat/notes-app:dev: cache bypass, force executing d919fd84037c9b6b
+@chat/base-template:dev: cache bypass, force executing 3797bea9d4be0817
+@chat/dashboard-app:dev: cache bypass, force executing 2b8f33ddfc1182b6
+@chat/base-template:dev: 
+@chat/base-template:dev: > @chat/base-template@0.1.0 dev
+@chat/base-template:dev: > next dev
+@chat/base-template:dev: 
+@chat/notes-app:dev: 
+@chat/notes-app:dev: > @chat/notes-app@1.2.0 dev
+@chat/notes-app:dev: > echo 'Notes app development server would start here'
+@chat/notes-app:dev: 
+@chat/dashboard-app:dev: 
+@chat/dashboard-app:dev: > @chat/dashboard-app@2.1.3 dev
+@chat/dashboard-app:dev: > echo 'Dashboard app development server would start here'
+@chat/dashboard-app:dev: 
+@chat/dashboard-app:dev: Dashboard app development server would start here
+@chat/notes-app:dev: Notes app development server would start here
+@chat/base-template:dev:   ▲ Next.js 14.2.13
+@chat/base-template:dev:   - Local:        http://localhost:3000
+@chat/base-template:dev:   - Environments: .env.local
+@chat/base-template:dev: 
+@chat/base-template:dev:  ✓ Starting...
+@chat/base-template:dev:  ✓ Ready in 929ms
+@chat/base-template:dev:  ○ Compiling /login ...
+@chat/base-template:dev:  ✓ Compiled /login in 2.1s (1876 modules)
+@chat/base-template:dev:  GET /login 200 in 2183ms
+@chat/base-template:dev:  ✓ Compiled in 85ms (896 modules)
+@chat/base-template:dev:  ✓ Compiled /middleware in 206ms (217 modules)
+@chat/base-template:dev:  ✓ Compiled /api/setup-auth-database in 148ms (1002 modules)
+@chat/base-template:dev:  GET /api/setup-auth-database 200 in 1066ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/register in 286ms (1241 modules)
+@chat/base-template:dev:  POST /api/auth/register 200 in 646ms
+@chat/base-template:dev: Registration error: NeonDbError: duplicate key value violates unique constraint "users_email_key"
+@chat/base-template:dev:     at execute (webpack-internal:///(rsc)/../../node_modules/@neondatabase/serverless/index.mjs:1570:55)
+@chat/base-template:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+@chat/base-template:dev:     at async createUser (webpack-internal:///(rsc)/../../packages/auth/src/utils.ts:77:20)
+@chat/base-template:dev:     at async POST (webpack-internal:///(rsc)/./app/api/auth/register/route.ts:56:22)
+@chat/base-template:dev:     at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55759
+@chat/base-template:dev:     at async eO.execute (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+@chat/base-template:dev:     at async eO.handle (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57093)
+@chat/base-template:dev:     at async doRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1345:42)
+@chat/base-template:dev:     at async cacheEntry.responseCache.get.routeKind (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1567:28)
+@chat/base-template:dev:     at async DevServer.renderToResponseWithComponentsImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1475:28)
+@chat/base-template:dev:     at async DevServer.renderPageComponent (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1901:24)
+@chat/base-template:dev:     at async DevServer.renderToResponseImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1939:32)
+@chat/base-template:dev:     at async DevServer.pipeImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:914:25)
+@chat/base-template:dev:     at async NextNodeServer.handleCatchallRenderRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/next-server.js:272:17)
+@chat/base-template:dev:     at async DevServer.handleRequestImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:810:17)
+@chat/base-template:dev:     at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+@chat/base-template:dev:     at async Span.traceAsyncFn (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/trace/trace.js:154:20)
+@chat/base-template:dev:     at async DevServer.handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+@chat/base-template:dev:     at async invokeRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:173:21)
+@chat/base-template:dev:     at async handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:350:24)
+@chat/base-template:dev:     at async requestHandlerImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:374:13)
+@chat/base-template:dev:     at async Server.requestListener (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/start-server.js:141:13) {
+@chat/base-template:dev:   severity: 'ERROR',
+@chat/base-template:dev:   code: '23505',
+@chat/base-template:dev:   detail: 'Key (email)=(test1752908552@example.com) already exists.',
+@chat/base-template:dev:   hint: undefined,
+@chat/base-template:dev:   position: undefined,
+@chat/base-template:dev:   internalPosition: undefined,
+@chat/base-template:dev:   internalQuery: undefined,
+@chat/base-template:dev:   where: undefined,
+@chat/base-template:dev:   schema: 'public',
+@chat/base-template:dev:   table: 'users',
+@chat/base-template:dev:   column: undefined,
+@chat/base-template:dev:   dataType: undefined,
+@chat/base-template:dev:   constraint: 'users_email_key',
+@chat/base-template:dev:   file: 'nbtinsert.c',
+@chat/base-template:dev:   line: '666',
+@chat/base-template:dev:   routine: '_bt_check_unique',
+@chat/base-template:dev:   sourceError: undefined
+@chat/base-template:dev: }
+@chat/base-template:dev:  POST /api/auth/register 409 in 92ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 6ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 4ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 49ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 10ms
+@chat/base-template:dev:  GET /login 200 in 36ms
+@chat/base-template:dev:  ✓ Compiled /register in 143ms (2129 modules)
+@chat/base-template:dev:  GET /register 200 in 184ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 19ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 2ms
+@chat/base-template:dev:  GET /login 200 in 14ms
+@chat/base-template:dev: Registration error: NeonDbError: duplicate key value violates unique constraint "users_email_key"
+@chat/base-template:dev:     at execute (webpack-internal:///(rsc)/../../node_modules/@neondatabase/serverless/index.mjs:1570:55)
+@chat/base-template:dev:     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+@chat/base-template:dev:     at async createUser (webpack-internal:///(rsc)/../../packages/auth/src/utils.ts:77:20)
+@chat/base-template:dev:     at async POST (webpack-internal:///(rsc)/./app/api/auth/register/route.ts:56:22)
+@chat/base-template:dev:     at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:55759
+@chat/base-template:dev:     at async eO.execute (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46527)
+@chat/base-template:dev:     at async eO.handle (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57093)
+@chat/base-template:dev:     at async doRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1345:42)
+@chat/base-template:dev:     at async cacheEntry.responseCache.get.routeKind (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1567:28)
+@chat/base-template:dev:     at async DevServer.renderToResponseWithComponentsImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1475:28)
+@chat/base-template:dev:     at async DevServer.renderPageComponent (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1901:24)
+@chat/base-template:dev:     at async DevServer.renderToResponseImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1939:32)
+@chat/base-template:dev:     at async DevServer.pipeImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:914:25)
+@chat/base-template:dev:     at async NextNodeServer.handleCatchallRenderRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/next-server.js:272:17)
+@chat/base-template:dev:     at async DevServer.handleRequestImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:810:17)
+@chat/base-template:dev:     at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+@chat/base-template:dev:     at async Span.traceAsyncFn (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/trace/trace.js:154:20)
+@chat/base-template:dev:     at async DevServer.handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+@chat/base-template:dev:     at async invokeRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:173:21)
+@chat/base-template:dev:     at async handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:350:24)
+@chat/base-template:dev:     at async requestHandlerImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:374:13)
+@chat/base-template:dev:     at async Server.requestListener (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/start-server.js:141:13) {
+@chat/base-template:dev:   severity: 'ERROR',
+@chat/base-template:dev:   code: '23505',
+@chat/base-template:dev:   detail: 'Key (email)=(admin@example.com) already exists.',
+@chat/base-template:dev:   hint: undefined,
+@chat/base-template:dev:   position: undefined,
+@chat/base-template:dev:   internalPosition: undefined,
+@chat/base-template:dev:   internalQuery: undefined,
+@chat/base-template:dev:   where: undefined,
+@chat/base-template:dev:   schema: 'public',
+@chat/base-template:dev:   table: 'users',
+@chat/base-template:dev:   column: undefined,
+@chat/base-template:dev:   dataType: undefined,
+@chat/base-template:dev:   constraint: 'users_email_key',
+@chat/base-template:dev:   file: 'nbtinsert.c',
+@chat/base-template:dev:   line: '666',
+@chat/base-template:dev:   routine: '_bt_check_unique',
+@chat/base-template:dev:   sourceError: undefined
+@chat/base-template:dev: }
+@chat/base-template:dev:  POST /api/auth/register 409 in 99ms
+@chat/base-template:dev:  GET /api/auth/register 405 in 2ms
+@chat/base-template:dev:  OPTIONS /api/auth/register 204 in 2ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 3ms
+@chat/base-template:dev:  POST /api/auth/register 400 in 2ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/[...nextauth] in 74ms (1247 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/csrf 200 in 283ms
+@chat/base-template:dev:  POST /api/auth/callback/credentials 200 in 240ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/users in 93ms (1253 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/admin/users 200 in 146ms
+@chat/base-template:dev:  ○ Compiling /api/chat-langchain ...
+@chat/base-template:dev:  ✓ Compiled /api/chat-langchain in 591ms (1838 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev: Memory loaded for session test_session (buffer): {
+@chat/base-template:dev:   "history": []
+@chat/base-template:dev: }
+@chat/base-template:dev: [32m[chain/start][39m [[90m[1m1:chain:ConversationChain[22m[39m] Entering Chain run with input: {
+@chat/base-template:dev:   "input": "Hello",
+@chat/base-template:dev:   "history": []
+@chat/base-template:dev: }
+@chat/base-template:dev: [32m[llm/start][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] Entering LLM run with input: {
+@chat/base-template:dev:   "messages": [
+@chat/base-template:dev:     [
+@chat/base-template:dev:       {
+@chat/base-template:dev:         "lc": 1,
+@chat/base-template:dev:         "type": "constructor",
+@chat/base-template:dev:         "id": [
+@chat/base-template:dev:           "langchain_core",
+@chat/base-template:dev:           "messages",
+@chat/base-template:dev:           "SystemMessage"
+@chat/base-template:dev:         ],
+@chat/base-template:dev:         "kwargs": {
+@chat/base-template:dev:           "content": "You are a helpful assistant created by Neon.tech and Aceternity. Your job is to answer questions asked by the user in a polite and respectful manner. Always answer in markdown.",
+@chat/base-template:dev:           "additional_kwargs": {},
+@chat/base-template:dev:           "response_metadata": {}
+@chat/base-template:dev:         }
+@chat/base-template:dev:       },
+@chat/base-template:dev:       {
+@chat/base-template:dev:         "lc": 1,
+@chat/base-template:dev:         "type": "constructor",
+@chat/base-template:dev:         "id": [
+@chat/base-template:dev:           "langchain_core",
+@chat/base-template:dev:           "messages",
+@chat/base-template:dev:           "HumanMessage"
+@chat/base-template:dev:         ],
+@chat/base-template:dev:         "kwargs": {
+@chat/base-template:dev:           "content": "Hello",
+@chat/base-template:dev:           "additional_kwargs": {},
+@chat/base-template:dev:           "response_metadata": {}
+@chat/base-template:dev:         }
+@chat/base-template:dev:       }
+@chat/base-template:dev:     ]
+@chat/base-template:dev:   ]
+@chat/base-template:dev: }
+@chat/base-template:dev: LLM finished, full content: Hello! How can I assist you today?
+@chat/base-template:dev: Message added to memory (not persisted individually): HumanMessage {
+@chat/base-template:dev:   "content": "Hello",
+@chat/base-template:dev:   "additional_kwargs": {},
+@chat/base-template:dev:   "response_metadata": {}
+@chat/base-template:dev: }
+@chat/base-template:dev: Message added to memory (not persisted individually): AIMessage {
+@chat/base-template:dev:   "content": "Hello! How can I assist you today?",
+@chat/base-template:dev:   "additional_kwargs": {},
+@chat/base-template:dev:   "response_metadata": {},
+@chat/base-template:dev:   "tool_calls": [],
+@chat/base-template:dev:   "invalid_tool_calls": []
+@chat/base-template:dev: }
+@chat/base-template:dev:  POST /api/chat-langchain 200 in 2715ms
+@chat/base-template:dev: Conversation saved to database
+@chat/base-template:dev: [36m[llm/end][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] [1.93s] Exiting LLM run with output: {
+@chat/base-template:dev:   "generations": [
+@chat/base-template:dev:     [
+@chat/base-template:dev:       {
+@chat/base-template:dev:         "text": "Hello! How can I assist you today?",
+@chat/base-template:dev:         "generationInfo": {
+@chat/base-template:dev:           "prompt": 0,
+@chat/base-template:dev:           "completion": 0,
+@chat/base-template:dev:           "finish_reason": "stop",
+@chat/base-template:dev:           "system_fingerprint": "fp_de235176ee",
+@chat/base-template:dev:           "model_name": "gpt-4-turbo-2024-04-09",
+@chat/base-template:dev:           "service_tier": "default"
+@chat/base-template:dev:         },
+@chat/base-template:dev:         "message": {
+@chat/base-template:dev:           "lc": 1,
+@chat/base-template:dev:           "type": "constructor",
+@chat/base-template:dev:           "id": [
+@chat/base-template:dev:             "langchain_core",
+@chat/base-template:dev:             "messages",
+@chat/base-template:dev:             "AIMessageChunk"
+@chat/base-template:dev:           ],
+@chat/base-template:dev:           "kwargs": {
+@chat/base-template:dev:             "content": "Hello! How can I assist you today?",
+@chat/base-template:dev:             "additional_kwargs": {},
+@chat/base-template:dev:             "response_metadata": {
+@chat/base-template:dev:               "estimatedTokenUsage": {
+@chat/base-template:dev:                 "promptTokens": 51,
+@chat/base-template:dev:                 "completionTokens": 9,
+@chat/base-template:dev:                 "totalTokens": 60
+@chat/base-template:dev:               },
+@chat/base-template:dev:               "prompt": 0,
+@chat/base-template:dev:               "completion": 0,
+@chat/base-template:dev:               "finish_reason": "stop",
+@chat/base-template:dev:               "system_fingerprint": "fp_de235176ee",
+@chat/base-template:dev:               "model_name": "gpt-4-turbo-2024-04-09",
+@chat/base-template:dev:               "service_tier": "default",
+@chat/base-template:dev:               "usage": {
+@chat/base-template:dev:                 "prompt_tokens": 48,
+@chat/base-template:dev:                 "completion_tokens": 9,
+@chat/base-template:dev:                 "total_tokens": 57,
+@chat/base-template:dev:                 "prompt_tokens_details": {
+@chat/base-template:dev:                   "cached_tokens": 0,
+@chat/base-template:dev:                   "audio_tokens": 0
+@chat/base-template:dev:                 },
+@chat/base-template:dev:                 "completion_tokens_details": {
+@chat/base-template:dev:                   "reasoning_tokens": 0,
+@chat/base-template:dev:                   "audio_tokens": 0,
+@chat/base-template:dev:                   "accepted_prediction_tokens": 0,
+@chat/base-template:dev:                   "rejected_prediction_tokens": 0
+@chat/base-template:dev:                 }
+@chat/base-template:dev:               }
+@chat/base-template:dev:             },
+@chat/base-template:dev:             "tool_call_chunks": [],
+@chat/base-template:dev:             "id": "chatcmpl-BuvsvHrGyuC75NlLrAV68YJxDuWGh",
+@chat/base-template:dev:             "usage_metadata": {
+@chat/base-template:dev:               "input_tokens": 48,
+@chat/base-template:dev:               "output_tokens": 9,
+@chat/base-template:dev:               "total_tokens": 57,
+@chat/base-template:dev:               "input_token_details": {
+@chat/base-template:dev:                 "audio": 0,
+@chat/base-template:dev:                 "cache_read": 0
+@chat/base-template:dev:               },
+@chat/base-template:dev:               "output_token_details": {
+@chat/base-template:dev:                 "audio": 0,
+@chat/base-template:dev:                 "reasoning": 0
+@chat/base-template:dev:               }
+@chat/base-template:dev:             },
+@chat/base-template:dev:             "tool_calls": [],
+@chat/base-template:dev:             "invalid_tool_calls": []
+@chat/base-template:dev:           }
+@chat/base-template:dev:         }
+@chat/base-template:dev:       }
+@chat/base-template:dev:     ]
+@chat/base-template:dev:   ],
+@chat/base-template:dev:   "llmOutput": {
+@chat/base-template:dev:     "estimatedTokenUsage": {
+@chat/base-template:dev:       "promptTokens": 51,
+@chat/base-template:dev:       "completionTokens": 9,
+@chat/base-template:dev:       "totalTokens": 60
+@chat/base-template:dev:     }
+@chat/base-template:dev:   }
+@chat/base-template:dev: }
+@chat/base-template:dev: [36m[chain/end][39m [[90m[1m1:chain:ConversationChain[22m[39m] [1.93s] Exiting Chain run with output: {
+@chat/base-template:dev:   "response": "Hello! How can I assist you today?"
+@chat/base-template:dev: }
+@chat/base-template:dev:  POST /api/auth/register 200 in 90ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/users/[id]/permission-group in 85ms (1840 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  PUT /api/admin/users/50/permission-group 200 in 288ms
+@chat/base-template:dev:  POST /api/auth/signout 302 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/setup-auth-database 200 in 173ms
+@chat/base-template:dev:  POST /api/auth/register 200 in 100ms
+@chat/base-template:dev:  GET /login 200 in 47ms
+@chat/base-template:dev:  GET /register 200 in 14ms
+@chat/base-template:dev:  ✓ Compiled / in 295ms (2139 modules)
+@chat/base-template:dev:  GET / 200 in 395ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/[...nextauth] in 151ms (1253 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 195ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  ✓ Compiled /api/user/apps in 67ms (1259 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 140ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 283ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 40ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 35ms
+@chat/base-template:dev:  ✓ Compiled /admin in 173ms (2159 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin?_rsc=d43c0 200 in 124ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/stats in 73ms (1269 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/admin/stats 200 in 213ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 51ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 53ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 37ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 54ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 50ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 115ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 39ms
+@chat/base-template:dev:  ✓ Compiled /_not-found in 254ms (2146 modules)
+@chat/base-template:dev:  GET /apps/base-template 404 in 28ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET / 200 in 86ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 115ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 52ms
+@chat/base-template:dev:  GET /apps/base-template 404 in 14ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET / 200 in 18ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 112ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 35ms
+@chat/base-template:dev:  GET /admin?_rsc=d43c0 200 in 122ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 119ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 55ms
+@chat/base-template:dev:  GET / 200 in 15ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 10ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 109ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  GET /logout 404 in 13ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET / 200 in 14ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 10ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 7ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 7ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 118ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 35ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 38ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 10ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 301ms
+@chat/base-template:dev:  GET /apps/base-template 404 in 14ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET / 200 in 14ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 7ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 40ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 37ms
+@chat/base-template:dev:  GET /admin?_rsc=d43c0 200 in 117ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 128ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 47ms
+@chat/base-template:dev:  ✓ Compiled /admin/users in 235ms (2153 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin/users?_rsc=1k6r5 200 in 83ms
+@chat/base-template:dev:  ✓ Compiled /admin/users/[id] in 138ms (2160 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin/users/52 200 in 678ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled in 189ms (912 modules)
+@chat/base-template:dev:  GET /admin/users/52?_rsc=1lg26 200 in 240ms
+@chat/base-template:dev:  ✓ Compiled /admin/apps in 134ms (2167 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin/apps?_rsc=1mpvr 200 in 9ms
+@chat/base-template:dev:  ✓ Compiled in 418ms (2184 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin/users?_rsc=t15of 200 in 118ms
+@chat/base-template:dev:  ✓ Compiled /admin/permissions in 146ms (2177 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin/permissions?_rsc=ohbvz 200 in 108ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/permissions in 189ms (1276 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/admin/permissions 200 in 241ms
+@chat/base-template:dev:  GET /api/admin/permissions 200 in 36ms
+@chat/base-template:dev:  GET /admin?_rsc=1njkv 200 in 46ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 128ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 52ms
+@chat/base-template:dev:  ✓ Compiled in 61ms (917 modules)
+@chat/base-template:dev:  GET /admin?_rsc=gwzu7 200 in 120ms
+@chat/base-template:dev:  ✓ Compiled in 63ms (917 modules)
+@chat/base-template:dev:  GET /admin?_rsc=1swzv 200 in 132ms
+@chat/base-template:dev:  ✓ Compiled in 174ms (2188 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /admin?_rsc=1swzv 200 in 137ms
+@chat/base-template:dev:  ✓ Compiled /api/user/apps in 74ms (1273 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/user/apps 200 in 118ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  ✓ Compiled in 241ms (2174 modules)
+@chat/base-template:dev:  ✓ Compiled in 64ms (915 modules)
+@chat/base-template:dev:  ✓ Compiled in 141ms (2391 modules)
+@chat/base-template:dev:  GET / 200 in 89ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/[...nextauth] in 275ms (2181 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 293ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 12ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 136ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 33ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  GET /admin?_rsc=d43c0 200 in 105ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/stats in 68ms (1268 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/admin/stats 200 in 196ms
+@chat/base-template:dev:  GET /api/admin/stats 200 in 44ms
+@chat/base-template:dev:  GET / 200 in 76ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 112ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 32ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  GET / 200 in 12ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 116ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 42ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 39ms
+@chat/base-template:dev:  ✓ Compiled /_not-found in 180ms (2172 modules)
+@chat/base-template:dev:  GET /home 404 in 207ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 9ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET / 200 in 20ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 117ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 32ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  GET /api/user/apps 200 in 34ms
+@chat/base-template:dev:  ✓ Compiled in 80ms (917 modules)
+@chat/base-template:dev:  ✓ Compiled in 156ms (2182 modules)
+@chat/base-template:dev:  GET /home 404 in 46ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /home 404 in 9ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled in 67ms (916 modules)
+@chat/base-template:dev:  GET /home 404 in 9ms
+@chat/base-template:dev:  ✓ Compiled in 200ms (2385 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 147ms
+@chat/base-template:dev:  ✓ Compiled /home in 211ms (2175 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 220ms
+@chat/base-template:dev:  GET /home?_rsc=v6rq3 200 in 234ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /profile 404 in 22ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /home 200 in 19ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  ✓ Compiled /chat in 172ms (2175 modules)
+@chat/base-template:dev:  ✓ Compiled /api/prompts in 169ms (1848 modules)
+@chat/base-template:dev:  GET /api/prompts 200 in 263ms
+@chat/base-template:dev:  GET /api/prompts 200 in 4ms
+@chat/base-template:dev:  GET /settings 404 in 18ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 10ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/csrf 200 in 12ms
+@chat/base-template:dev:  POST /api/auth/callback/credentials 200 in 413ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 9ms
+@chat/base-template:dev:  ✓ Compiled /api/admin/users in 454ms (1840 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/admin/users 200 in 535ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/logout in 90ms (1842 modules)
+@chat/base-template:dev:  POST /api/auth/logout 200 in 102ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  POST /api/auth/signout 302 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/register in 91ms (1850 modules)
+@chat/base-template:dev:  POST /api/auth/register 200 in 202ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/csrf 200 in 5ms
+@chat/base-template:dev:  POST /api/auth/callback/credentials 200 in 89ms
+@chat/base-template:dev:  POST /api/auth/logout 200 in 3ms
+@chat/base-template:dev:  POST /api/auth/signout 302 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  ✓ Compiled / in 148ms (1261 modules)
+@chat/base-template:dev:  GET / 200 in 255ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/[...nextauth] in 69ms (1265 modules)
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 100ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 35ms
+@chat/base-template:dev:  GET /home 200 in 13ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 5ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled /api/auth/logout in 82ms (1267 modules)
+@chat/base-template:dev:  POST /api/auth/logout 200 in 101ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/csrf 200 in 5ms
+@chat/base-template:dev:  POST /api/auth/signout 200 in 2ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled /login in 221ms (1273 modules)
+@chat/base-template:dev:  GET /login 200 in 265ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 1ms
+@chat/base-template:dev:  ✓ Compiled /register in 159ms (1277 modules)
+@chat/base-template:dev:  ✓ Compiled /api/auth/register in 168ms (1280 modules)
+@chat/base-template:dev:  POST /api/auth/register 200 in 419ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/providers 200 in 9ms
+@chat/base-template:dev:  GET /api/auth/csrf 200 in 3ms
+@chat/base-template:dev:  POST /api/auth/callback/credentials 200 in 179ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /home 200 in 22ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  ✓ Compiled /_not-found in 229ms (2176 modules)
+@chat/base-template:dev:  GET /apps 404 in 16ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 6ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /home 200 in 22ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 3ms
+@chat/base-template:dev:  ✓ Compiled /api/prompts in 193ms (1849 modules)
+@chat/base-template:dev:  GET /api/prompts 200 in 285ms
+@chat/base-template:dev:  GET /api/prompts 200 in 2ms
+@chat/base-template:dev:  GET /settings 404 in 16ms
+@chat/base-template:dev: [next-auth][warn][DEBUG_ENABLED] 
+@chat/base-template:dev: https://next-auth.js.org/warnings#debug_enabled
+@chat/base-template:dev:  GET /api/auth/session 200 in 8ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 2ms
+@chat/base-template:dev:  GET /home 200 in 25ms
+@chat/base-template:dev:  GET /api/auth/session 200 in 4ms
+@chat/base-template:dev:  ✓ Compiled in 143ms (1252 modules)

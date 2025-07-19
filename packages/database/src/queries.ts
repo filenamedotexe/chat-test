@@ -102,6 +102,58 @@ export const appQueries = {
       ORDER BY name
     `;
     return result as App[];
+  },
+
+  async upsertApp(appData: Partial<App>): Promise<App> {
+    const result = await sql`
+      INSERT INTO apps (name, slug, description, path, icon, requires_auth, version, dependencies, author, license, repository, port, dev_command, build_command, start_command, last_scanned)
+      VALUES (
+        ${appData.name},
+        ${appData.slug},
+        ${appData.description || ''},
+        ${appData.path || '/'},
+        ${appData.icon || '📱'},
+        ${appData.requires_auth ?? true},
+        ${appData.version || '1.0.0'},
+        ${JSON.stringify(appData.dependencies || [])},
+        ${appData.author || ''},
+        ${appData.license || ''},
+        ${appData.repository || ''},
+        ${appData.port || 3000},
+        ${appData.dev_command || 'npm run dev'},
+        ${appData.build_command || 'npm run build'},
+        ${appData.start_command || 'npm run start'},
+        NOW()
+      )
+      ON CONFLICT (slug) 
+      DO UPDATE SET 
+        name = EXCLUDED.name,
+        description = EXCLUDED.description,
+        path = EXCLUDED.path,
+        icon = EXCLUDED.icon,
+        requires_auth = EXCLUDED.requires_auth,
+        version = EXCLUDED.version,
+        dependencies = EXCLUDED.dependencies,
+        author = EXCLUDED.author,
+        license = EXCLUDED.license,
+        repository = EXCLUDED.repository,
+        port = EXCLUDED.port,
+        dev_command = EXCLUDED.dev_command,
+        build_command = EXCLUDED.build_command,
+        start_command = EXCLUDED.start_command,
+        last_scanned = NOW(),
+        updated_at = NOW()
+      RETURNING *
+    ` as App[];
+    return result[0];
+  },
+
+  async markAppInactive(slug: string): Promise<void> {
+    await sql`
+      UPDATE apps 
+      SET is_active = false, updated_at = NOW()
+      WHERE slug = ${slug}
+    `;
   }
 };
 
@@ -157,6 +209,37 @@ export const permissionQueries = {
       WHERE user_id = ${userId}
     `;
     return result as UserAppPermission[];
+  },
+
+  async getUserPermissionGroup(userId: number): Promise<string | null> {
+    const result = await sql`
+      SELECT permission_group FROM users
+      WHERE id = ${userId}
+    `;
+    return result[0]?.permission_group || null;
+  },
+
+  async setUserPermissionGroup(userId: number, groupId: string): Promise<void> {
+    await sql`
+      UPDATE users 
+      SET permission_group = ${groupId}, updated_at = NOW()
+      WHERE id = ${userId}
+    `;
+  },
+
+  async getEffectiveUserPermissions(userId: number, appSlug?: string): Promise<string[]> {
+    // Get user role and permission group
+    const user = await userQueries.findById(userId);
+    if (!user) return [];
+
+    const { calculateUserPermissions } = await import('./permission-templates');
+    return calculateUserPermissions(user.role, user.permission_group || undefined, appSlug);
+  },
+
+  async checkUserPermission(userId: number, permission: string, appSlug?: string): Promise<boolean> {
+    const userPermissions = await permissionQueries.getEffectiveUserPermissions(userId, appSlug);
+    const { hasPermission } = await import('./permission-templates');
+    return hasPermission(userPermissions, permission);
   }
 };
 

@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@chat/auth';
 import Link from 'next/link';
+import { UserMenu } from '@chat/ui';
 
 export default async function AdminLayout({
   children,
@@ -47,20 +48,33 @@ export default async function AdminLayout({
                   Permissions
                 </Link>
                 <Link
+                  href="/admin/permission-groups"
+                  className="border-b-2 border-transparent text-gray-400 hover:text-white hover:border-purple-500 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors"
+                >
+                  Groups
+                </Link>
+                <Link
                   href="/admin/chat-history"
                   className="border-b-2 border-transparent text-gray-400 hover:text-white hover:border-purple-500 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors"
                 >
                   Chat History
                 </Link>
+                <Link
+                  href="/admin/apps"
+                  className="border-b-2 border-transparent text-gray-400 hover:text-white hover:border-purple-500 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors"
+                >
+                  Apps
+                </Link>
               </nav>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-4">
               <Link
-                href="/"
+                href="/chat"
                 className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
               >
                 ← Back to Chat
               </Link>
+              <UserMenu />
             </div>
           </div>
         </div>

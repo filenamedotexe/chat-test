@@ -30,8 +30,20 @@ export function UserMenu() {
   }
 
   const handleSignOut = async () => {
-    await signOut({ redirect: false });
-    router.push('/login');
+    try {
+      // First call our custom logout endpoint
+      await fetch('/api/auth/logout', { method: 'POST' });
+      
+      // Then use NextAuth signOut
+      await signOut({ redirect: false });
+      
+      // Force a hard redirect to clear any client-side state
+      window.location.href = '/login';
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Fallback to just redirecting
+      window.location.href = '/login';
+    }
   };
 
   return (

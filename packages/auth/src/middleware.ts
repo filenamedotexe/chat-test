@@ -7,6 +7,7 @@ const publicPaths = [
   '/register',
   '/api/auth',
   '/api/setup-auth-database',
+  '/api/debug-register',
   '/_next',
   '/favicon.ico',
 ];

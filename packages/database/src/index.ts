@@ -11,3 +11,6 @@ export * from './types';
 
 // Export query utilities
 export * from './queries';
+
+// Export permission templates
+export * from './permission-templates';

@@ -1,0 +1,17 @@
+{
+  "name": "Analytics Dashboard",
+  "slug": "dashboard",
+  "description": "Real-time analytics and reporting dashboard with interactive charts and data visualization",
+  "version": "2.1.3",
+  "icon": "📊",
+  "path": "/dashboard",
+  "requires_auth": true,
+  "default_permissions": ["dashboard.view", "analytics.read"],
+  "dependencies": [],
+  "author": "Analytics Team",
+  "license": "MIT", 
+  "port": 3003,
+  "dev_command": "npm run dev",
+  "build_command": "npm run build",
+  "start_command": "npm run start"
+}

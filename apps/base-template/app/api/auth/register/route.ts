@@ -1,27 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createUser } from '@chat/auth';
+import { SecurityValidator } from '@chat/shared-types';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, password, name } = await req.json();
-
-    // Validate input
-    if (!email || !password) {
+    let body;
+    try {
+      body = await req.json();
+    } catch (error) {
       return NextResponse.json(
-        { error: 'Email and password are required' },
+        { error: 'Invalid JSON format' },
+        { status: 400 }
+      );
+    }
+    
+    const { email, password, name } = body;
+
+    // Validate email
+    const emailValidation = SecurityValidator.validateEmail(email);
+    if (!emailValidation.isValid) {
+      return NextResponse.json(
+        { error: emailValidation.error },
         { status: 400 }
       );
     }
 
-    if (password.length < 6) {
+    // Validate password
+    const passwordValidation = SecurityValidator.validatePassword(password);
+    if (!passwordValidation.isValid) {
       return NextResponse.json(
-        { error: 'Password must be at least 6 characters' },
+        { error: passwordValidation.error },
         { status: 400 }
       );
+    }
+
+    // Validate name if provided
+    let sanitizedName = name;
+    if (name) {
+      const nameValidation = SecurityValidator.validateText(name, 100);
+      if (!nameValidation.isValid) {
+        return NextResponse.json(
+          { error: nameValidation.error },
+          { status: 400 }
+        );
+      }
+      sanitizedName = nameValidation.sanitized;
     }
 
     // Create user with default 'user' role
-    const user = await createUser(email, password, name);
+    const user = await createUser(emailValidation.sanitized!, password, sanitizedName);
 
     return NextResponse.json({
       success: true,
@@ -45,7 +72,11 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(
-      { error: 'Failed to create account' },
+      { 
+        error: 'Failed to create account',
+        details: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      },
       { status: 500 }
     );
   }

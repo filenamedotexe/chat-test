@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
         password_hash VARCHAR(255),
         name VARCHAR(255),
         role VARCHAR(50) DEFAULT 'user' CHECK (role IN ('admin', 'user')),
+        permission_group VARCHAR(100) DEFAULT 'default_user',
         is_active BOOLEAN DEFAULT true,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
@@ -103,6 +104,24 @@ export async function GET(req: NextRequest) {
           END IF;
         END IF;
       END $$
+    `;
+
+    // Add permission_group column if missing (for existing tables)
+    await sql`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS permission_group VARCHAR(100) DEFAULT 'default_user'
+    `;
+    
+    // Add default_permissions column to apps if missing
+    await sql`
+      ALTER TABLE apps 
+      ADD COLUMN IF NOT EXISTS default_permissions TEXT[] DEFAULT ARRAY[]::TEXT[]
+    `;
+    
+    // Add dependencies column to apps if missing
+    await sql`
+      ALTER TABLE apps 
+      ADD COLUMN IF NOT EXISTS dependencies TEXT DEFAULT '[]'
     `;
 
     // Create indexes
