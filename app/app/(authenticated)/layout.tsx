@@ -1,4 +1,4 @@
-import { Navigation } from '@chat/ui';
+import { UnifiedNavigation } from '../../components/navigation/UnifiedNavigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@chat/auth';
 import { redirect } from 'next/navigation';
@@ -16,7 +16,7 @@ export default async function AuthenticatedLayout({
 
   return (
     <>
-      <Navigation />
+      <UnifiedNavigation />
       <div className="pt-16">
         {children}
       </div>

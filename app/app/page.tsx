@@ -6,9 +6,9 @@ import Link from 'next/link';
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  // Redirect authenticated users to the home page
+  // Redirect authenticated users to the dashboard
   if (session?.user) {
-    redirect('/home');
+    redirect('/dashboard');
   }
 
   // Show simple landing page for unauthenticated users
