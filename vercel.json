@@ -1,9 +1,7 @@
 {
-  "framework": "nextjs",
   "buildCommand": "cd app && npm run build",
-  "devCommand": "cd app && npm run dev",
-  "installCommand": "npm install",
   "outputDirectory": "app/.next",
+  "installCommand": "npm install && cd app && npm install",
   "git": {
     "deploymentEnabled": {
       "main": true,
