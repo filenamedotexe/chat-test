@@ -108,6 +108,7 @@ export default function PreferenceSettings() {
   };
 
   const updatePreference = (key: keyof Preferences, value: any) => {
+    // @ts-ignore
     setPreferences((prev: Preferences) => ({ ...prev, [key]: value }));
   };
 

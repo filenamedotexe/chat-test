@@ -17,16 +17,16 @@
 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
 Failed to compile.
 
-./app/(authenticated)/settings/components/ChatSettings.tsx:100:21
-Type error: Parameter 'prev' implicitly has an 'any' type.
+./app/(authenticated)/settings/components/PreferenceSettings.tsx:111:20
+Type error: Argument of type '(prev: Preferences) => { theme: "light" | "dark" | "system"; language: string; timezone: string; date_format: string; notifications_enabled: boolean; email_notifications: boolean; show_activity: boolean; keyboard_shortcuts: boolean; }' is not assignable to parameter of type 'Preferences'.
 
-[0m [90m  98 |[39m[0m
-[0m [90m  99 |[39m   [36mconst[39m updateSetting [33m=[39m (key[33m:[39m keyof [33mChatSettings[39m[33m,[39m value[33m:[39m any) [33m=>[39m {[0m
-[0m[31m[1m>[22m[39m[90m 100 |[39m     setChatSettings(prev [33m=>[39m ({ [33m...[39mprev[33m,[39m [key][33m:[39m value } [36mas[39m [33mChatSettings[39m))[33m;[39m[0m
-[0m [90m     |[39m                     [31m[1m^[22m[39m[0m
-[0m [90m 101 |[39m   }[33m;[39m[0m
-[0m [90m 102 |[39m[0m
-[0m [90m 103 |[39m   [36mconst[39m selectedModel [33m=[39m models[33m.[39mfind((m) [33m=>[39m m[33m.[39mvalue [33m===[39m chatSettings[33m.[39mdefault_model)[33m;[39m[0m
+[0m [90m 109 |[39m[0m
+[0m [90m 110 |[39m   [36mconst[39m updatePreference [33m=[39m (key[33m:[39m keyof [33mPreferences[39m[33m,[39m value[33m:[39m any) [33m=>[39m {[0m
+[0m[31m[1m>[22m[39m[90m 111 |[39m     setPreferences((prev[33m:[39m [33mPreferences[39m) [33m=>[39m ({ [33m...[39mprev[33m,[39m [key][33m:[39m value }))[33m;[39m[0m
+[0m [90m     |[39m                    [31m[1m^[22m[39m[0m
+[0m [90m 112 |[39m   }[33m;[39m[0m
+[0m [90m 113 |[39m[0m
+[0m [90m 114 |[39m   [90m// Removed updateNotification function - no longer needed[39m[0m
 npm error Lifecycle script `build` failed with error:
 npm error code 1
 npm error path /Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template

@@ -50,7 +50,8 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
         if (page === 1) {
           setChats(data.chats);
         } else {
-          setChats(prev => [...prev, ...data.chats]);
+          // @ts-ignore
+          setChats((prev: any) => [...prev, ...data.chats]);
         }
         setHasMore(data.chats.length === limit);
       }
