@@ -4,6 +4,10 @@ import { authOptions } from '@chat/auth';
 import { neon } from '@neondatabase/serverless';
 import * as bcrypt from 'bcryptjs';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function DELETE(request: Request) {
   try {
     const session = await getServerSession(authOptions);

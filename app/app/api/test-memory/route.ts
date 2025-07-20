@@ -3,6 +3,10 @@ import { createNeonMemory } from "@chat/langchain-core";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { neon } from "@neondatabase/serverless";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET() {
   try {
     const testSessionId = "test-session-" + Date.now();

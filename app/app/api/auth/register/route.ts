@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createUser } from '@chat/auth';
 import { SecurityValidator } from '@chat/shared-types';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(req: NextRequest) {
   try {
     let body;

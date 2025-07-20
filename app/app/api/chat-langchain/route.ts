@@ -11,6 +11,10 @@ import {
 } from "@chat/langchain-core";
 import { getServerSession } from "@chat/auth";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(req: Request) {
   try {
     // Check authentication

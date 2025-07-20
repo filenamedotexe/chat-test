@@ -6,6 +6,10 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import type { AppConfig, AppDiscoveryResult } from '@chat/shared-types';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 const APPS_DIR = path.join(process.cwd(), '../..');
 
 export async function POST() {

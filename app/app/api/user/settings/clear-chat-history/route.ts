@@ -3,6 +3,10 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@chat/auth';
 import { neon } from '@neondatabase/serverless';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);

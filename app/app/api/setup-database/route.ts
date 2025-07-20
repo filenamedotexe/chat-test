@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function POST() {
   try {
     const sql = process.env.DATABASE_URL && process.env.DATABASE_URL !== "your-neon-database-url" 

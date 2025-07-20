@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET() {
   try {
     const apiKey = process.env.OPENAI_API_KEY;

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 import { getServerSession } from '@chat/auth';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(req: NextRequest) {
   try {
     const session = await getServerSession();

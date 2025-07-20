@@ -2,6 +2,10 @@ import { ChatOpenAI } from "@langchain/openai";
 import { ConversationSummaryMemory } from "langchain/memory";
 import { ConversationChain } from "langchain/chains";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(req: Request) {
   try {
     const model = new ChatOpenAI({

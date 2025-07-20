@@ -5,6 +5,10 @@ import { userQueries } from '@chat/database';
 import { neon } from '@neondatabase/serverless';
 import bcrypt from 'bcryptjs';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);

@@ -4,6 +4,10 @@ import { authOptions } from '@chat/auth';
 import { permissionQueries } from '@chat/database';
 import { neon } from '@neondatabase/serverless';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 const sql = neon(process.env.DATABASE_URL!);
 
 export async function GET(req: NextRequest) {

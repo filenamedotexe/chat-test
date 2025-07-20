@@ -4,6 +4,10 @@ import { authOptions } from '@chat/auth';
 import { neon } from '@neondatabase/serverless';
 import { chatQueries } from '@chat/database';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);

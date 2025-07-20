@@ -1,6 +1,10 @@
 import { NextRequest } from "next/server";
 import { getMemorySummary, loadConversationHistory, clearConversationHistory } from "@chat/langchain-core";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

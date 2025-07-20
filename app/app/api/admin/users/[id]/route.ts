@@ -3,6 +3,10 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@chat/auth';
 import { userQueries } from '@chat/database';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
