@@ -96,7 +96,7 @@ export default function PermissionsManager({ initialApps, initialUsers }: Permis
               placeholder="Search by name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             />
           </div>
           <div>
@@ -104,7 +104,7 @@ export default function PermissionsManager({ initialApps, initialUsers }: Permis
             <select
               value={selectedApp || ''}
               onChange={(e) => setSelectedApp(e.target.value ? parseInt(e.target.value) : null)}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             >
               <option value="">All Apps</option>
               {apps.map(app => (
@@ -117,7 +117,7 @@ export default function PermissionsManager({ initialApps, initialUsers }: Permis
             <select
               value={selectedUser || ''}
               onChange={(e) => setSelectedUser(e.target.value ? parseInt(e.target.value) : null)}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             >
               <option value="">All Users</option>
               {users.map(user => (
@@ -177,7 +177,7 @@ export default function PermissionsManager({ initialApps, initialUsers }: Permis
                       ) : (
                         <button
                           onClick={() => togglePermission(user.id, app.id)}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                          className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors min-h-[44px] ${
                             hasPermission(user.id, app.id)
                               ? 'bg-green-500/20 text-green-400 hover:bg-red-500/20 hover:text-red-400'
                               : 'bg-gray-600/50 text-gray-400 hover:bg-green-500/20 hover:text-green-400'

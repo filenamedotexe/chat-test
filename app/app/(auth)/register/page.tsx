@@ -77,8 +77,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg shadow-xl">
-      <h1 className="text-2xl font-bold text-white mb-6 text-center">
+    <div className="bg-gray-800/50 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+      <h1 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">
         Create Account
       </h1>
       
@@ -99,7 +99,7 @@ export default function RegisterPage() {
             type="text"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="John Doe"
           />
         </div>
@@ -115,7 +115,7 @@ export default function RegisterPage() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="you@example.com"
           />
         </div>
@@ -131,7 +131,7 @@ export default function RegisterPage() {
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="••••••••"
           />
         </div>
@@ -147,7 +147,7 @@ export default function RegisterPage() {
             value={formData.confirmPassword}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="••••••••"
           />
         </div>
@@ -155,16 +155,16 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] text-base"
         >
           {isLoading ? 'Creating account...' : 'Create Account'}
         </button>
       </form>
 
-      <div className="mt-6 text-center">
+      <div className="mt-4 sm:mt-6 text-center">
         <p className="text-gray-400 text-sm">
           Already have an account?{' '}
-          <Link href="/login" className="text-purple-400 hover:text-purple-300">
+          <Link href="/login" className="text-purple-400 hover:text-purple-300 inline-block min-h-[44px] leading-[44px]">
             Sign In
           </Link>
         </p>

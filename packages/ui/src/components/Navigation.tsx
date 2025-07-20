@@ -13,7 +13,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-white">
+            <Link href="/" className="text-xl font-bold text-white inline-block py-3 min-h-[44px] leading-none">
               Chat App
             </Link>
           </div>
@@ -24,14 +24,14 @@ export function Navigation() {
               <>
                 <Link
                   href="/chat"
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className="text-gray-300 hover:text-white transition-colors inline-block py-3 px-2 min-h-[44px] min-w-[44px] leading-none"
                 >
                   Chat
                 </Link>
                 {session.user.role === 'admin' && (
                   <Link
                     href="/admin"
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors inline-block py-3 px-2 min-h-[44px] min-w-[44px] leading-none"
                   >
                     Admin
                   </Link>

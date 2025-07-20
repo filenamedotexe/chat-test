@@ -296,6 +296,15 @@
   
   .hover-theme-bg-tertiary:hover { background-color: rgb(var(--color-bg-tertiary)); }
   .hover-theme-bg-quaternary:hover { background-color: rgb(var(--color-bg-quaternary)); }
+  
+  /* Scrollbar utilities for better mobile UX */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Body styling using theme variables */

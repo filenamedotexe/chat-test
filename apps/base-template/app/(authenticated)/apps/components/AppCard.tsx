@@ -122,7 +122,7 @@ export function AppCard({ app, onRefresh }: AppCardProps) {
         {/* Action Button */}
         <button
           onClick={handleLaunch}
-          className="w-full py-2 px-4 rounded-lg font-medium transition-colors bg-purple-600 text-white hover:bg-purple-700"
+          className="w-full py-3 px-4 rounded-lg font-medium transition-colors bg-purple-600 text-white hover:bg-purple-700 min-h-[44px]"
         >
           Launch
         </button>

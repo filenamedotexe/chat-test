@@ -59,7 +59,7 @@ export default function AppLauncher() {
         <p className="text-red-400 mb-4">{error}</p>
         <button
           onClick={fetchUserApps}
-          className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700"
+          className="px-4 py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 min-h-[44px]"
         >
           Retry
         </button>
@@ -101,7 +101,7 @@ export default function AppLauncher() {
           </p>
           <Link
             href="/admin"
-            className="inline-flex items-center px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm"
+            className="inline-flex items-center px-4 py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm min-h-[44px]"
           >
             Open Admin Dashboard
           </Link>

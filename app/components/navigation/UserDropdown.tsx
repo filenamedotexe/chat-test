@@ -88,17 +88,17 @@ export function UserDropdown() {
       {/* User Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors group"
+        className="flex items-center gap-2 p-2 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 transition-colors group min-h-[44px] min-w-[44px]"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
         {/* Avatar */}
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-semibold">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
           {userInitial}
         </div>
         
-        {/* User Info */}
-        <div className="hidden md:block text-left">
+        {/* User Info - Hidden on small screens */}
+        <div className="hidden lg:block text-left">
           <div className="text-sm font-medium text-white truncate max-w-32">
             {session.user?.name || 'User'}
           </div>
@@ -113,9 +113,9 @@ export function UserDropdown() {
           </div>
         </div>
 
-        {/* Chevron */}
+        {/* Chevron - Hidden on very small screens */}
         <IconChevronDown 
-          className={`w-4 h-4 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
+          className={`w-4 h-4 text-gray-400 transition-transform hidden sm:block ${isOpen ? 'rotate-180' : ''}`} 
         />
       </button>
 
@@ -127,7 +127,11 @@ export function UserDropdown() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 mt-2 w-72 bg-gray-800 rounded-xl shadow-xl border border-gray-700 py-2 z-50"
+            className="absolute right-0 mt-2 w-72 sm:w-80 bg-gray-800 rounded-xl shadow-xl border border-gray-700 py-2 z-50 max-w-[calc(100vw-2rem)] max-h-[calc(100vh-5rem)] overflow-y-auto"
+            style={{
+              // Ensure dropdown doesn't go off-screen on mobile
+              right: window.innerWidth < 640 ? Math.max(0, (288 - window.innerWidth + 32)) : 0
+            }}
           >
             {/* User Info Header */}
             <div className="px-4 py-3 border-b border-gray-700">

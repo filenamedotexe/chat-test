@@ -26,10 +26,10 @@ export function AppSearch({
   totalApps
 }: AppSearchProps) {
   return (
-    <div className="bg-gray-900 rounded-lg border border-gray-800 p-6">
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0 lg:space-x-6">
-        {/* Search Bar */}
-        <div className="flex-1 max-w-md">
+    <div className="bg-gray-900 rounded-lg border border-gray-800 p-4 sm:p-6">
+      <div className="space-y-4">
+        {/* Search Bar - Full width on mobile */}
+        <div className="w-full">
           <div className="relative">
             <svg
               className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -49,48 +49,50 @@ export function AppSearch({
               placeholder="Search apps..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400"
+              className="pl-10 pr-4 py-3 w-full bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400 min-h-[44px] text-base"
             />
           </div>
         </div>
 
         {/* Filters and Controls */}
-        <div className="flex flex-wrap items-center gap-4">
-          {/* Category Filter */}
-          <select
-            value={selectedCategory}
-            onChange={(e) => onCategoryChange(e.target.value)}
-            className="px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-          >
-            <option value="">All Categories</option>
-            {categories.map((category) => (
-              <option key={category} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
+        <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          {/* Filter Group */}
+          <div className="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:gap-3">
+            {/* Category Filter */}
+            <select
+              value={selectedCategory}
+              onChange={(e) => onCategoryChange(e.target.value)}
+              className="w-full sm:w-auto px-3 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm min-h-[44px]"
+            >
+              <option value="">All Categories</option>
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
 
-          {/* Sort By */}
-          <select
-            value={sortBy}
-            onChange={(e) => onSortChange(e.target.value as 'name' | 'recent' | 'popular')}
-            className="px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-          >
-            <option value="name">Sort by Name</option>
-            <option value="recent">Recently Used</option>
-            <option value="popular">Most Popular</option>
-          </select>
-
+            {/* Sort By */}
+            <select
+              value={sortBy}
+              onChange={(e) => onSortChange(e.target.value as 'name' | 'recent' | 'popular')}
+              className="w-full sm:w-auto px-3 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm min-h-[44px]"
+            >
+              <option value="name">Sort by Name</option>
+              <option value="recent">Recently Used</option>
+              <option value="popular">Most Popular</option>
+            </select>
+          </div>
 
           {/* View Toggle */}
-          <div className="flex border border-gray-700 rounded-lg overflow-hidden">
+          <div className="flex border border-gray-700 rounded-lg overflow-hidden self-start">
             <button
               onClick={() => onViewChange('grid')}
-              className={`px-3 py-2 ${
+              className={`px-4 py-2 ${
                 view === 'grid'
                   ? 'bg-purple-600 text-white'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              } transition-colors`}
+              } transition-colors min-h-[44px]`}
               title="Grid view"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,11 +101,11 @@ export function AppSearch({
             </button>
             <button
               onClick={() => onViewChange('list')}
-              className={`px-3 py-2 ${
+              className={`px-4 py-2 ${
                 view === 'list'
                   ? 'bg-purple-600 text-white'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-              } transition-colors`}
+              } transition-colors min-h-[44px]`}
               title="List view"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

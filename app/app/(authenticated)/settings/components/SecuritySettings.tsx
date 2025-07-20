@@ -128,7 +128,7 @@ export default function SecuritySettings() {
           <h2 className="text-xl font-semibold">API Keys</h2>
           <button
             onClick={() => setShowCreateKey(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-4 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors min-h-[44px]"
           >
             Create New Key
           </button>
@@ -155,7 +155,7 @@ export default function SecuritySettings() {
                 </div>
                 <button
                   onClick={() => handleRevokeKey(key.id)}
-                  className="px-3 py-1 text-red-600 border border-red-600 rounded hover:bg-red-50 dark:hover:bg-red-900/20"
+                  className="px-3 py-3 text-red-600 border border-red-600 rounded hover:bg-red-50 dark:hover:bg-red-900/20 min-h-[44px]"
                 >
                   Revoke
                 </button>
@@ -227,7 +227,7 @@ export default function SecuritySettings() {
         </p>
         <a
           href="/profile"
-          className="inline-block px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          className="inline-block px-4 py-3 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors min-h-[44px]"
         >
           Change Password in Profile
         </a>
@@ -255,7 +255,7 @@ export default function SecuritySettings() {
                     setShowCreateKey(false);
                     setNewKey("");
                   }}
-                  className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                  className="w-full px-4 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 min-h-[44px]"
                 >
                   Done
                 </button>
@@ -267,7 +267,7 @@ export default function SecuritySettings() {
                   value={keyName}
                   onChange={(e) => setKeyName(e.target.value)}
                   placeholder="Key name (e.g., My App)"
-                  className="w-full px-3 py-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600"
+                  className="w-full px-3 py-3 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
                 />
                 <div className="flex space-x-4">
                   <button
@@ -275,7 +275,7 @@ export default function SecuritySettings() {
                       setShowCreateKey(false);
                       setKeyName("");
                     }}
-                    className="flex-1 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="flex-1 px-4 py-3 border rounded hover:bg-gray-100 dark:hover:bg-gray-700 min-h-[44px]"
                   >
                     Cancel
                   </button>
@@ -283,7 +283,7 @@ export default function SecuritySettings() {
                     onClick={handleCreateKey}
                     disabled={isCreating || !keyName.trim()}
                     className={cn(
-                      "flex-1 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700",
+                      "flex-1 px-4 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 min-h-[44px]",
                       (isCreating || !keyName.trim()) && "opacity-50 cursor-not-allowed"
                     )}
                   >

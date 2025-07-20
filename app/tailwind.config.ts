@@ -11,6 +11,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',  // Custom breakpoint for very small devices
+      },
       colors: {
         primary: "#00E599",
       },

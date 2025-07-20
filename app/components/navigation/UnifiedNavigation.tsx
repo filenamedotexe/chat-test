@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useState } from 'react';
 import { UserDropdown } from './UserDropdown';
 import {
   IconMessageCircle,
@@ -23,7 +24,7 @@ function NavLink({ href, icon: Icon, label, isActive }: NavLinkProps) {
   return (
     <Link
       href={href}
-      className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-colors ${
+      className={`flex items-center gap-2 px-3 py-3 rounded-lg transition-colors min-h-[44px] ${
         isActive
           ? 'bg-purple-600 text-white'
           : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
@@ -38,6 +39,7 @@ function NavLink({ href, icon: Icon, label, isActive }: NavLinkProps) {
 export function UnifiedNavigation() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   if (!session) return null;
 
@@ -78,16 +80,16 @@ export function UnifiedNavigation() {
           {/* Logo */}
           <Link 
             href="/dashboard" 
-            className="flex items-center gap-2 text-xl font-bold text-white hover:text-purple-400 transition-colors"
+            className="flex items-center gap-2 text-lg sm:text-xl font-bold text-white hover:text-purple-400 transition-colors flex-shrink-0 px-2 py-2 min-h-[44px] min-w-[44px]"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-              <IconMessageCircle className="w-5 h-5 text-white" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <IconMessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            Chat App
+            <span className="hidden xs:block">Chat App</span>
           </Link>
 
-          {/* Main Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-1">
             {mainNavItems.map((item) => (
               <NavLink
                 key={item.href}
@@ -99,19 +101,36 @@ export function UnifiedNavigation() {
             ))}
           </div>
 
-          {/* Right side - User Dropdown */}
-          <div className="flex items-center gap-4">
-            {/* Admin Badge (if admin) */}
+          {/* Right side */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            {/* Admin Badge (desktop only) */}
             {isAdmin && (
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <Link
                   href="/dashboard?view=admin"
-                  className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 hover:bg-purple-500/30 transition-colors"
+                  className="text-xs px-3 py-2 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 hover:bg-purple-500/30 transition-colors whitespace-nowrap min-h-[44px] flex items-center"
                 >
                   Admin Mode
                 </Link>
               </div>
             )}
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-3 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700/50 transition-colors min-h-[44px] min-w-[44px]"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
 
             {/* User Dropdown */}
             <UserDropdown />
@@ -119,25 +138,42 @@ export function UnifiedNavigation() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="md:hidden border-t border-gray-800">
-        <div className="px-4 py-2 space-y-1">
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                pathname === item.href || (item.href === '/dashboard' && pathname === '/')
-                  ? 'bg-purple-600 text-white'
-                  : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span className="font-medium">{item.label}</span>
-            </Link>
-          ))}
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-t border-gray-800 bg-gray-900/98 backdrop-blur-md">
+          <div className="px-4 py-3 space-y-1 max-h-96 overflow-y-auto">
+            {/* Admin Badge (mobile) */}
+            {isAdmin && (
+              <div className="mb-3">
+                <Link
+                  href="/dashboard?view=admin"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="inline-block text-xs px-3 py-3 bg-purple-500/20 text-purple-300 rounded-full border border-purple-500/30 hover:bg-purple-500/30 transition-colors min-h-[44px] flex items-center"
+                >
+                  Admin Mode
+                </Link>
+              </div>
+            )}
+            
+            {/* Navigation Links */}
+            {mainNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors min-h-[48px] ${
+                  pathname === item.href || (item.href === '/dashboard' && pathname === '/')
+                    ? 'bg-purple-600 text-white'
+                    : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
+                }`}
+              >
+                <item.icon className="w-6 h-6 flex-shrink-0" />
+                <span className="font-medium text-base">{item.label}</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }

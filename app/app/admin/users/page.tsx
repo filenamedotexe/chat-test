@@ -15,10 +15,10 @@ export default async function UsersPage() {
   const users = await userQueries.getAllUsers();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">User Management</h1>
-        <p className="text-gray-400 mt-1">Manage users, roles, and permissions</p>
+        <h1 className="text-xl sm:text-2xl font-bold text-white">User Management</h1>
+        <p className="text-gray-400 mt-1 text-sm sm:text-base">Manage users, roles, and permissions</p>
       </div>
 
       <UserManagement initialUsers={users} />

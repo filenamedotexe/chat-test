@@ -276,7 +276,7 @@ export const Bubble = () => {
               exit={{ opacity: 0, y: 20, rotateX: -10 }}
               transition={{ duration: 0.2 }}
               className={cn(
-                "mb-4 h-screen md:h-[46vh] min-h-[76vh] w-full md:w-[30rem] bg-gray-100 rounded-lg flex flex-col justify-between overflow-visible",
+                "mb-4 h-screen md:h-[46vh] min-h-[76vh] w-full md:w-[30rem] bg-gray-900 rounded-lg flex flex-col justify-between overflow-visible",
                 isExpanded && "w-full h-full md:h-full md:w-full min-h-0 mb-0"
               )}
             >
@@ -290,14 +290,14 @@ export const Bubble = () => {
                         element.classList.toggle('scale-110');
                       }
                     }}
-                    className="hover:bg-gray-800 p-1 rounded-full transition-colors"
+                    className="hover:bg-gray-800 p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                   >
                     <IconMaximize className="h-4 w-4 text-white" />
                   </button>
                   {session?.user?.role === 'admin' && (
                     <button 
                       onClick={() => setShowSettings(!showSettings)}
-                      className="hover:bg-gray-800 p-1 rounded-full transition-colors"
+                      className="hover:bg-gray-800 p-2 rounded-full transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                     >
                       <IconSettings className="h-4 w-4 text-white" />
                     </button>
@@ -363,7 +363,7 @@ export const Bubble = () => {
                         <select
                           value={promptTemplateId}
                           onChange={(e) => setPromptTemplateId(e.target.value)}
-                          className="w-full px-2 py-1 text-xs border border-gray-300 rounded bg-white"
+                          className="w-full px-2 py-1 text-xs border border-gray-600 rounded bg-gray-800 text-white"
                         >
                           {promptTemplates.map((template) => (
                             <option key={template.id} value={template.id}>
@@ -478,14 +478,14 @@ export const Bubble = () => {
                       onClick={() => {
                         handleBlockClick(block.content);
                       }}
-                      className="p-4 flex flex-col text-left justify-between rounded-2xl h-32 md:h-40 w-full bg-white"
+                      className="p-4 flex flex-col text-left justify-between rounded-2xl h-32 md:h-40 w-full bg-gray-800 border border-gray-700"
                     >
                       {block.icon}
                       <div>
-                        <div className="text-base font-bold text-black">
+                        <div className="text-base font-bold text-white">
                           {block.title}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-gray-300">
                           {block.content}
                         </div>
                       </div>
@@ -521,7 +521,7 @@ export const Bubble = () => {
                 {showScrollButton && (
                   <button
                     onClick={scrollIntoView}
-                    className="absolute -top-10 left-1/2 -translate-x-1/2  h-8 w-8 rounded-full bg-white text-black flex items-center justify-center shadow-lg hover:bg-gray-100 transition-colors"
+                    className="absolute -top-10 left-1/2 -translate-x-1/2  h-8 w-8 rounded-full bg-gray-700 text-white flex items-center justify-center shadow-lg hover:bg-gray-600 transition-colors"
                   >
                     <IconArrowNarrowDown className="h-5 w-5" />
                   </button>
@@ -540,7 +540,7 @@ export const Bubble = () => {
                   ) : (
                     <button
                       type="submit"
-                      className="absolute top-1/2 right-8 group -translate-y-1/2 bg-gray-100 h-8 w-8 rounded-full flex items-center justify-center"
+                      className="absolute top-1/2 right-8 group -translate-y-1/2 bg-gray-100 h-10 w-10 min-h-[44px] min-w-[44px] rounded-full flex items-center justify-center"
                     >
                       <IconArrowNarrowUp className="h-5 w-5 text-neutral-500 group-hover:text-black group-hover:-translate-y-0.5 group-hover:rotate-12 transition duration-200" />
                     </button>
@@ -549,7 +549,7 @@ export const Bubble = () => {
                 <textarea
                   ref={inputRef}
                   disabled={disabled}
-                  className={`px-4 w-full pr-10 rounded-lg border-[#f2f2f2] text-black border py-[1rem] bg-white text-sm  [box-sizing:border-box] overflow-x-auto    inline-block focus:outline-none  transition duration-100`}
+                  className={`px-4 w-full pr-10 rounded-lg border-gray-700 text-white border py-[1rem] bg-gray-800 text-sm  [box-sizing:border-box] overflow-x-auto    inline-block focus:outline-none  transition duration-100`}
                   placeholder={placeholderText}
                   // onFocus={() => setInputFocus(true)}
                   // onBlur={() => setInputFocus(false)}
@@ -574,12 +574,12 @@ export const Bubble = () => {
           setOpen(!open);
         }}
         className={cn(
-          "h-14 w-14 relative z-10 group bg-white flex hover:bg-primary cursor-pointer items-center justify-center rounded-full shadow-derek transition duration-200",
+          "h-14 w-14 relative z-10 group bg-gray-800 flex hover:bg-gray-700 cursor-pointer items-center justify-center rounded-full shadow-derek transition duration-200",
           open ? "z-10" : "z-30",
           isExpanded && "hidden"
         )}
       >
-        <IconMessage className="h-6 w-6 text-neutral-600 group-hover:text-black" />
+        <IconMessage className="h-6 w-6 text-gray-300 group-hover:text-white" />
       </button>
     </div>
   );
@@ -600,7 +600,7 @@ const AIMessage = ({ content }: { content: string }) => {
     <div className="p-2 rounded-lg flex gap-2 items-start">
       <div className="h-8 w-8 rounded-full flex-shrink-0 flex items-center justify-center bg-gradient-to-br from-green-500 to-violet-600">
       </div>
-      <div className="text-sm px-2 py-2 rounded-lg shadow-derek w-fit bg-white text-black">
+      <div className="text-sm px-2 py-2 rounded-lg shadow-derek w-fit bg-gray-800 text-white">
         <Markdown>{useAnimatedText(content)}</Markdown>
       </div>
     </div>

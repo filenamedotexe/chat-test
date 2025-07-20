@@ -136,7 +136,7 @@ export default function PreferenceSettings() {
                   key={theme}
                   onClick={() => updatePreference("theme", theme)}
                   className={cn(
-                    "p-4 rounded-lg border-2 transition-colors capitalize",
+                    "p-4 rounded-lg border-2 transition-colors capitalize min-h-[60px]",
                     preferences.theme === theme
                       ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                       : "border-gray-300 dark:border-gray-600 hover:border-gray-400"
@@ -167,7 +167,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.language}
               onChange={(e) => updatePreference("language", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {languages.map((lang) => (
                 <option key={lang.code} value={lang.code}>
@@ -182,7 +182,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.timezone}
               onChange={(e) => updatePreference("timezone", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {timezones.map((tz) => (
                 <option key={tz} value={tz}>
@@ -197,7 +197,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.date_format}
               onChange={(e) => updatePreference("date_format", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {dateFormats.map((format) => (
                 <option key={format.value} value={format.value}>
@@ -256,7 +256,7 @@ export default function PreferenceSettings() {
           onClick={handleSave}
           disabled={isSaving}
           className={cn(
-            "px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]",
             isSaving && "opacity-50 cursor-not-allowed"
           )}
         >

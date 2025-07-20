@@ -140,7 +140,7 @@ export default function PermissionGroupManager() {
                     </span>
                     <button
                       onClick={() => toggleTemplate(template.id)}
-                      className="text-gray-400 hover:text-white"
+                      className="text-gray-400 hover:text-white p-2 rounded-lg hover:bg-gray-600/30 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                     >
                       {expandedTemplates.has(template.id) ? '−' : '+'}
                     </button>

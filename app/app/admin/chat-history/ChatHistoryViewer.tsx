@@ -117,13 +117,13 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
           <div className="flex gap-2">
             <button
               onClick={resetFilters}
-              className="px-4 py-2 text-sm bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors"
+              className="px-4 py-3 text-sm bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors min-h-[44px]"
             >
               Reset Filters
             </button>
             <button
               onClick={handleExport}
-              className="px-4 py-2 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              className="px-4 py-3 text-sm bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors min-h-[44px]"
             >
               Export CSV
             </button>
@@ -139,7 +139,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
                 setSelectedUser(e.target.value ? parseInt(e.target.value) : null);
                 setPage(1);
               }}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             >
               <option value="">All Users</option>
               {users.map(user => (
@@ -158,7 +158,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
                 setSelectedApp(e.target.value ? parseInt(e.target.value) : null);
                 setPage(1);
               }}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             >
               <option value="">All Apps</option>
               {apps.map(app => (
@@ -176,7 +176,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
                 setDateFrom(e.target.value);
                 setPage(1);
               }}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             />
           </div>
 
@@ -189,7 +189,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
                 setDateTo(e.target.value);
                 setPage(1);
               }}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             />
           </div>
 
@@ -200,7 +200,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
               placeholder="Search in messages..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none"
+              className="w-full px-4 py-3 bg-gray-700 text-white rounded-lg border border-gray-600 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
             />
           </div>
         </div>
@@ -290,7 +290,7 @@ export default function ChatHistoryViewer({ users, apps }: ChatHistoryViewerProp
             <button
               onClick={() => setPage(page + 1)}
               disabled={loading}
-              className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
             >
               {loading ? 'Loading...' : 'Load More'}
             </button>

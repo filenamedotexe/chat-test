@@ -49,7 +49,7 @@ export function AppSearch({
               placeholder="Search apps..."
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400"
+              className="pl-10 pr-4 py-3 w-full bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent placeholder-gray-400 min-h-[44px]"
             />
           </div>
         </div>
@@ -60,7 +60,7 @@ export function AppSearch({
           <select
             value={selectedCategory}
             onChange={(e) => onCategoryChange(e.target.value)}
-            className="px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-3 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent min-h-[44px]"
           >
             <option value="">All Categories</option>
             {categories.map((category) => (
@@ -74,7 +74,7 @@ export function AppSearch({
           <select
             value={sortBy}
             onChange={(e) => onSortChange(e.target.value as 'name' | 'recent' | 'popular')}
-            className="px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-3 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent min-h-[44px]"
           >
             <option value="name">Sort by Name</option>
             <option value="recent">Recently Used</option>
@@ -86,7 +86,7 @@ export function AppSearch({
           <div className="flex border border-gray-700 rounded-lg overflow-hidden">
             <button
               onClick={() => onViewChange('grid')}
-              className={`px-3 py-2 ${
+              className={`px-3 py-3 min-h-[44px] min-w-[44px] ${
                 view === 'grid'
                   ? 'bg-purple-600 text-white'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
@@ -99,7 +99,7 @@ export function AppSearch({
             </button>
             <button
               onClick={() => onViewChange('list')}
-              className={`px-3 py-2 ${
+              className={`px-3 py-3 min-h-[44px] min-w-[44px] ${
                 view === 'list'
                   ? 'bg-purple-600 text-white'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'

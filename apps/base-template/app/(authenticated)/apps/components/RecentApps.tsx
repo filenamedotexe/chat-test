@@ -70,7 +70,7 @@ export function RecentApps({ apps }: RecentAppsProps) {
         <h2 className="text-lg font-semibold text-white">Recently Used</h2>
         <Link
           href="/apps?sort=recent"
-          className="text-purple-400 hover:text-purple-300 text-sm font-medium"
+          className="text-purple-400 hover:text-purple-300 text-sm font-medium inline-block py-3 px-2 min-h-[44px] min-w-[44px] leading-none"
         >
           View all
         </Link>
@@ -117,7 +117,7 @@ export function RecentApps({ apps }: RecentAppsProps) {
             {/* Launch Button */}
             <button
               onClick={() => handleLaunch(app)}
-              className="opacity-0 group-hover:opacity-100 px-3 py-1 text-xs font-medium text-purple-400 hover:text-purple-300 bg-gray-800 hover:bg-gray-700 rounded transition-all"
+              className="opacity-0 group-hover:opacity-100 px-3 py-3 text-sm font-medium text-purple-400 hover:text-purple-300 bg-gray-800 hover:bg-gray-700 rounded transition-all min-h-[44px] min-w-[44px]"
             >
               Launch
             </button>

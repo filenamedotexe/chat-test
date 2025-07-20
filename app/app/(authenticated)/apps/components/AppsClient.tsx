@@ -91,16 +91,16 @@ export function AppsClient() {
 
   if (loading) {
     return (
-      <div className="space-y-8">
+      <div className="space-y-4 sm:space-y-6 lg:space-y-8">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 rounded w-64 mb-4"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="h-6 sm:h-8 bg-gray-700 rounded w-48 sm:w-64 mb-3 sm:mb-4"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg border p-6">
-                <div className="h-12 w-12 bg-gray-200 rounded-lg mb-4"></div>
-                <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
-                <div className="h-10 bg-gray-200 rounded"></div>
+              <div key={i} className="bg-gray-800 rounded-lg border border-gray-700 p-4 sm:p-6">
+                <div className="h-10 w-10 sm:h-12 sm:w-12 bg-gray-700 rounded-lg mb-3 sm:mb-4"></div>
+                <div className="h-5 sm:h-6 bg-gray-700 rounded w-3/4 mb-2"></div>
+                <div className="h-3 sm:h-4 bg-gray-700 rounded w-full mb-3 sm:mb-4"></div>
+                <div className="h-10 sm:h-12 bg-gray-700 rounded"></div>
               </div>
             ))}
           </div>
@@ -111,11 +111,11 @@ export function AppsClient() {
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <div className="text-red-600 text-lg mb-4">{error}</div>
+      <div className="text-center py-8 sm:py-12 px-4">
+        <div className="text-red-400 text-base sm:text-lg mb-4">{error}</div>
         <button
           onClick={fetchApps}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 min-h-[44px] text-sm sm:text-base"
         >
           Try Again
         </button>
@@ -124,7 +124,7 @@ export function AppsClient() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Recent Apps */}
       <RecentApps apps={appsData?.apps || []} />
 

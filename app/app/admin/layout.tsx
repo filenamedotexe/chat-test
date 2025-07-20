@@ -21,8 +21,8 @@ export default async function AdminLayout({
   return (
     <>
       <UnifiedNavigation />
-      <div className="pt-16 min-h-screen bg-black">
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="pt-20 min-h-screen bg-black">
+        <main className="max-w-7xl mx-auto py-4 px-4 sm:py-6 sm:px-6 lg:px-8">
           {children}
         </main>
       </div>

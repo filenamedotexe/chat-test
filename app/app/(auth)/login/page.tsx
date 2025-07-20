@@ -41,8 +41,8 @@ function LoginForm() {
   };
 
   return (
-    <div className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg shadow-xl">
-      <h1 className="text-2xl font-bold text-white mb-6 text-center">
+    <div className="bg-gray-800/50 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-lg shadow-xl">
+      <h1 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 text-center">
         Sign In
       </h1>
       
@@ -63,7 +63,7 @@ function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="admin@example.com"
           />
         </div>
@@ -78,7 +78,7 @@ function LoginForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-3 py-3 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base"
             placeholder="••••••••"
           />
         </div>
@@ -86,22 +86,22 @@ function LoginForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-md transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] text-base"
         >
           {isLoading ? 'Signing in...' : 'Sign In'}
         </button>
       </form>
 
-      <div className="mt-6 text-center">
+      <div className="mt-4 sm:mt-6 text-center">
         <p className="text-gray-400 text-sm">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-purple-400 hover:text-purple-300">
+          <Link href="/register" className="text-purple-400 hover:text-purple-300 inline-block min-h-[44px] leading-[44px]">
             Register
           </Link>
         </p>
       </div>
 
-      <div className="mt-4 p-4 bg-gray-700/50 rounded text-xs text-gray-400">
+      <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-gray-700/50 rounded text-xs text-gray-400">
         <p className="font-semibold mb-1">Demo Credentials:</p>
         <p>Email: admin@example.com</p>
         <p>Password: admin123</p>

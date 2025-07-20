@@ -40,17 +40,17 @@ function DashboardCard({ title, description, icon: Icon, href, color, delay = 0 
     >
       <Link
         href={href}
-        className="block p-6 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-gray-600 transition-all group"
+        className="block p-4 sm:p-6 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-gray-600 transition-all group min-h-[100px] sm:min-h-[120px]"
       >
-        <div className="flex items-start gap-4">
-          <div className={`p-3 rounded-lg ${color} group-hover:scale-110 transition-transform`}>
-            <Icon className="w-6 h-6 text-white" />
+        <div className="flex items-start gap-3 sm:gap-4">
+          <div className={`p-2 sm:p-3 rounded-lg ${color} group-hover:scale-110 transition-transform flex-shrink-0`}>
+            <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base sm:text-lg font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
               {title}
             </h3>
-            <p className="text-gray-400 text-sm">{description}</p>
+            <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
           </div>
         </div>
       </Link>
@@ -73,18 +73,18 @@ function StatCard({ title, value, icon: Icon, color, change, delay = 0 }: StatCa
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay }}
-      className="p-6 bg-gray-800/50 rounded-xl border border-gray-700"
+      className="p-4 sm:p-6 bg-gray-800/50 rounded-xl border border-gray-700"
     >
       <div className="flex items-center justify-between">
-        <div>
+        <div className="flex-1 min-w-0">
           <p className="text-gray-400 text-sm">{title}</p>
-          <p className="text-2xl font-bold text-white mt-1">{value}</p>
+          <p className="text-xl sm:text-2xl font-bold text-white mt-1 truncate">{value}</p>
           {change && (
             <p className="text-green-400 text-xs mt-1">{change}</p>
           )}
         </div>
-        <div className={`p-3 rounded-lg ${color}`}>
-          <Icon className="w-6 h-6 text-white" />
+        <div className={`p-2 sm:p-3 rounded-lg ${color} flex-shrink-0`}>
+          <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         </div>
       </div>
     </motion.div>
@@ -190,24 +190,24 @@ export default function UnifiedDashboard() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-white">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-2xl sm:text-3xl font-bold text-white leading-tight">
                 Welcome back, {session.user?.name || 'User'}!
               </h1>
-              <p className="text-gray-400 mt-1">
+              <p className="text-gray-400 mt-1 text-sm sm:text-base">
                 You are logged in as {isAdmin ? 'an admin' : 'a user'}
               </p>
             </div>
 
             {/* View Toggle (Admin only) */}
             {isAdmin && (
-              <div className="flex items-center gap-2 bg-gray-800/50 rounded-lg p-1">
+              <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1 flex-shrink-0">
                 <button
                   onClick={() => setView('user')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-colors min-h-[44px] ${
                     view === 'user'
                       ? 'bg-purple-600 text-white'
                       : 'text-gray-400 hover:text-white'
@@ -217,7 +217,7 @@ export default function UnifiedDashboard() {
                 </button>
                 <button
                   onClick={() => setView('admin')}
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-colors min-h-[44px] ${
                     view === 'admin'
                       ? 'bg-purple-600 text-white'
                       : 'text-gray-400 hover:text-white'
@@ -231,15 +231,15 @@ export default function UnifiedDashboard() {
         </motion.div>
 
         {/* User Features (Always Visible) */}
-        <section className="mb-8">
+        <section className="mb-6 sm:mb-8">
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-xl font-semibold text-white mb-4"
+            className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4"
           >
             Your Dashboard
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {userCards.map((card, index) => (
               <DashboardCard
                 key={card.title}
@@ -253,20 +253,20 @@ export default function UnifiedDashboard() {
         {/* Admin Features (Conditional) */}
         {isAdmin && (
           <>
-            <section className="mb-8">
+            <section className="mb-6 sm:mb-8">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="flex items-center gap-2 mb-4"
+                className="flex items-center gap-2 mb-3 sm:mb-4"
               >
-                <IconUserCheck className="w-6 h-6 text-purple-400" />
-                <h2 className="text-xl font-semibold text-white">
+                <IconUserCheck className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
+                <h2 className="text-lg sm:text-xl font-semibold text-white">
                   Admin Tools
                 </h2>
               </motion.div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
                 {adminCards.map((card, index) => (
                   <DashboardCard
                     key={card.title}
@@ -279,17 +279,17 @@ export default function UnifiedDashboard() {
 
             {/* Admin Statistics (When in admin view) */}
             {view === 'admin' && stats && (
-              <section className="mb-8">
+              <section className="mb-6 sm:mb-8">
                 <motion.h2
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4 }}
-                  className="text-xl font-semibold text-white mb-4"
+                  className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4"
                 >
                   System Overview
                 </motion.h2>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6">
                   <StatCard
                     title="Total Users"
                     value={stats.totalUsers || 0}
@@ -330,7 +330,7 @@ export default function UnifiedDashboard() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-xl font-semibold text-white mb-4"
+            className="text-lg sm:text-xl font-semibold text-white mb-3 sm:mb-4"
           >
             Your Activity
           </motion.h2>
@@ -339,21 +339,21 @@ export default function UnifiedDashboard() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
-            className="bg-gray-800/50 rounded-xl border border-gray-700 p-6"
+            className="bg-gray-800/50 rounded-xl border border-gray-700 p-4 sm:p-6"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">0</div>
+                <div className="text-2xl sm:text-3xl font-bold text-purple-400">0</div>
                 <div className="text-gray-400 text-sm">Chat Sessions</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">
+                <div className="text-2xl sm:text-3xl font-bold text-purple-400">
                   {isAdmin ? 'Admin' : 'User'}
                 </div>
                 <div className="text-gray-400 text-sm">Account Type</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-400">Active</div>
+                <div className="text-2xl sm:text-3xl font-bold text-green-400">Active</div>
                 <div className="text-gray-400 text-sm">Status</div>
               </div>
             </div>

@@ -134,7 +134,7 @@ export function PermissionsList() {
             <div className="pt-4 border-t border-gray-800">
               <p className="text-sm text-gray-400 text-center">
                 Need access to more apps?{' '}
-                <a href="/apps" className="text-purple-400 hover:text-purple-300 font-medium">
+                <a href="/apps" className="text-purple-400 hover:text-purple-300 font-medium inline-block py-3 min-h-[44px] leading-none">
                   Browse available apps
                 </a>
               </p>

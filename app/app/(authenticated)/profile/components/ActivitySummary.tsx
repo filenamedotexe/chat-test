@@ -124,17 +124,17 @@ export function ActivitySummary() {
   if (loading) {
     return (
       <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
-        <div className="px-6 py-4 border-b border-gray-800">
-          <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
+        <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-800">
+          <h2 className="text-base sm:text-lg font-semibold text-white">Recent Activity</h2>
         </div>
-        <div className="p-6">
-          <div className="animate-pulse space-y-4">
+        <div className="p-4 sm:p-6">
+          <div className="animate-pulse space-y-3 sm:space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="flex items-center space-x-4">
-                <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
+              <div key={i} className="flex items-center space-x-3 sm:space-x-4">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-800 rounded-full flex-shrink-0"></div>
                 <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-800 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-800 rounded w-1/2"></div>
+                  <div className="h-3 sm:h-4 bg-gray-800 rounded w-3/4"></div>
+                  <div className="h-2 sm:h-3 bg-gray-800 rounded w-1/2"></div>
                 </div>
               </div>
             ))}
@@ -163,46 +163,46 @@ export function ActivitySummary() {
 
   return (
     <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
-      <div className="px-6 py-4 border-b border-gray-800">
-        <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
-        <p className="text-sm text-gray-400">Your account activity and usage statistics</p>
+      <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-gray-800">
+        <h2 className="text-base sm:text-lg font-semibold text-white">Recent Activity</h2>
+        <p className="text-xs sm:text-sm text-gray-400">Your account activity and usage statistics</p>
       </div>
       
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {/* Activity Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
-            <div className="text-2xl font-bold text-white">{activityData.summary.chat_messages}</div>
-            <div className="text-sm text-gray-400">Chat Messages</div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
+            <div className="text-xl sm:text-2xl font-bold text-white">{activityData.summary.chat_messages}</div>
+            <div className="text-xs sm:text-sm text-gray-400">Chat Messages</div>
           </div>
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
-            <div className="text-2xl font-bold text-white">{activityData.summary.app_launches}</div>
-            <div className="text-sm text-gray-400">App Launches</div>
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
+            <div className="text-xl sm:text-2xl font-bold text-white">{activityData.summary.app_launches}</div>
+            <div className="text-xs sm:text-sm text-gray-400">App Launches</div>
           </div>
-          <div className="text-center p-4 bg-gray-800 rounded-lg">
-            <div className="text-2xl font-bold text-white">{activityData.summary.unique_apps_used}</div>
-            <div className="text-sm text-gray-400">Apps Used</div>
+          <div className="text-center p-3 sm:p-4 bg-gray-800 rounded-lg">
+            <div className="text-xl sm:text-2xl font-bold text-white">{activityData.summary.unique_apps_used}</div>
+            <div className="text-xs sm:text-sm text-gray-400">Apps Used</div>
           </div>
         </div>
 
         {/* Recent Activities */}
         {!activityData.recent_activity || activityData.recent_activity.length === 0 ? (
-          <div className="text-center py-8">
-            <svg className="w-12 h-12 text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="text-center py-6 sm:py-8">
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 text-gray-500 mx-auto mb-3 sm:mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
-            <p className="text-gray-400 text-sm">No recent activity</p>
+            <p className="text-gray-400 text-xs sm:text-sm">No recent activity</p>
           </div>
         ) : (
-          <div className="space-y-4">
-            <h3 className="font-medium text-white">Recent Activities</h3>
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="font-medium text-white text-sm sm:text-base">Recent Activities</h3>
             {(activityData.recent_activity || []).slice(0, 10).map((activity) => (
-              <div key={activity.id} className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
-                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center border border-gray-600">
+              <div key={activity.id} className="flex items-center space-x-2 sm:space-x-3 p-2 sm:p-3 bg-gray-800 rounded-lg">
+                <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-700 rounded-full flex items-center justify-center border border-gray-600 flex-shrink-0">
                   {getActivityIcon(activity.activity_type)}
                 </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-white">
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-medium text-white">
                     {getActivityDescription(activity)}
                   </p>
                   <p className="text-xs text-gray-400">
@@ -213,8 +213,8 @@ export function ActivitySummary() {
             ))}
             
             {(activityData.recent_activity || []).length > 10 && (
-              <div className="text-center pt-4">
-                <button className="text-purple-400 hover:text-purple-300 text-sm font-medium">
+              <div className="text-center pt-3 sm:pt-4">
+                <button className="text-purple-400 hover:text-purple-300 text-xs sm:text-sm font-medium min-h-[44px] px-4 py-2 rounded-lg hover:bg-gray-800/50 transition-colors">
                   View all activity
                 </button>
               </div>

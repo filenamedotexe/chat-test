@@ -66,12 +66,12 @@ export default function UserManagement({ initialUsers }: UserManagementProps) {
           placeholder="Search users by name or email..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-purple-500 focus:outline-none"
+          className="w-full px-4 py-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-purple-500 focus:outline-none min-h-[44px] text-base"
         />
       </div>
 
-      {/* Users Table */}
-      <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden">
+      {/* Users Table - Desktop */}
+      <div className="hidden lg:block bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-700/50">
             <tr>
@@ -106,7 +106,7 @@ export default function UserManagement({ initialUsers }: UserManagementProps) {
                     value={user.role}
                     onChange={(e) => handleRoleChange(user.id, e.target.value as 'admin' | 'user')}
                     disabled={loading === `role-${user.id}`}
-                    className="px-3 py-1 bg-gray-700 text-white rounded border border-gray-600 focus:border-purple-500 focus:outline-none text-sm"
+                    className="px-3 py-3 bg-gray-700 text-white rounded border border-gray-600 focus:border-purple-500 focus:outline-none text-sm min-h-[44px]"
                   >
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
@@ -116,7 +116,7 @@ export default function UserManagement({ initialUsers }: UserManagementProps) {
                   <button
                     onClick={() => handleStatusToggle(user.id, user.is_active)}
                     disabled={loading === `status-${user.id}`}
-                    className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                    className={`px-3 py-2 rounded text-xs font-medium transition-colors min-h-[44px] ${
                       user.is_active
                         ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
                         : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
@@ -131,7 +131,7 @@ export default function UserManagement({ initialUsers }: UserManagementProps) {
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <button
                     onClick={() => window.location.href = `/admin/users/${user.id}`}
-                    className="text-purple-400 hover:text-purple-300 mr-3"
+                    className="text-purple-400 hover:text-purple-300 mr-3 px-2 py-2 rounded min-h-[44px] hover:bg-gray-700/30 transition-colors"
                   >
                     View Details
                   </button>
@@ -140,6 +140,68 @@ export default function UserManagement({ initialUsers }: UserManagementProps) {
             ))}
           </tbody>
         </table>
+
+        {filteredUsers.length === 0 && (
+          <div className="text-center py-8 text-gray-400">
+            No users found matching your search.
+          </div>
+        )}
+      </div>
+
+      {/* Users Cards - Mobile */}
+      <div className="lg:hidden space-y-4">
+        {filteredUsers.map((user) => (
+          <div key={user.id} className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-4 space-y-3">
+            {/* User Info */}
+            <div className="flex items-start justify-between">
+              <div className="min-w-0 flex-1">
+                <div className="text-sm font-medium text-white truncate">
+                  {user.name || 'No name'}
+                </div>
+                <div className="text-sm text-gray-400 truncate">{user.email}</div>
+                <div className="text-xs text-gray-500 mt-1">
+                  Joined {new Date(user.created_at).toLocaleDateString()}
+                </div>
+              </div>
+              <button
+                onClick={() => window.location.href = `/admin/users/${user.id}`}
+                className="text-purple-400 hover:text-purple-300 text-sm ml-2 flex-shrink-0 px-2 py-2 rounded min-h-[44px] hover:bg-gray-700/30 transition-colors"
+              >
+                Details →
+              </button>
+            </div>
+
+            {/* Controls */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1">
+                <label className="block text-xs text-gray-400 mb-1">Role</label>
+                <select
+                  value={user.role}
+                  onChange={(e) => handleRoleChange(user.id, e.target.value as 'admin' | 'user')}
+                  disabled={loading === `role-${user.id}`}
+                  className="w-full px-3 py-3 bg-gray-700 text-white rounded border border-gray-600 focus:border-purple-500 focus:outline-none text-sm min-h-[44px]"
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div className="flex-1">
+                <label className="block text-xs text-gray-400 mb-1">Status</label>
+                <button
+                  onClick={() => handleStatusToggle(user.id, user.is_active)}
+                  disabled={loading === `status-${user.id}`}
+                  className={`w-full px-3 py-2 rounded text-sm font-medium transition-colors min-h-[44px] ${
+                    user.is_active
+                      ? 'bg-green-500/20 text-green-400 hover:bg-green-500/30'
+                      : 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+                  }`}
+                >
+                  {user.is_active ? 'Active' : 'Inactive'}
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
 
         {filteredUsers.length === 0 && (
           <div className="text-center py-8 text-gray-400">

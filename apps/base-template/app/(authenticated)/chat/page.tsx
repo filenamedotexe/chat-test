@@ -1,9 +1,8 @@
-import { Bubble, Hero } from "@chat/ui";
+import { Bubble } from "@chat/ui";
 
 export default function ChatPage() {
   return (
-    <div className="w-full flex items-center justify-center overflow-hidden relative">
-      <Hero />
+    <div className="min-h-screen bg-black flex items-center justify-center overflow-hidden relative">
       <Bubble />
     </div>
   );

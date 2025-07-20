@@ -49,10 +49,10 @@ export function AppCard({ app, onRefresh }: AppCardProps) {
 
   return (
     <>
-      <div className="bg-gray-900 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors p-6 relative">
+      <div className="bg-gray-900 rounded-lg border border-gray-800 hover:border-purple-500 transition-colors p-4 sm:p-6 relative">
         {/* Featured Badge */}
         {app.is_featured && (
-          <div className="absolute top-4 right-4">
+          <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
             <span className="inline-flex items-center px-2 py-1 text-xs font-medium bg-purple-100 text-purple-800 rounded-full">
               Featured
             </span>
@@ -60,38 +60,38 @@ export function AppCard({ app, onRefresh }: AppCardProps) {
         )}
 
         {/* App Icon and Info */}
-        <div className="flex items-start space-x-4 mb-4">
-          <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+        <div className="flex items-start space-x-3 sm:space-x-4 mb-3 sm:mb-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
             {app.icon_url ? (
               <Image
                 src={app.icon_url}
                 alt={app.name}
                 width={32}
                 height={32}
-                className="rounded"
+                className="rounded w-6 h-6 sm:w-8 sm:h-8"
               />
             ) : (
-              <span className="text-xl font-bold text-gray-600">
+              <span className="text-lg sm:text-xl font-bold text-gray-600">
                 {app.name.charAt(0).toUpperCase()}
               </span>
             )}
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-semibold text-white truncate">
+            <h3 className="text-base sm:text-lg font-semibold text-white truncate">
               {app.name}
             </h3>
-            <p className="text-sm text-gray-400">{app.category}</p>
+            <p className="text-xs sm:text-sm text-gray-400">{app.category}</p>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-gray-300 mb-4 line-clamp-2">
+        <p className="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4 line-clamp-2">
           {app.description}
         </p>
 
         {/* Tags */}
         {app.tags && app.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-4">
+          <div className="flex flex-wrap gap-1 mb-3 sm:mb-4">
             {app.tags.slice(0, 3).map((tag, index) => (
               <span
                 key={index}
@@ -108,13 +108,12 @@ export function AppCard({ app, onRefresh }: AppCardProps) {
           </div>
         )}
 
-
         {/* Launch Stats */}
         {app.launch_count > 0 && (
-          <div className="text-xs text-gray-400 mb-4">
+          <div className="text-xs text-gray-400 mb-3 sm:mb-4">
             Launched {app.launch_count} times
             {app.last_launched && (
-              <span> • Last used {new Date(app.last_launched).toLocaleDateString()}</span>
+              <span className="hidden sm:inline"> • Last used {new Date(app.last_launched).toLocaleDateString()}</span>
             )}
           </div>
         )}
@@ -122,7 +121,7 @@ export function AppCard({ app, onRefresh }: AppCardProps) {
         {/* Action Button */}
         <button
           onClick={handleLaunch}
-          className="w-full py-2 px-4 rounded-lg font-medium transition-colors bg-purple-600 text-white hover:bg-purple-700"
+          className="w-full py-3 px-4 rounded-lg font-medium transition-colors bg-purple-600 text-white hover:bg-purple-700 min-h-[44px] text-sm sm:text-base"
         >
           Launch
         </button>

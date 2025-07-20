@@ -110,7 +110,7 @@ export default function AccountSettings() {
                 onClick={handleExportData}
                 disabled={isExporting}
                 className={cn(
-                  "theme-btn-primary",
+                  "theme-btn-primary min-h-[44px] px-4 py-3",
                   isExporting && "opacity-50 cursor-not-allowed"
                 )}
               >
@@ -138,7 +138,7 @@ export default function AccountSettings() {
           </p>
           <button
             onClick={() => setShowDeleteModal(true)}
-            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="px-4 py-3 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 min-h-[44px]"
           >
             Delete Account
           </button>
@@ -165,7 +165,7 @@ export default function AccountSettings() {
               type="email"
               value={deleteConfirmation}
               onChange={(e) => setDeleteConfirmation(e.target.value)}
-              className="w-full px-3 py-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
               placeholder="Enter your email"
             />
             <div className="flex space-x-4">
@@ -174,7 +174,7 @@ export default function AccountSettings() {
                   setShowDeleteModal(false);
                   setDeleteConfirmation("");
                 }}
-                className="flex-1 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex-1 px-4 py-3 border rounded hover:bg-gray-100 dark:hover:bg-gray-700 min-h-[44px]"
               >
                 Cancel
               </button>
@@ -182,7 +182,7 @@ export default function AccountSettings() {
                 onClick={handleDeleteAccount}
                 disabled={isDeleting || deleteConfirmation !== session?.user?.email}
                 className={cn(
-                  "flex-1 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700",
+                  "flex-1 px-4 py-3 bg-red-600 text-white rounded hover:bg-red-700 min-h-[44px]",
                   (isDeleting || deleteConfirmation !== session?.user?.email) &&
                     "opacity-50 cursor-not-allowed"
                 )}

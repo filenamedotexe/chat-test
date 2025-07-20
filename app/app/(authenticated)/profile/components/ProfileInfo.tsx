@@ -26,7 +26,7 @@ export function ProfileInfo() {
                 </div>
                 <button
                   onClick={() => setShowPasswordForm(true)}
-                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="inline-flex items-center px-3 py-3 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 min-h-[44px]"
                 >
                   Change Password
                 </button>
@@ -38,7 +38,7 @@ export function ProfileInfo() {
                   <p className="text-sm text-gray-400">Add an extra layer of security</p>
                 </div>
                 <button
-                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-400 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="inline-flex items-center px-3 py-3 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-400 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 min-h-[44px]"
                   disabled
                 >
                   Enable 2FA
@@ -79,7 +79,7 @@ export function ProfileInfo() {
                       alert('Export failed. Please try again.');
                     }
                   }}
-                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="inline-flex items-center px-3 py-3 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 min-h-[44px]"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -94,7 +94,7 @@ export function ProfileInfo() {
                   <p className="text-sm text-red-300">Permanently delete your account and all data</p>
                 </div>
                 <button
-                  className="inline-flex items-center px-3 py-2 border border-red-600 shadow-sm text-sm leading-4 font-medium rounded-md text-red-200 bg-red-900/50 hover:bg-red-900/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  className="inline-flex items-center px-3 py-3 border border-red-600 shadow-sm text-sm leading-4 font-medium rounded-md text-red-200 bg-red-900/50 hover:bg-red-900/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 min-h-[44px]"
                   onClick={() => {
                     if (confirm('This action cannot be undone. Are you sure you want to delete your account?')) {
                       alert('Account deletion will be implemented in a future update.');
