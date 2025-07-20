@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "*",
+    "@chat/auth": "*",
     "@chat/database": "*",
     "@chat/langchain-core": "*",
     "@chat/shared-types": "*",

@@ -69,7 +69,7 @@ export async function POST(req: Request) {
       1000 // initial delay
     );
     
-    // Create stream
+    // Create stream with AI SDK data protocol format
     const encoder = new TextEncoder();
     let fullContent = "";
     
@@ -83,11 +83,32 @@ export async function POST(req: Request) {
               callbacks: [{
                 handleLLMNewToken(token: string) {
                   fullContent += token;
-                  const formattedChunk = encoder.encode(token);
+                  // Format as AI SDK data protocol: 0:"text"\n
+                  // Escape special characters for JSON
+                  const escapedToken = token
+                    .replace(/\\/g, '\\\\')
+                    .replace(/"/g, '\\"')
+                    .replace(/\n/g, '\\n')
+                    .replace(/\r/g, '\\r')
+                    .replace(/\t/g, '\\t');
+                  const formattedChunk = encoder.encode(`0:"${escapedToken}"\n`);
                   controller.enqueue(formattedChunk);
                 },
                 async handleLLMEnd() {
                   console.log("LLM finished, full content:", fullContent);
+                  
+                  // Send finish metadata
+                  const finishData = {
+                    finishReason: "stop",
+                    usage: {
+                      promptTokens: 0,
+                      completionTokens: fullContent.length,
+                    },
+                    isContinued: false
+                  };
+                  controller.enqueue(encoder.encode(`e:${JSON.stringify(finishData)}\n`));
+                  controller.enqueue(encoder.encode(`d:${JSON.stringify(finishData)}\n`));
+                  
                   // Save the conversation turn to the database
                   try {
                     await chatHistory.saveConversationTurn(lastMessage.content, fullContent);
@@ -115,7 +136,13 @@ export async function POST(req: Request) {
       },
     });
     
-    return new StreamingTextResponse(readableStream);
+    // Return with proper headers for AI SDK
+    return new Response(readableStream, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-Vercel-AI-Data-Stream': 'v1',
+      },
+    });
     
   } catch (error) {
     console.error("LangChain route error:", error);
