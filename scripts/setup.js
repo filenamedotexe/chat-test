@@ -56,8 +56,7 @@ function validateEnvironment() {
   
   const requiredFiles = [
     'package.json',
-    'turbo.json',
-    'apps/base-template',
+    'app',
     'packages/auth',
     'packages/database'
   ];
@@ -77,14 +76,14 @@ function validateEnvironment() {
 function checkEnvVariables() {
   log.header('Checking Environment Variables');
   
-  const envPath = path.join(__dirname, '../apps/base-template/.env.local');
+  const envPath = path.join(__dirname, '../app/.env.local');
   if (!fs.existsSync(envPath)) {
-    log.error('.env.local not found in apps/base-template/');
+    log.error('.env.local not found in app/');
     log.error('Please create .env.local with required variables:');
     log.info('  DATABASE_URL="postgresql://..."');
     log.info('  OPENAI_API_KEY="sk-..."');
     log.info('  NEXTAUTH_SECRET="your-secret"');
-    log.info('  NEXTAUTH_URL="http://localhost:3001"');
+    log.info('  NEXTAUTH_URL="http://localhost:3000"');
     process.exit(1);
   }
   
@@ -149,7 +148,7 @@ async function setupDatabase() {
   
   // Check if server is already running
   try {
-    const response = await fetch('http://localhost:3001/api/health').catch(() => null);
+    const response = await fetch('http://localhost:3000/api/hello').catch(() => null);
     if (response?.ok) {
       log.success('Development server is already running');
     } else {
@@ -166,7 +165,7 @@ async function setupDatabase() {
   log.step('Setting up database schema...');
   
   try {
-    const response = await fetch('http://localhost:3001/api/setup-auth-database', {
+    const response = await fetch('http://localhost:3000/api/setup-auth-database', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -205,7 +204,7 @@ async function discoverApps() {
   try {
     log.step('Scanning for applications...');
     
-    const response = await fetch('http://localhost:3001/api/admin/discover-apps', {
+    const response = await fetch('http://localhost:3000/api/admin/discover-apps', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -246,7 +245,7 @@ function createSampleAppConfigs() {
   
   const sampleApps = [
     {
-      dir: 'apps/base-template',
+      dir: 'app',
       config: {
         name: 'Chat Application',
         slug: 'chat',
@@ -282,12 +281,12 @@ ${colors.green}✅ Authentication system is ready!${colors.reset}
 
 ${colors.bright}Next Steps:${colors.reset}
 1. Start the development server: ${colors.cyan}npm run dev${colors.reset}
-2. Visit: ${colors.cyan}http://localhost:3001${colors.reset}
+2. Visit: ${colors.cyan}http://localhost:3000${colors.reset}
 3. Login with admin credentials:
    Email: ${colors.yellow}admin@example.com${colors.reset}
    Password: ${colors.yellow}AdminPass123!${colors.reset}
 4. ${colors.red}Change the admin password immediately!${colors.reset}
-5. Access admin dashboard: ${colors.cyan}http://localhost:3001/admin${colors.reset}
+5. Access admin dashboard: ${colors.cyan}http://localhost:3000/admin${colors.reset}
 
 ${colors.bright}Admin Dashboard Features:${colors.reset}
 • User management

@@ -1,17 +1,17 @@
 {
-  "name": "chat-monorepo",
+  "name": "chat-application",
   "version": "0.1.0",
   "private": true,
   "packageManager": "npm@10.2.4",
   "workspaces": [
-    "apps/*",
+    "app",
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "start": "turbo start",
-    "lint": "turbo lint",
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "start": "cd app && npm run start",
+    "lint": "cd app && npm run lint",
     "setup": "node scripts/setup.js",
     "create-admin": "node scripts/create-admin.js",
     "migrate-apps": "node scripts/migrate-apps.js"
@@ -49,7 +49,6 @@
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "turbo": "^2.5.5",
     "typescript": "^5"
   }
 }

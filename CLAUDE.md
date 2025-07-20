@@ -1,19 +1,19 @@
 # CLAUDE.md - AI Assistant Development Guide
 
-This document provides comprehensive guidelines for AI assistants (like Claude) working on this monorepo. It contains project-specific patterns, conventions, and best practices to ensure consistent, high-quality code generation.
+This document provides comprehensive guidelines for AI assistants (like Claude) working on this Next.js application. It contains project-specific patterns, conventions, and best practices to ensure consistent, high-quality code generation.
 
-## 🚨 CRITICAL WARNING - NEVER DELETE THESE APPS 🚨
+## 🚨 CRITICAL WARNING - PRODUCTION APPLICATION 🚨
 
-**NEVER EVER DELETE OR MODIFY THE FOLLOWING DIRECTORIES:**
-- `apps/base-template/` - The main chat application (SACRED - DO NOT TOUCH)
-- `apps/base-template-backup/` - Backup of the main app (SACRED - DO NOT TOUCH)
+**NEVER MODIFY CRITICAL DIRECTORIES WITHOUT EXPLICIT PERMISSION:**
+- `app/` - The main application directory
+- `packages/` - Core functionality packages
 
-**THESE ARE CORE APPLICATIONS THAT MUST BE PRESERVED AT ALL COSTS!**
+**THIS IS A PRODUCTION APPLICATION - HANDLE WITH CARE!**
 
-When adding new apps or sample data:
+When modifying database or core functionality:
 - Always use `INSERT ... ON CONFLICT (slug) DO NOTHING` or `ON CONFLICT DO UPDATE SET`
-- Never use `DELETE`, `DROP`, or destructive operations on these apps
-- If in doubt, ask before making any changes that could affect these directories
+- Never use `DELETE`, `DROP`, or destructive operations without backup
+- Test all changes thoroughly before committing
 
 ## 📋 Table of Contents
 
@@ -36,32 +36,34 @@ When adding new apps or sample data:
 ### Tech Stack
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript 5.0+
-- **Build System**: Turborepo 2.5+
 - **AI Framework**: LangChain 0.3+
 - **Database**: Neon Postgres (Serverless)
 - **UI Library**: Custom components + Framer Motion
 - **Styling**: Tailwind CSS 3.4+
 - **Package Manager**: npm with workspaces
 
-### Monorepo Structure
+### Application Structure
 ```
-chat-monorepo/
-├── apps/               # Applications
-├── packages/           # Shared packages
-├── turbo.json         # Turborepo config
-└── package.json       # Workspace root
+chat-application/
+├── app/               # Next.js app directory
+├── components/        # React components
+├── lib/              # Utilities
+├── packages/         # Internal packages
+├── public/           # Static assets
+└── package.json      # Project config
 ```
 
 ## 🏗️ Architecture Principles
 
 ### 1. Separation of Concerns
-- **Apps**: Complete applications with their own dependencies
-- **Packages**: Shared, reusable code modules
+- **App**: Main Next.js application
+- **Components**: Reusable UI components
+- **Packages**: Shared, internal code modules
 - **Clear boundaries**: Each package has a specific purpose
 
 ### 2. Dependency Direction
 ```
-apps/ → packages/ → external dependencies
+app/ → components/ → packages/ → external dependencies
 ```
 Never create circular dependencies.
 
@@ -511,19 +513,22 @@ await sql(`SELECT * FROM users WHERE id = ${userId}`);
 
 ## 📝 Common Tasks
 
-### Creating a New App
+### Adding New Features
+Since this is now a single application, add new features directly:
+
 ```bash
-# 1. Copy template
-cp -r apps/base-template apps/new-app
+# 1. Create new route in app/
+mkdir -p app/new-feature
+touch app/new-feature/page.tsx
 
-# 2. Update package.json
-# Change name to @chat/new-app
+# 2. Add components
+touch components/NewFeature.tsx
 
-# 3. Install dependencies
-npm install
+# 3. Update navigation if needed
+# Edit app/(authenticated)/layout.tsx
 
-# 4. Run the app
-npm run dev -- --filter=@chat/new-app
+# 4. Test your changes
+npm run dev
 ```
 
 ### Adding a New Package
@@ -562,8 +567,8 @@ npm update
 # Update specific package in workspace
 npm update @chat/ui -w @chat/base-template
 
-# Update root dependencies
-npm update turbo
+# Update dependencies
+npm update
 ```
 
 ## 🔧 Troubleshooting
@@ -576,7 +581,7 @@ npm update turbo
    npm run build
    
    # Clear cache
-   rm -rf .turbo node_modules
+   rm -rf .next node_modules
    npm install
    ```
 
@@ -611,14 +616,11 @@ npm update turbo
 
 ### Debug Commands
 ```bash
-# Turborepo debug
-TURBO_LOG_LEVEL=debug npm run dev
-
 # Next.js debug
 DEBUG=* npm run dev
 
-# View dependency graph
-turbo run build --graph
+# Verbose output
+npm run dev -- --verbose
 
 # Analyze bundle
 ANALYZE=true npm run build
@@ -627,7 +629,6 @@ ANALYZE=true npm run build
 ## 📚 Additional Resources
 
 ### Documentation
-- [Turborepo Docs](https://turbo.build/repo/docs)
 - [Next.js App Router](https://nextjs.org/docs/app)
 - [LangChain JS](https://js.langchain.com/)
 - [Neon Docs](https://neon.tech/docs)
@@ -650,11 +651,11 @@ ANALYZE=true npm run build
 
 ### Most Used Commands
 ```bash
-npm run dev                           # Start all apps
-npm run dev -- --filter=@chat/base   # Start specific app
-npm run build                         # Build everything
-turbo daemon clean                    # Clear cache
-npm install                           # Install all deps
+npm run dev                           # Start dev server
+npm run build                         # Build for production
+npm run start                         # Start production server
+npm run lint                          # Run linting
+npm test                              # Run tests
 ```
 
 ### Import Cheatsheet
@@ -680,7 +681,7 @@ Remember: When in doubt, check existing patterns in the codebase!
 
 ---
 
-*Last updated: 2025 - Turborepo 2.5, Next.js 14.2, LangChain 0.3*
+*Last updated: 2025 - Next.js 14.2, LangChain 0.3*
 
 ## 🚀 Current Project Status & Commands
 
