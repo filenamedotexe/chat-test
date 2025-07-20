@@ -10,13 +10,5 @@
   },
   "github": {
     "autoAlias": false
-  },
-  "functions": {
-    "app/app/api/chat-langchain/route.ts": {
-      "maxDuration": 60
-    },
-    "app/app/api/user/*/route.ts": {
-      "maxDuration": 30
-    }
   }
 }
