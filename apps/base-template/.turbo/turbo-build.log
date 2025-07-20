@@ -8,212 +8,29 @@
    Creating an optimized production build ...
  ✓ Compiled successfully
    Linting and checking validity of types ...
-   Collecting page data ...
-   Generating static pages (0/49) ...
-Error fetching chat history: n [Error]: Dynamic server usage: Route /api/admin/chat-history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/auth/logout/route.js:1:3322)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/chat-history/route.js:1:1300)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/admin/chat-history couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error fetching stats: n [Error]: Dynamic server usage: Route /api/admin/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/stats/route.js:1:1294)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/admin/stats couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error fetching users: n [Error]: Dynamic server usage: Route /api/admin/users couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/users/route.js:1:1257)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/admin/users couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error fetching permission groups: n [Error]: Dynamic server usage: Route /api/admin/permission-groups couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at x (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/permission-groups/route.js:1:1256)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/admin/permission-groups couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-   Generating static pages (12/49) 
-Error checking permissions: n [Error]: Dynamic server usage: Route /api/user/permissions couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at x (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/user/permissions/route.js:1:1257)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/user/permissions couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error fetching user apps: n [Error]: Dynamic server usage: Route /api/user/apps couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/auth/logout/route.js:1:3322)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/user/apps/route.js:1:1253)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/user/apps couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-   Generating static pages (24/49) 
-Test error: n [Error]: Dynamic server usage: Route /api/test-user-chat couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at p (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/chat-history/export/route.js:24:1069)
-    at p (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/test-user-chat/route.js:1:1238)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31) {
-  description: "Route /api/test-user-chat couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error exporting chat history: n [Error]: Dynamic server usage: Route /api/admin/chat-history/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at c (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/admin/chat-history/export/route.js:1:1283)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/admin/chat-history/export couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-Error fetching user data: n [Error]: Dynamic server usage: Route /api/user/me couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
-    at l (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/4522.js:1:56265)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:31137)
-    at s (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/chunks/3954.js:25:20518)
-    at d (/Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template/.next/server/app/api/user/me/route.js:1:1256)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-route.runtime.prod.js:6:36944
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:140:36
-    at NoopContextManager.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/context/NoopContextManager.js:25:19)
-    at ContextAPI.with (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/api/context.js:60:46)
-    at NoopTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/NoopTracer.js:65:31)
-    at ProxyTracer.startActiveSpan (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/@opentelemetry/api/build/src/trace/ProxyTracer.js:36:24) {
-  description: "Route /api/user/me couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error",
-  digest: 'DYNAMIC_SERVER_USAGE'
-}
-   Generating static pages (36/49) 
-Response 1: {
-  response: 'Hello Test User! It’s great to meet you. How are things over at TestCorp? What sort of projects are you currently working on?'
-}
-Response 2: {
-  response: "That sounds fascinating, Test User! AI development is such a dynamic field. Can you share more about the specific types of AI projects you're involved with at TestCorp? Are you focusing on machine learning, natural language processing, or perhaps something else?"
-}
-Response 3: {
-  response: "Hello! As you introduced yourself, you are Test User from TestCorp, and you mentioned that you are a senior developer working on AI projects. You haven't specified the details of these projects yet, but I'm curious to learn whether they involve machine learning, natural language processing, or other exciting areas within AI! What specific projects are you currently focusing on at TestCorp?"
-}
-Memory variables: {
-  history: 'The human introduces themselves as Test User from TestCorp, and the AI inquires about how things are at TestCorp and what projects Test User is working on. Test User reveals that they are a senior developer working on AI projects, prompting the AI to express interest in the specifics of these projects, asking whether they involve machine learning, natural language processing, or other areas. When the human asks what the AI remembers about them, the AI reiterates that Test User is a senior developer at TestCorp working on AI projects, and expresses further curiosity about the specific nature of these projects.'
-}
- ✓ Generating static pages (49/49)
-   Finalizing page optimization ...
-   Collecting build traces ...
 
-Route (app)                                 Size     First Load JS
-┌ ○ /                                       518 B           219 kB
-├ ○ /_not-found                             876 B            88 kB
-├ ƒ /admin                                  1.3 kB         98.5 kB
-├ ƒ /admin/apps                             1.74 kB        98.9 kB
-├ ƒ /admin/chat-history                     2.57 kB        99.8 kB
-├ ƒ /admin/debug                            496 B          97.7 kB
-├ ƒ /admin/permission-groups                1.79 kB          99 kB
-├ ƒ /admin/permissions                      2.15 kB        99.3 kB
-├ ƒ /admin/users                            1.75 kB        98.9 kB
-├ ƒ /admin/users/[id]                       1.29 kB         105 kB
-├ ○ /api/add-permission-group               0 B                0 B
-├ ƒ /api/admin/apps                         0 B                0 B
-├ ƒ /api/admin/chat-history                 0 B                0 B
-├ ƒ /api/admin/chat-history/export          0 B                0 B
-├ ƒ /api/admin/discover-apps                0 B                0 B
-├ ƒ /api/admin/migrate-apps                 0 B                0 B
-├ ƒ /api/admin/permission-groups            0 B                0 B
-├ ƒ /api/admin/permissions                  0 B                0 B
-├ ƒ /api/admin/stats                        0 B                0 B
-├ ƒ /api/admin/users                        0 B                0 B
-├ ƒ /api/admin/users/[id]                   0 B                0 B
-├ ƒ /api/admin/users/[id]/permission-group  0 B                0 B
-├ ƒ /api/auth/[...nextauth]                 0 B                0 B
-├ ƒ /api/auth/logout                        0 B                0 B
-├ ƒ /api/auth/register                      0 B                0 B
-├ ƒ /api/chat-langchain                     0 B                0 B
-├ ƒ /api/debug-register                     0 B                0 B
-├ ○ /api/hello                              0 B                0 B
-├ ƒ /api/memory                             0 B                0 B
-├ ○ /api/prompts                            0 B                0 B
-├ ○ /api/public/migrate                     0 B                0 B
-├ ○ /api/setup-auth-database                0 B                0 B
-├ ƒ /api/setup-database                     0 B                0 B
-├ ○ /api/simple-test                        0 B                0 B
-├ ○ /api/test-db                            0 B                0 B
-├ ○ /api/test-langchain                     0 B                0 B
-├ ○ /api/test-memory                        0 B                0 B
-├ ○ /api/test-summary                       0 B                0 B
-├ ƒ /api/test-user-chat                     0 B                0 B
-├ ƒ /api/user/apps                          0 B                0 B
-├ ƒ /api/user/me                            0 B                0 B
-├ ƒ /api/user/permissions                   0 B                0 B
-├ ƒ /api/user/profile                       0 B                0 B
-├ ○ /chat                                   215 B           218 kB
-├ ○ /dashboard                              145 B          87.3 kB
-├ ƒ /home                                   510 B           104 kB
-├ ○ /login                                  1.27 kB         105 kB
-├ ○ /notes                                  145 B          87.3 kB
-├ ○ /register                               1.43 kB        95.3 kB
-└ ○ /test-langchain                         656 B          87.8 kB
-+ First Load JS shared by all               87.1 kB
-  ├ chunks/1dd3208c-90cc52328c0c9255.js     53.7 kB
-  ├ chunks/286-121f185851f0281d.js          31.6 kB
-  └ other shared chunks (total)             1.89 kB
+./components/ThemeProvider.tsx
+49:9  Warning: The 'availableThemes' object makes the dependencies of useEffect Hook (at line 94) change on every render. To fix this, wrap the initialization of 'availableThemes' in its own useMemo() Hook.  react-hooks/exhaustive-deps
+52:9  Warning: The 'changeTheme' function makes the dependencies of useEffect Hook (at line 94) change on every render. To fix this, wrap the definition of 'changeTheme' in its own useCallback() Hook.  react-hooks/exhaustive-deps
+52:9  Warning: The 'changeTheme' function makes the dependencies of useEffect Hook (at line 111) change on every render. To fix this, wrap the definition of 'changeTheme' in its own useCallback() Hook.  react-hooks/exhaustive-deps
 
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+Failed to compile.
 
-ƒ Middleware                                46.6 kB
+./app/(authenticated)/settings/components/ChatSettings.tsx:100:21
+Type error: Parameter 'prev' implicitly has an 'any' type.
 
-○  (Static)   prerendered as static content
-ƒ  (Dynamic)  server-rendered on demand
-
+[0m [90m  98 |[39m[0m
+[0m [90m  99 |[39m   [36mconst[39m updateSetting [33m=[39m (key[33m:[39m keyof [33mChatSettings[39m[33m,[39m value[33m:[39m any) [33m=>[39m {[0m
+[0m[31m[1m>[22m[39m[90m 100 |[39m     setChatSettings(prev [33m=>[39m ({ [33m...[39mprev[33m,[39m [key][33m:[39m value } [36mas[39m [33mChatSettings[39m))[33m;[39m[0m
+[0m [90m     |[39m                     [31m[1m^[22m[39m[0m
+[0m [90m 101 |[39m   }[33m;[39m[0m
+[0m [90m 102 |[39m[0m
+[0m [90m 103 |[39m   [36mconst[39m selectedModel [33m=[39m models[33m.[39mfind((m) [33m=>[39m m[33m.[39mvalue [33m===[39m chatSettings[33m.[39mdefault_model)[33m;[39m[0m
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path /Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template
+npm error workspace @chat/base-template@0.1.0
+npm error location /Users/zachwieder/Documents/CODING MAIN/chat-test/apps/base-template
+npm error command failed
+npm error command sh -c next build

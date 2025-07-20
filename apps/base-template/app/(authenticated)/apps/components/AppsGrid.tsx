@@ -15,10 +15,6 @@ interface App {
   is_featured: boolean;
   launch_count: number;
   requires_auth: boolean;
-  has_access: boolean;
-  granted_at?: string;
-  access_request_status?: string;
-  is_favorite: boolean;
   last_launched?: string;
 }
 

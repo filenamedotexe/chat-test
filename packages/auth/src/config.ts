@@ -45,8 +45,26 @@ export const authOptions: NextAuthOptions = {
         );
 
         if (!isPasswordValid) {
+          // Log failed login attempt
+          await sql`
+            INSERT INTO login_history (user_id, ip_address, user_agent, success)
+            VALUES (${user.id}, 'unknown', 'unknown', false)
+          `;
           return null;
         }
+
+        // Log successful login
+        await sql`
+          INSERT INTO login_history (user_id, ip_address, user_agent, success)
+          VALUES (${user.id}, 'unknown', 'unknown', true)
+        `;
+
+        // Update last login timestamp
+        await sql`
+          UPDATE users 
+          SET last_login = CURRENT_TIMESTAMP 
+          WHERE id = ${user.id}
+        `;
 
         // Return user object (password_hash excluded)
         return {

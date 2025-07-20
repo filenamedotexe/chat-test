@@ -64,66 +64,46 @@ export async function PUT(request: Request) {
     const sql = neon(process.env.DATABASE_URL!);
     const userId = parseInt(session.user.id);
 
-    // Check if chat settings exist
+    // Check if user preferences exist
     const existing = await sql(`
-      SELECT id FROM chat_settings
+      SELECT user_id FROM user_preferences
       WHERE user_id = ${userId}
     `);
 
+    // Build chat settings object - use same field names as frontend expects
     const chatSettingsData = {
-      ...(default_model !== undefined && { default_model }),
-      ...(temperature !== undefined && { temperature }),
-      ...(max_tokens !== undefined && { max_tokens }),
-      ...(save_history !== undefined && { save_history }),
-      ...(share_conversations !== undefined && { share_conversations }),
-      ...(code_execution !== undefined && { code_execution }),
-      ...(web_search !== undefined && { web_search }),
-      ...(image_generation !== undefined && { image_generation }),
-      ...(auto_title !== undefined && { auto_title }),
-      ...(suggestion_mode !== undefined && { suggestion_mode })
+      default_model: default_model || 'gpt-3.5-turbo',
+      temperature: temperature ?? 0.7,
+      max_tokens: max_tokens ?? 2048,
+      save_history: save_history ?? true,
+      share_conversations: share_conversations ?? false,
+      code_execution: code_execution ?? false,
+      web_search: web_search ?? false,
+      image_generation: image_generation ?? false,
+      auto_title: auto_title ?? true,
+      suggestion_mode: suggestion_mode || 'balanced'
     };
 
     if (existing.length > 0) {
-      // Update existing settings
-      const updateFields = Object.entries(chatSettingsData)
-        .map(([key, value]) => {
-          if (typeof value === 'boolean' || typeof value === 'number') {
-            return `${key} = ${value}`;
-          } else {
-            return `${key} = '${value}'`;
-          }
-        })
-        .join(', ');
-
-      if (updateFields) {
-        await sql(`
-          UPDATE chat_settings
-          SET ${updateFields}, updated_at = CURRENT_TIMESTAMP
-          WHERE user_id = ${userId}
-        `);
-      }
-    } else {
-      // Create new settings
-      const fields = ['user_id', ...Object.keys(chatSettingsData)];
-      const values = [userId, ...Object.values(chatSettingsData)];
-      
-      const fieldString = fields.join(', ');
-      const valueString = values.map((v, i) => {
-        if (i === 0) return v; // user_id is a number
-        if (typeof v === 'boolean' || typeof v === 'number') return v;
-        return `'${v}'`;
-      }).join(', ');
-
+      // Update existing preferences with new chat settings
       await sql(`
-        INSERT INTO chat_settings (${fieldString})
-        VALUES (${valueString})
+        UPDATE user_preferences
+        SET chat_settings = '${JSON.stringify(chatSettingsData)}'::jsonb,
+            updated_at = CURRENT_TIMESTAMP
+        WHERE user_id = ${userId}
+      `);
+    } else {
+      // Create new preferences with chat settings
+      await sql(`
+        INSERT INTO user_preferences (user_id, chat_settings)
+        VALUES (${userId}, '${JSON.stringify(chatSettingsData)}'::jsonb)
       `);
     }
 
     // Log activity
     await sql(`
       INSERT INTO user_activity (user_id, activity_type, activity_data)
-      VALUES (${userId}, 'chat_settings_updated', ${JSON.stringify(chatSettingsData)})
+      VALUES (${userId}, 'chat_settings_updated', '${JSON.stringify(chatSettingsData)}'::jsonb)
     `);
 
     // Update user's last activity

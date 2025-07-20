@@ -18,6 +18,8 @@ export async function PUT(request: Request) {
     const {
       theme,
       language,
+      timezone,
+      date_format,
       notifications_enabled,
       email_notifications,
       show_activity,
@@ -48,13 +50,15 @@ export async function PUT(request: Request) {
 
     // Check if preferences exist
     const existing = await sql(`
-      SELECT id FROM user_preferences
+      SELECT user_id FROM user_preferences
       WHERE user_id = ${userId}
     `);
 
     const preferencesData = {
       ...(theme !== undefined && { theme }),
       ...(language !== undefined && { language }),
+      ...(timezone !== undefined && { timezone }),
+      ...(date_format !== undefined && { date_format }),
       ...(notifications_enabled !== undefined && { notifications_enabled }),
       ...(email_notifications !== undefined && { email_notifications }),
       ...(show_activity !== undefined && { show_activity }),
@@ -104,7 +108,7 @@ export async function PUT(request: Request) {
     // Log activity
     await sql(`
       INSERT INTO user_activity (user_id, activity_type, activity_data)
-      VALUES (${userId}, 'preferences_updated', ${JSON.stringify(preferencesData)})
+      VALUES (${userId}, 'preferences_updated', '${JSON.stringify(preferencesData)}'::jsonb)
     `);
 
     // Update user's last activity

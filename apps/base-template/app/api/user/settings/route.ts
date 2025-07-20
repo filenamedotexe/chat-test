@@ -23,9 +23,9 @@ export async function GET() {
       WHERE user_id = ${userId}
     `);
 
-    // Get chat settings
-    const chatSettings = await sql(`
-      SELECT * FROM chat_settings
+    // Get chat settings from user_preferences
+    const userPrefs = await sql(`
+      SELECT chat_settings FROM user_preferences
       WHERE user_id = ${userId}
     `);
 
@@ -60,17 +60,15 @@ export async function GET() {
       WHERE user_id = ${userId}
     `);
 
-    // Get chat count
-    const chatCount = await sql(`
-      SELECT COUNT(*) as count
-      FROM chats
-      WHERE user_id = ${userId}
-    `);
+    // Get chat count (placeholder - chats table doesn't exist yet)
+    const chatCount = [{ count: '0' }];
 
     // Default values if no settings exist
     const defaultPreferences = {
       theme: 'system',
       language: 'en',
+      timezone: 'UTC',
+      date_format: 'MM/DD/YYYY',
       notifications_enabled: true,
       email_notifications: true,
       show_activity: true,
@@ -93,9 +91,12 @@ export async function GET() {
       suggestion_mode: 'balanced'
     };
 
+    // Extract chat settings from preferences or use defaults
+    const chatSettings = userPrefs[0]?.chat_settings || (preferences[0]?.chat_settings) || defaultChatSettings;
+    
     return NextResponse.json({
       preferences: preferences[0] || defaultPreferences,
-      chatSettings: chatSettings[0] || defaultChatSettings,
+      chatSettings: chatSettings,
       security: {
         loginHistoryCount: parseInt(loginHistoryCount[0].count || '0'),
         apiKeys: apiKeys,

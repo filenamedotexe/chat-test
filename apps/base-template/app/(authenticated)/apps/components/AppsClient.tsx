@@ -5,7 +5,6 @@ import { AppsGrid } from './AppsGrid';
 import { AppsList } from './AppsList';
 import { AppSearch } from './AppSearch';
 import { RecentApps } from './RecentApps';
-import { FavoriteApps } from './FavoriteApps';
 
 interface App {
   id: number;
@@ -20,10 +19,6 @@ interface App {
   is_featured: boolean;
   launch_count: number;
   requires_auth: boolean;
-  has_access: boolean;
-  granted_at?: string;
-  access_request_status?: string;
-  is_favorite: boolean;
   last_launched?: string;
 }
 
@@ -42,7 +37,6 @@ export function AppsClient() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [sortBy, setSortBy] = useState<'name' | 'recent' | 'popular'>('name');
-  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
 
   useEffect(() => {
     fetchApps();
@@ -76,10 +70,6 @@ export function AppsClient() {
       return false;
     }
 
-    // Favorites filter
-    if (showFavoritesOnly && !app.is_favorite) {
-      return false;
-    }
 
     return true;
   }) || [];
@@ -135,11 +125,8 @@ export function AppsClient() {
 
   return (
     <div className="space-y-8">
-      {/* Recent and Favorite Apps */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <RecentApps apps={appsData?.apps || []} />
-        <FavoriteApps apps={appsData?.apps || []} onRefresh={fetchApps} />
-      </div>
+      {/* Recent Apps */}
+      <RecentApps apps={appsData?.apps || []} />
 
       {/* Search and Filters */}
       <AppSearch
@@ -152,8 +139,6 @@ export function AppsClient() {
         onSortChange={setSortBy}
         view={view}
         onViewChange={setView}
-        showFavoritesOnly={showFavoritesOnly}
-        onFavoritesToggle={setShowFavoritesOnly}
         totalApps={filteredApps.length}
       />
 

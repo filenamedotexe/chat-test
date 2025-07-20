@@ -16,10 +16,6 @@ interface App {
   is_featured: boolean;
   launch_count: number;
   requires_auth: boolean;
-  has_access: boolean;
-  granted_at?: string;
-  access_request_status?: string;
-  is_favorite: boolean;
   last_launched?: string;
 }
 
@@ -30,7 +26,7 @@ interface RecentAppsProps {
 export function RecentApps({ apps }: RecentAppsProps) {
   // Filter and sort apps by recent usage
   const recentApps = apps
-    .filter(app => app.last_launched && app.has_access)
+    .filter(app => app.last_launched)
     .sort((a, b) => {
       if (!a.last_launched || !b.last_launched) return 0;
       return new Date(b.last_launched).getTime() - new Date(a.last_launched).getTime();

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
 
-export async function GET() {
+export async function POST() {
   try {
     const sql = neon(process.env.DATABASE_URL!);
     
@@ -89,6 +89,13 @@ export async function GET() {
         language VARCHAR(10) DEFAULT 'en',
         timezone VARCHAR(50) DEFAULT 'UTC',
         date_format VARCHAR(20) DEFAULT 'MM/DD/YYYY',
+        notifications_enabled BOOLEAN DEFAULT true,
+        email_notifications BOOLEAN DEFAULT true,
+        show_activity BOOLEAN DEFAULT true,
+        data_collection BOOLEAN DEFAULT true,
+        analytics_enabled BOOLEAN DEFAULT true,
+        keyboard_shortcuts BOOLEAN DEFAULT true,
+        developer_mode BOOLEAN DEFAULT false,
         notifications JSONB DEFAULT '{"email": true, "in_app": true}'::jsonb,
         chat_settings JSONB DEFAULT '{"model": "gpt-3.5-turbo", "context_size": 4096, "auto_save": true}'::jsonb,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -101,6 +108,7 @@ export async function GET() {
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
         key_hash VARCHAR(255) UNIQUE NOT NULL,
+        key_preview VARCHAR(20),
         name VARCHAR(100),
         last_used TIMESTAMP,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -122,6 +130,16 @@ export async function GET() {
       )
     `);
     
+    // Add missing columns to existing tables
+    await sql(`ALTER TABLE api_keys ADD COLUMN IF NOT EXISTS key_preview VARCHAR(20)`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS notifications_enabled BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS email_notifications BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS show_activity BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS data_collection BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS analytics_enabled BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS keyboard_shortcuts BOOLEAN DEFAULT true`);
+    await sql(`ALTER TABLE user_preferences ADD COLUMN IF NOT EXISTS developer_mode BOOLEAN DEFAULT false`);
+    
     // Create indexes for performance - Execute each separately
     await sql(`CREATE INDEX IF NOT EXISTS idx_user_sessions_user_id ON user_sessions(user_id)`);
     await sql(`CREATE INDEX IF NOT EXISTS idx_user_sessions_token ON user_sessions(session_token)`);
@@ -134,6 +152,19 @@ export async function GET() {
     await sql(`CREATE INDEX IF NOT EXISTS idx_login_history_user_id ON login_history(user_id)`);
     await sql(`CREATE INDEX IF NOT EXISTS idx_api_keys_user_id ON api_keys(user_id)`);
     await sql(`CREATE INDEX IF NOT EXISTS idx_api_keys_hash ON api_keys(key_hash)`);
+    
+    // Create the chat_settings view (for backward compatibility)
+    await sql(`
+      CREATE OR REPLACE VIEW chat_settings AS
+      SELECT 
+        user_id,
+        (chat_settings->>'model')::text as default_model,
+        (chat_settings->>'temperature')::float as temperature,
+        (chat_settings->>'max_tokens')::integer as max_tokens,
+        (chat_settings->>'auto_save')::boolean as save_history,
+        updated_at
+      FROM user_preferences
+    `);
     
     return NextResponse.json({
       success: true,
@@ -158,4 +189,12 @@ export async function GET() {
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'Use POST to run the user pages migration',
+    endpoint: '/api/migrate-user-pages',
+    method: 'POST'
+  });
 }

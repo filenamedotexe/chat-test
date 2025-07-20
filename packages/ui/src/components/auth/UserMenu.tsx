@@ -72,15 +72,48 @@ export function UserMenu() {
             </p>
           </div>
 
+          <a
+            href="/home"
+            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Dashboard
+          </a>
+
+          <a
+            href="/profile"
+            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Profile
+          </a>
+
+          <a
+            href="/apps"
+            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Apps
+          </a>
+
+          <a
+            href="/settings"
+            className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+          >
+            Settings
+          </a>
+
           {session.user.role === 'admin' && (
-            <a
-              href="/admin"
-              className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
-              Admin Dashboard
-            </a>
+            <>
+              <div className="border-t border-gray-700 my-1" />
+              <a
+                href="/admin"
+                className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
+              >
+                Admin Dashboard
+              </a>
+            </>
           )}
 
+          <div className="border-t border-gray-700 my-1" />
+          
           <button
             onClick={handleSignOut}
             className="block w-full text-left px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"

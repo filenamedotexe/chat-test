@@ -55,37 +55,37 @@ export function ActivitySummary() {
     switch (activityType) {
       case 'profile_updated':
         return (
-          <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
         );
       case 'password_changed':
         return (
-          <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
           </svg>
         );
       case 'app_launched':
         return (
-          <svg className="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         );
       case 'app_favorited':
         return (
-          <svg className="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
         );
       case 'access_requested':
         return (
-          <svg className="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
         );
       default:
         return (
-          <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         );
@@ -123,18 +123,18 @@ export function ActivitySummary() {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
+      <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
+        <div className="px-6 py-4 border-b border-gray-800">
+          <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
         </div>
         <div className="p-6">
           <div className="animate-pulse space-y-4">
             {[...Array(5)].map((_, i) => (
               <div key={i} className="flex items-center space-x-4">
-                <div className="w-8 h-8 bg-gray-200 rounded-full"></div>
+                <div className="w-8 h-8 bg-gray-800 rounded-full"></div>
                 <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                  <div className="h-4 bg-gray-800 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-800 rounded w-1/2"></div>
                 </div>
               </div>
             ))}
@@ -146,12 +146,12 @@ export function ActivitySummary() {
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
+      <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
+        <div className="px-6 py-4 border-b border-gray-800">
+          <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
         </div>
         <div className="p-6">
-          <div className="text-red-600 text-sm">{error}</div>
+          <div className="text-red-400 text-sm">{error}</div>
         </div>
       </div>
     );
@@ -162,50 +162,50 @@ export function ActivitySummary() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border">
-      <div className="px-6 py-4 border-b border-gray-200">
-        <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
-        <p className="text-sm text-gray-600">Your account activity and usage statistics</p>
+    <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
+      <div className="px-6 py-4 border-b border-gray-800">
+        <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
+        <p className="text-sm text-gray-400">Your account activity and usage statistics</p>
       </div>
       
       <div className="p-6">
         {/* Activity Stats */}
         <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-2xl font-bold text-gray-900">{activityData.summary.chat_messages}</div>
-            <div className="text-sm text-gray-600">Chat Messages</div>
+          <div className="text-center p-4 bg-gray-800 rounded-lg">
+            <div className="text-2xl font-bold text-white">{activityData.summary.chat_messages}</div>
+            <div className="text-sm text-gray-400">Chat Messages</div>
           </div>
-          <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-2xl font-bold text-gray-900">{activityData.summary.app_launches}</div>
-            <div className="text-sm text-gray-600">App Launches</div>
+          <div className="text-center p-4 bg-gray-800 rounded-lg">
+            <div className="text-2xl font-bold text-white">{activityData.summary.app_launches}</div>
+            <div className="text-sm text-gray-400">App Launches</div>
           </div>
-          <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <div className="text-2xl font-bold text-gray-900">{activityData.summary.unique_apps_used}</div>
-            <div className="text-sm text-gray-600">Apps Used</div>
+          <div className="text-center p-4 bg-gray-800 rounded-lg">
+            <div className="text-2xl font-bold text-white">{activityData.summary.unique_apps_used}</div>
+            <div className="text-sm text-gray-400">Apps Used</div>
           </div>
         </div>
 
         {/* Recent Activities */}
         {!activityData.recent_activity || activityData.recent_activity.length === 0 ? (
           <div className="text-center py-8">
-            <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-12 h-12 text-gray-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
-            <p className="text-gray-500 text-sm">No recent activity</p>
+            <p className="text-gray-400 text-sm">No recent activity</p>
           </div>
         ) : (
           <div className="space-y-4">
-            <h3 className="font-medium text-gray-900">Recent Activities</h3>
+            <h3 className="font-medium text-white">Recent Activities</h3>
             {(activityData.recent_activity || []).slice(0, 10).map((activity) => (
-              <div key={activity.id} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center border">
+              <div key={activity.id} className="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                <div className="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center border border-gray-600">
                   {getActivityIcon(activity.activity_type)}
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-white">
                     {getActivityDescription(activity)}
                   </p>
-                  <p className="text-xs text-gray-500">
+                  <p className="text-xs text-gray-400">
                     {formatDate(activity.created_at)}
                   </p>
                 </div>
@@ -214,7 +214,7 @@ export function ActivitySummary() {
             
             {(activityData.recent_activity || []).length > 10 && (
               <div className="text-center pt-4">
-                <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                <button className="text-purple-400 hover:text-purple-300 text-sm font-medium">
                   View all activity
                 </button>
               </div>

@@ -86,10 +86,10 @@ export async function GET(request: Request) {
       };
     });
 
-    // Get current session info
+    // Get current session info (check if not expired)
     const currentSession = await sql(`
       SELECT * FROM user_sessions
-      WHERE user_id = ${userId} AND is_active = true
+      WHERE user_id = ${userId} AND expires_at > CURRENT_TIMESTAMP
       ORDER BY created_at DESC
       LIMIT 1
     `);

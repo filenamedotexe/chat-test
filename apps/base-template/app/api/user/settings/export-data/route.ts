@@ -19,17 +19,8 @@ export async function POST() {
 
     // Gather all user data
     const userData = await sql(`
-      SELECT * FROM users WHERE id = ${userId}
-    `);
-
-    const chats = await sql(`
-      SELECT * FROM chats WHERE user_id = ${userId}
-    `);
-
-    const messages = await sql(`
-      SELECT m.* FROM messages m
-      JOIN chats c ON m.chat_id = c.id
-      WHERE c.user_id = ${userId}
+      SELECT id, email, name, role, created_at, last_login, last_activity, permission_group
+      FROM users WHERE id = ${userId}
     `);
 
     const activity = await sql(`
@@ -42,18 +33,12 @@ export async function POST() {
       SELECT * FROM user_preferences WHERE user_id = ${userId}
     `);
 
-    const chatSettings = await sql(`
-      SELECT * FROM chat_settings WHERE user_id = ${userId}
-    `);
-
-    const appPermissions = await sql(`
+    // Get user's permission group (simplified - no join tables exist)
+    const userPermissions = await sql(`
       SELECT 
-        uap.*,
-        a.name as app_name,
-        a.slug as app_slug
-      FROM user_app_permissions uap
-      JOIN apps a ON uap.app_id = a.id
-      WHERE uap.user_id = ${userId}
+        permission_group as permission_group_name
+      FROM users
+      WHERE id = ${userId}
     `);
 
     const appFavorites = await sql(`
@@ -88,32 +73,29 @@ export async function POST() {
     // Log the export activity
     await sql(`
       INSERT INTO user_activity (user_id, activity_type, activity_data)
-      VALUES (${userId}, 'data_exported', ${JSON.stringify({ 
+      VALUES (${userId}, 'data_exported', '${JSON.stringify({ 
         timestamp: new Date().toISOString(),
-        data_types: ['profile', 'chats', 'messages', 'activity', 'preferences', 'permissions']
-      })})
+        data_types: ['profile', 'activity', 'preferences', 'permissions']
+      })}'::jsonb)
     `);
 
     // Prepare the export data
     const exportData = {
       export_date: new Date().toISOString(),
-      user: userData[0],
-      chats: {
-        count: chats.length,
-        data: chats
-      },
-      messages: {
-        count: messages.length,
-        data: messages
-      },
+      user: userData[0] || {},
       activity: {
         count: activity.length,
         data: activity
       },
       preferences: preferences[0] || {},
-      chat_settings: chatSettings[0] || {},
-      app_permissions: appPermissions,
-      app_favorites: appFavorites,
+      permissions: {
+        count: userPermissions.length,
+        data: userPermissions
+      },
+      app_favorites: {
+        count: appFavorites.length,
+        data: appFavorites
+      },
       app_launches: {
         count: appLaunches.length,
         data: appLaunches

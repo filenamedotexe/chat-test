@@ -8,37 +8,37 @@ export function ProfileInfo() {
 
   return (
     <>
-      <div className="bg-white rounded-lg shadow-sm border">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">Account Information</h2>
-          <p className="text-sm text-gray-600">Manage your account settings and security preferences</p>
+      <div className="bg-gray-900 rounded-lg shadow-sm border border-gray-800">
+        <div className="px-6 py-4 border-b border-gray-800">
+          <h2 className="text-lg font-semibold text-white">Account Information</h2>
+          <p className="text-sm text-gray-400">Manage your account settings and security preferences</p>
         </div>
         
         <div className="p-6 space-y-6">
           {/* Account Security */}
           <div>
-            <h3 className="text-base font-medium text-gray-900 mb-4">Security</h3>
+            <h3 className="text-base font-medium text-white mb-4">Security</h3>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
                 <div>
-                  <h4 className="font-medium text-gray-900">Password</h4>
-                  <p className="text-sm text-gray-600">Last changed: Recently</p>
+                  <h4 className="font-medium text-white">Password</h4>
+                  <p className="text-sm text-gray-400">Last changed: Recently</p>
                 </div>
                 <button
                   onClick={() => setShowPasswordForm(true)}
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                 >
                   Change Password
                 </button>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
                 <div>
-                  <h4 className="font-medium text-gray-900">Two-Factor Authentication</h4>
-                  <p className="text-sm text-gray-600">Add an extra layer of security</p>
+                  <h4 className="font-medium text-white">Two-Factor Authentication</h4>
+                  <p className="text-sm text-gray-400">Add an extra layer of security</p>
                 </div>
                 <button
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-400 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                   disabled
                 >
                   Enable 2FA
@@ -50,12 +50,12 @@ export function ProfileInfo() {
 
           {/* Account Actions */}
           <div>
-            <h3 className="text-base font-medium text-gray-900 mb-4">Account Actions</h3>
+            <h3 className="text-base font-medium text-white mb-4">Account Actions</h3>
             <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between p-4 bg-gray-800 rounded-lg">
                 <div>
-                  <h4 className="font-medium text-gray-900">Export Data</h4>
-                  <p className="text-sm text-gray-600">Download a copy of your account data</p>
+                  <h4 className="font-medium text-white">Export Data</h4>
+                  <p className="text-sm text-gray-400">Download a copy of your account data</p>
                 </div>
                 <button
                   onClick={async () => {
@@ -79,7 +79,7 @@ export function ProfileInfo() {
                       alert('Export failed. Please try again.');
                     }
                   }}
-                  className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="inline-flex items-center px-3 py-2 border border-gray-600 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-200 bg-gray-700 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -88,13 +88,13 @@ export function ProfileInfo() {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-200">
+              <div className="flex items-center justify-between p-4 bg-red-900/20 rounded-lg border border-red-800">
                 <div>
-                  <h4 className="font-medium text-red-900">Delete Account</h4>
-                  <p className="text-sm text-red-700">Permanently delete your account and all data</p>
+                  <h4 className="font-medium text-red-200">Delete Account</h4>
+                  <p className="text-sm text-red-300">Permanently delete your account and all data</p>
                 </div>
                 <button
-                  className="inline-flex items-center px-3 py-2 border border-red-300 shadow-sm text-sm leading-4 font-medium rounded-md text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  className="inline-flex items-center px-3 py-2 border border-red-600 shadow-sm text-sm leading-4 font-medium rounded-md text-red-200 bg-red-900/50 hover:bg-red-900/70 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   onClick={() => {
                     if (confirm('This action cannot be undone. Are you sure you want to delete your account?')) {
                       alert('Account deletion will be implemented in a future update.');
