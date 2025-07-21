@@ -1,9 +1,9 @@
 {
   "framework": "nextjs",
-  "buildCommand": "cd app && npm run build",
-  "devCommand": "cd app && npm run dev",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "outputDirectory": "app/.next",
+  "outputDirectory": ".next",
   "git": {
     "deploymentEnabled": {
       "main": true,
@@ -14,10 +14,10 @@
     "autoAlias": false
   },
   "functions": {
-    "app/app/api/chat-langchain/route.ts": {
+    "app/api/chat-langchain/route.ts": {
       "maxDuration": 60
     },
-    "app/app/api/user/*/route.ts": {
+    "app/api/user/*/route.ts": {
       "maxDuration": 30
     }
   }
