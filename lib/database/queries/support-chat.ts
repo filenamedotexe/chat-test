@@ -159,47 +159,91 @@ export const supportChatQueries = {
     offset: number = 0
   ): Promise<ConversationWithDetails[]> {
     try {
-      const result = await sql`
-        SELECT 
-          c.*,
-          u.email as user_email,
-          u.name as user_name,
-          a.email as admin_email,
-          a.name as admin_name,
-          (
-            SELECT COUNT(*)::int 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id
-          ) as message_count,
-          (
-            SELECT COUNT(*)::int 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            AND sm.read_at IS NULL 
-            AND sm.sender_type != 'user'
-          ) as unread_count,
-          (
-            SELECT sm.content 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            ORDER BY sm.created_at DESC 
-            LIMIT 1
-          ) as last_message,
-          (
-            SELECT sm.created_at 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            ORDER BY sm.created_at DESC 
-            LIMIT 1
-          ) as last_message_at
-        FROM conversations c
-        JOIN users u ON c.user_id = u.id
-        LEFT JOIN users a ON c.admin_id = a.id
-        WHERE c.user_id = ${userId}
-        ${status ? sql`AND c.status = ${status}` : sql``}
-        ORDER BY c.updated_at DESC
-        LIMIT ${limit} OFFSET ${offset}
-      ` as ConversationWithDetails[];
+      let result;
+      
+      if (status) {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type != 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          WHERE c.user_id = ${userId} AND c.status = ${status}
+          ORDER BY c.updated_at DESC
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      } else {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type != 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          WHERE c.user_id = ${userId}
+          ORDER BY c.updated_at DESC
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      }
       
       return result;
     } catch (error) {
@@ -217,53 +261,192 @@ export const supportChatQueries = {
     offset: number = 0
   ): Promise<ConversationWithDetails[]> {
     try {
-      const result = await sql`
-        SELECT 
-          c.*,
-          u.email as user_email,
-          u.name as user_name,
-          a.email as admin_email,
-          a.name as admin_name,
-          (
-            SELECT COUNT(*)::int 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id
-          ) as message_count,
-          (
-            SELECT COUNT(*)::int 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            AND sm.read_at IS NULL 
-            AND sm.sender_type = 'user'
-          ) as unread_count,
-          (
-            SELECT sm.content 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            ORDER BY sm.created_at DESC 
-            LIMIT 1
-          ) as last_message,
-          (
-            SELECT sm.created_at 
-            FROM support_messages sm 
-            WHERE sm.conversation_id = c.id 
-            ORDER BY sm.created_at DESC 
-            LIMIT 1
-          ) as last_message_at
-        FROM conversations c
-        JOIN users u ON c.user_id = u.id
-        LEFT JOIN users a ON c.admin_id = a.id
-        WHERE 1=1
-        ${adminId ? sql`AND c.admin_id = ${adminId}` : sql``}
-        ${status ? sql`AND c.status = ${status}` : sql``}
-        ORDER BY 
-          CASE WHEN c.priority = 'urgent' THEN 1
+      let result;
+      
+      if (adminId && status) {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type = 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          WHERE c.admin_id = ${adminId} AND c.status = ${status}
+          ORDER BY 
+            CASE WHEN c.priority = 'urgent' THEN 1
                WHEN c.priority = 'high' THEN 2
                WHEN c.priority = 'normal' THEN 3
                ELSE 4 END,
           c.updated_at DESC
-        LIMIT ${limit} OFFSET ${offset}
-      ` as ConversationWithDetails[];
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      } else if (adminId) {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type = 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          WHERE c.admin_id = ${adminId}
+          ORDER BY 
+            CASE WHEN c.priority = 'urgent' THEN 1
+               WHEN c.priority = 'high' THEN 2
+               WHEN c.priority = 'normal' THEN 3
+               ELSE 4 END,
+          c.updated_at DESC
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      } else if (status) {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type = 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          WHERE c.status = ${status}
+          ORDER BY 
+            CASE WHEN c.priority = 'urgent' THEN 1
+               WHEN c.priority = 'high' THEN 2
+               WHEN c.priority = 'normal' THEN 3
+               ELSE 4 END,
+          c.updated_at DESC
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      } else {
+        result = await sql`
+          SELECT 
+            c.*,
+            u.email as user_email,
+            u.name as user_name,
+            a.email as admin_email,
+            a.name as admin_name,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id
+            ) as message_count,
+            (
+              SELECT COUNT(*)::int 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              AND sm.read_at IS NULL 
+              AND sm.sender_type = 'user'
+            ) as unread_count,
+            (
+              SELECT sm.content 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message,
+            (
+              SELECT sm.created_at 
+              FROM support_messages sm 
+              WHERE sm.conversation_id = c.id 
+              ORDER BY sm.created_at DESC 
+              LIMIT 1
+            ) as last_message_at
+          FROM conversations c
+          JOIN users u ON c.user_id = u.id
+          LEFT JOIN users a ON c.admin_id = a.id
+          ORDER BY 
+            CASE WHEN c.priority = 'urgent' THEN 1
+               WHEN c.priority = 'high' THEN 2
+               WHEN c.priority = 'normal' THEN 3
+               ELSE 4 END,
+          c.updated_at DESC
+          LIMIT ${limit} OFFSET ${offset}
+        ` as ConversationWithDetails[];
+      }
       
       return result;
     } catch (error) {

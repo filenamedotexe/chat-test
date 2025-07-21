@@ -18,7 +18,8 @@ import {
   IconTrendingUp,
   IconClock,
   IconActivity,
-  IconKey
+  IconKey,
+  IconHeadset
 } from '@tabler/icons-react';
 import Link from 'next/link';
 
@@ -156,6 +157,14 @@ export default function UnifiedDashboard() {
       href: '/settings',
       color: 'bg-orange-600',
       feature: 'user_profile'
+    },
+    {
+      title: 'Support Chat',
+      description: 'Get help from our support team',
+      icon: IconHeadset,
+      href: '/support',
+      color: 'bg-indigo-600',
+      feature: 'support_chat'
     }
   ];
 
@@ -206,6 +215,14 @@ export default function UnifiedDashboard() {
       href: '/admin/features',
       color: 'bg-pink-600',
       feature: 'admin_panel'
+    },
+    {
+      title: 'Support Dashboard',
+      description: 'Manage customer support conversations',
+      icon: IconHeadset,
+      href: '/admin/support',
+      color: 'bg-cyan-600',
+      feature: 'support_chat'
     }
   ];
 

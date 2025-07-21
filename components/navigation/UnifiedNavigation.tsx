@@ -12,7 +12,8 @@ import {
   IconApps,
   IconUser,
   IconSettings,
-  IconChartBar
+  IconChartBar,
+  IconHeadset
 } from '@tabler/icons-react';
 
 interface NavLinkProps {
@@ -66,6 +67,12 @@ export function UnifiedNavigation() {
       icon: IconApps,
       label: 'Apps',
       feature: 'apps_marketplace'
+    },
+    {
+      href: isAdmin ? '/admin/support' : '/support',
+      icon: IconHeadset,
+      label: isAdmin ? 'Support Admin' : 'Support',
+      feature: 'support_chat'
     },
     {
       href: '/analytics',

@@ -7,1070 +7,310 @@
   - Environments: .env.local, .env
 
  ✓ Starting...
- ✓ Ready in 838ms
- ✓ Compiled /middleware in 218ms (216 modules)
+ ✓ Ready in 986ms
+ ✓ Compiled /middleware in 230ms (216 modules)
  ○ Compiling / ...
- ✓ Compiled / in 2.2s (2136 modules)
+ ✓ Compiled / in 2.4s (2136 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET / 307 in 1646ms
- ✓ Compiled /dashboard in 440ms (2176 modules)
+ GET / 307 in 2557ms
+ ✓ Compiled in 202ms (896 modules)
+ ✓ Compiled /dashboard in 200ms (2178 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- ✓ Compiled /api/auth/[...nextauth] in 77ms (1273 modules)
+ ✓ Compiled /api/auth/[...nextauth] in 63ms (1274 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
  GET /api/auth/session 200 in 277ms
- GET /api/auth/session 200 in 4ms
- GET /dashboard 200 in 972ms
- GET /api/auth/csrf 200 in 10ms
- POST /api/auth/signout 200 in 5ms
- ✓ Compiled /login in 198ms (2189 modules)
- GET /login 200 in 240ms
+ GET /api/auth/session 200 in 5ms
+ GET /dashboard 200 in 1197ms
+ ✓ Compiled /_not-found in 173ms (2185 modules)
+ GET /support 404 in 25ms
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
  GET /api/auth/session 200 in 11ms
  GET /api/auth/session 200 in 3ms
- GET /login 200 in 11ms
- GET /api/auth/session 200 in 6ms
- ✓ Compiled /favicon.ico in 83ms (1307 modules)
+ GET / 200 in 23ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 3ms
+ ✓ Compiled /login in 138ms (2194 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 161ms
- GET /api/auth/providers 200 in 75ms
- GET /favicon.ico 200 in 172ms
+ GET /api/auth/providers 200 in 8ms
  GET /api/auth/csrf 200 in 4ms
- POST /api/auth/callback/credentials 200 in 315ms
- GET /api/auth/session 200 in 5ms
- GET /?_rsc=r3yhw 200 in 10ms
- GET /favicon.ico 200 in 6ms
- GET /dashboard?_rsc=1hhhi 200 in 7ms
- GET /favicon.ico 200 in 4ms
- GET /dashboard 200 in 40ms
- GET /favicon.ico 200 in 5ms
+ POST /api/auth/callback/credentials 200 in 402ms
+ GET /api/auth/session 200 in 6ms
+ GET /?_rsc=r3yhw 200 in 13ms
+ GET /dashboard?_rsc=1hhhi 200 in 9ms
+ GET /api/features/support_chat 404 in 36ms
+ GET /support 404 in 9ms
+ GET /api/auth/session 200 in 3ms
+ GET /api/auth/session 200 in 3ms
+ GET /login 200 in 24ms
  GET /api/auth/session 200 in 5ms
  GET /api/auth/session 200 in 3ms
- GET /login 200 in 15ms
- GET /favicon.ico 200 in 5ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 4ms
  GET /api/auth/providers 200 in 4ms
- GET /api/auth/csrf 200 in 2ms
- POST /api/auth/callback/credentials 200 in 169ms
- GET /api/auth/session 200 in 4ms
- GET /?_rsc=r3yhw 200 in 5ms
- GET /favicon.ico 200 in 6ms
- GET /dashboard?_rsc=1hhhi 200 in 9ms
- GET /favicon.ico 200 in 2ms
- GET /dashboard 200 in 13ms
- GET /favicon.ico 200 in 5ms
+ GET /api/auth/csrf 200 in 4ms
+ POST /api/auth/callback/credentials 200 in 379ms
  GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 4ms
- ✓ Compiled /api/admin/stats in 203ms (1309 modules)
+ GET /?_rsc=r3yhw 200 in 6ms
+ GET /dashboard?_rsc=1hhhi 200 in 5ms
+ GET /admin/support 404 in 9ms
+ GET /api/auth/session 200 in 3ms
+ GET /api/auth/session 200 in 3ms
+ GET /dashboard 200 in 42ms
+ GET /api/auth/session 200 in 3ms
+ GET /api/auth/session 200 in 2ms
+ ✓ Compiled in 122ms (925 modules)
+ ✓ Compiled /_not-found in 125ms (2179 modules)
+ ✓ Compiled in 148ms (2179 modules)
+ GET /support 404 in 141ms
+ ✓ Compiled /api/auth/[...nextauth] in 168ms (1270 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /favicon.ico 200 in 253ms
- GET /api/admin/stats 200 in 393ms
- ✓ Compiled /admin/features in 143ms (2237 modules)
+ GET /api/auth/session 200 in 225ms
+ GET /api/auth/session 200 in 4ms
+ ✓ Compiled in 77ms (927 modules)
+ GET /support 404 in 26ms
+ ✓ Compiled in 61ms (927 modules)
+ GET /api/auth/session 200 in 7ms
+ GET /api/auth/session 200 in 3ms
+ ✓ Compiled /support in 241ms (2409 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /support?_rsc=ajepl 200 in 608ms
+ GET /support?_rsc=5kcko 200 in 358ms
+ ✓ Compiled /feature-disabled in 161ms (2201 modules)
+ ✓ Compiled in 65ms (932 modules)
+ ✓ Compiled in 186ms (2431 modules)
+ ✓ Compiled in 65ms (932 modules)
+ ✓ Compiled in 280ms (2215 modules)
+ ✓ Compiled in 84ms (932 modules)
+ ✓ Compiled in 143ms (2215 modules)
+ ✓ Compiled in 133ms (2215 modules)
+ ✓ Compiled in 75ms (932 modules)
+ ✓ Compiled in 59ms (932 modules)
+ ✓ Compiled in 82ms (932 modules)
+ ✓ Compiled in 57ms (932 modules)
+ ✓ Compiled in 109ms (2417 modules)
+ ✓ Compiled in 67ms (932 modules)
+ ✓ Compiled in 57ms (932 modules)
+ ✓ Compiled in 104ms (2417 modules)
+ ✓ Compiled in 65ms (932 modules)
+ ✓ Compiled in 67ms (932 modules)
+ ✓ Compiled / in 66ms (1276 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 142ms
+ ✓ Compiled /api/auth/[...nextauth] in 62ms (1280 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 106ms
+ GET /api/auth/session 200 in 2ms
+ ✓ Compiled /login in 67ms (1284 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/providers 200 in 13ms
+ GET /api/auth/csrf 200 in 4ms
+ POST /api/auth/callback/credentials 200 in 437ms
+ GET /api/auth/session 200 in 5ms
+ GET /?_rsc=r3yhw 200 in 10ms
+ GET /dashboard?_rsc=1hhhi 200 in 7ms
+ GET /dashboard 200 in 62ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 3ms
+ ✓ Compiled /support in 75ms (1291 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /support 307 in 474ms
+ GET /feature-disabled?feature=support_chat 200 in 18ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/auth/session 200 in 3ms
+ GET /login 200 in 22ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 2ms
+ GET /api/auth/providers 200 in 4ms
+ GET /api/auth/csrf 200 in 3ms
+ POST /api/auth/callback/credentials 200 in 364ms
+ GET /api/auth/session 200 in 4ms
+ GET /?_rsc=r3yhw 200 in 5ms
+ GET /dashboard?_rsc=1hhhi 200 in 5ms
+ GET /dashboard 200 in 20ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/auth/session 200 in 3ms
+ ✓ Compiled /admin/support in 178ms (2214 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /admin/support 307 in 452ms
+ GET /feature-disabled?feature=support_chat 200 in 17ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 3ms
+ GET /?_rsc=1h9g0 200 in 9ms
+ GET /support?_rsc=89x0i 200 in 230ms
+ ✓ Compiled in 193ms (2190 modules)
+ ✓ Compiled in 45ms (919 modules)
+ ✓ Compiled in 39ms (919 modules)
+ ✓ Compiled in 39ms (919 modules)
+ ✓ Compiled in 41ms (919 modules)
+ ✓ Compiled in 43ms (919 modules)
+ ✓ Compiled / in 84ms (1276 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 173ms
+ ✓ Compiled /api/auth/[...nextauth] in 53ms (1280 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 98ms
+ GET /api/auth/session 200 in 2ms
+ ✓ Compiled /login in 61ms (1284 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/providers 200 in 13ms
+ GET /api/auth/csrf 200 in 3ms
+ POST /api/auth/callback/credentials 200 in 652ms
+ GET /api/auth/session 200 in 7ms
+ GET /?_rsc=r3yhw 200 in 12ms
+ GET /dashboard?_rsc=1hhhi 200 in 7ms
+ ✓ Compiled /support in 235ms (1292 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /support 307 in 358ms
+ GET /feature-disabled?feature=support_chat 200 in 18ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/auth/session 200 in 3ms
+ GET /login 200 in 23ms
+ GET /api/auth/session 200 in 4ms
+ GET /api/auth/session 200 in 2ms
+ GET /api/auth/providers 200 in 5ms
+ GET /api/auth/csrf 200 in 3ms
+ POST /api/auth/callback/credentials 200 in 355ms
+ GET /api/auth/session 200 in 4ms
+ GET /?_rsc=r3yhw 200 in 7ms
+ GET /dashboard?_rsc=1hhhi 200 in 5ms
+ ✓ Compiled /admin/support in 86ms (1297 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /admin/support 307 in 207ms
+ GET /feature-disabled?feature=support_chat 200 in 14ms
+ GET /api/auth/session 200 in 5ms
+ GET /api/auth/session 200 in 2ms
+ ✓ Compiled /api/support-chat/conversations in 119ms (1311 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ POST /api/support-chat/conversations 201 in 326ms
+ ✓ Compiled in 439ms (2204 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /dashboard?_rsc=s9hre 200 in 68ms
+ ✓ Compiled in 80ms (919 modules)
+ ✓ Compiled in 46ms (919 modules)
+ ✓ Compiled / in 87ms (1276 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET / 200 in 174ms
+ ✓ Compiled /api/auth/[...nextauth] in 53ms (1280 modules)
+[next-auth][warn][DEBUG_ENABLED] 
+https://next-auth.js.org/warnings#debug_enabled
+ GET /api/auth/session 200 in 98ms
+ GET /api/auth/session 200 in 3ms
+ ✓ Compiled /login in 76ms (1284 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
  GET /api/auth/providers 200 in 12ms
  GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 291ms
- GET /api/auth/session 200 in 4ms
- GET /?_rsc=r3yhw 200 in 8ms
+ POST /api/auth/callback/credentials 200 in 348ms
+ GET /api/auth/session 200 in 5ms
+ GET /?_rsc=r3yhw 200 in 11ms
  GET /dashboard?_rsc=1hhhi 200 in 7ms
- ✓ Compiled /admin/permissions in 195ms (2252 modules)
+ ✓ Compiled /admin/support in 168ms (1291 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /admin/permissions?_rsc=ipmv7 200 in 120ms
- ✓ Compiled /api/admin/permissions in 84ms (1333 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/admin/permissions 200 in 133ms
- GET /api/admin/permissions 200 in 33ms
- ✓ Compiled /api/features/all in 77ms (1335 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/features/all 200 in 126ms
- GET /api/features/all 200 in 3ms
- ✓ Compiled /apps in 193ms (2273 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /apps?_rsc=1kieo 200 in 7ms
- ✓ Compiled /api/user/apps/available in 86ms (1347 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/user/apps/available 200 in 317ms
- GET /api/user/apps/available 200 in 78ms
- ✓ Compiled /settings in 199ms (2255 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /settings?_rsc=x4clf 200 in 13ms
- GET /api/features/all 200 in 6ms
- GET /api/features/all 200 in 4ms
- ✓ Compiled /api/features/config/[featureKey] in 92ms (1306 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- PUT /api/features/config/analytics 200 in 366ms
- ✓ Compiled / in 192ms (1305 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET / 200 in 282ms
- GET / 200 in 9ms
- GET /login 200 in 47ms
- GET /login 200 in 49ms
- GET /login 200 in 53ms
- GET /login 200 in 54ms
- GET /login 200 in 58ms
- GET /login 200 in 121ms
- GET /login 200 in 126ms
- GET /login 200 in 115ms
- ✓ Compiled /api/auth/[...nextauth] in 124ms (1309 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 127ms
- GET /api/auth/session 200 in 127ms
- GET /api/auth/session 200 in 127ms
- GET /api/auth/session 200 in 127ms
- GET /api/auth/session 200 in 115ms
- GET /api/auth/session 200 in 116ms
- GET /api/auth/session 200 in 116ms
- GET /api/auth/session 200 in 163ms
- GET /api/auth/providers 200 in 45ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/csrf 200 in 15ms
- GET /api/auth/csrf 200 in 8ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 14ms
- GET /api/auth/csrf 200 in 14ms
- POST /api/auth/callback/credentials 200 in 16ms
- GET /api/auth/session 200 in 4ms
- GET /?_rsc=r3yhw 200 in 11ms
- POST /api/auth/callback/credentials 200 in 650ms
- POST /api/auth/callback/credentials 200 in 662ms
- GET /api/auth/session 200 in 6ms
- POST /api/auth/callback/credentials 200 in 660ms
- POST /api/auth/callback/credentials 200 in 660ms
- POST /api/auth/callback/credentials 200 in 661ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 8ms
- GET /?_rsc=r3yhw 200 in 10ms
- POST /api/auth/callback/credentials 200 in 690ms
- GET /?_rsc=r3yhw 200 in 12ms
- GET /api/auth/session 200 in 14ms
- GET /?_rsc=r3yhw 200 in 16ms
- GET /?_rsc=r3yhw 200 in 18ms
- GET /?_rsc=r3yhw 200 in 18ms
- POST /api/auth/callback/credentials 200 in 732ms
- GET /dashboard?_rsc=1hhhi 200 in 13ms
- GET /api/auth/session 200 in 10ms
- GET /?_rsc=r3yhw 200 in 15ms
- GET /dashboard?_rsc=1hhhi 200 in 17ms
- GET /dashboard?_rsc=1hhhi 200 in 11ms
- GET /dashboard?_rsc=1hhhi 200 in 23ms
- GET /dashboard?_rsc=1hhhi 200 in 23ms
- GET /?_rsc=r3yhw 200 in 33ms
- GET /dashboard?_rsc=1hhhi 200 in 64ms
- GET /dashboard 200 in 74ms
- GET /login 200 in 45ms
- GET /dashboard 200 in 54ms
- GET /admin/features 200 in 79ms
- ○ Compiling /chat ...
- ✓ Compiled /chat in 851ms (2258 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 316ms
- GET /api/auth/providers 200 in 271ms
- GET /api/auth/session 200 in 318ms
- GET /api/auth/session 200 in 318ms
- GET /dashboard?_rsc=1hhhi 200 in 958ms
- GET /analytics 200 in 992ms
- GET /chat 200 in 886ms
- GET /login 200 in 137ms
- ✓ Compiled /api/features/all in 214ms (1320 modules)
- ✓ Compiled in 0ms (1320 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 362ms
- GET /api/auth/csrf 200 in 362ms
- GET /api/auth/session 200 in 365ms
- GET /api/auth/session 200 in 365ms
- ✓ Compiled in 1ms (1320 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /dashboard 200 in 321ms
- ✓ Compiled /profile in 0ms (1320 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/features/all 200 in 642ms
- ✓ Compiled in 265ms (2286 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 393ms
- POST /api/auth/callback/credentials 200 in 572ms
- GET /api/auth/session 200 in 424ms
- GET /api/auth/session 200 in 424ms
- GET /api/auth/providers 200 in 304ms
- GET /profile 200 in 466ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 27ms
- ✓ Compiled /api/features/config/[featureKey] in 170ms (1339 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/csrf 200 in 283ms
- POST /api/auth/_log 200 in 275ms
- GET /api/auth/session 200 in 184ms
- POST /api/auth/callback/credentials 200 in 9ms
- GET /api/auth/session 200 in 11ms
- GET /?_rsc=r3yhw 200 in 16ms
- PUT /api/features/config/chat 200 in 343ms
- GET /api/auth/session 200 in 10ms
- GET /?_rsc=r3yhw 200 in 10ms
- GET /api/features/all 200 in 5ms
- GET /api/features/all 200 in 5ms
- GET /login 200 in 20ms
- ✓ Compiled /api/admin/stats in 102ms (1341 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /login 200 in 183ms
- GET /api/admin/stats 200 in 256ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/providers 200 in 8ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/csrf 200 in 3ms
- GET /api/auth/providers 200 in 6ms
- GET /api/auth/csrf 200 in 5ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 15ms
- POST /api/auth/_log 200 in 6ms
- POST /api/auth/callback/credentials 200 in 168ms
- GET /api/auth/session 200 in 3ms
- GET /?_rsc=r3yhw 200 in 7ms
- GET /dashboard?_rsc=1hhhi 200 in 7ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET / 200 in 10ms
- GET / 200 in 10ms
- GET /login 200 in 41ms
- GET /login 200 in 50ms
- GET /login 200 in 54ms
- GET /login 200 in 62ms
- GET /login 200 in 67ms
- GET /login 200 in 71ms
- GET /login 200 in 110ms
- GET /login 200 in 138ms
- GET /api/auth/session 200 in 32ms
- GET /api/auth/session 200 in 32ms
- GET /api/auth/session 200 in 16ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 16ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 14ms
- GET /api/auth/session 200 in 14ms
- GET /api/auth/session 200 in 14ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/providers 200 in 4ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/csrf 200 in 4ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/providers 200 in 4ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/csrf 200 in 3ms
- GET /api/auth/csrf 200 in 5ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/csrf 200 in 6ms
- POST /api/auth/callback/credentials 200 in 590ms
- GET /api/auth/session 200 in 3ms
- POST /api/auth/callback/credentials 200 in 599ms
- POST /api/auth/callback/credentials 200 in 529ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 6ms
- GET /?_rsc=r3yhw 200 in 9ms
- GET /?_rsc=r3yhw 200 in 8ms
- POST /api/auth/callback/credentials 200 in 565ms
- POST /api/auth/callback/credentials 200 in 568ms
- POST /api/auth/callback/credentials 200 in 568ms
- POST /api/auth/callback/credentials 200 in 569ms
- POST /api/auth/callback/credentials 200 in 569ms
- GET /?_rsc=r3yhw 200 in 14ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 16ms
- GET /dashboard 200 in 88ms
- GET /dashboard 200 in 90ms
- GET /dashboard 200 in 106ms
- GET /?_rsc=r3yhw 200 in 46ms
- GET /?_rsc=r3yhw 200 in 47ms
- GET /?_rsc=r3yhw 200 in 47ms
- GET /?_rsc=r3yhw 200 in 47ms
- GET /?_rsc=r3yhw 200 in 47ms
- GET /dashboard 200 in 64ms
- GET /dashboard 200 in 64ms
- GET /dashboard 200 in 64ms
- GET /dashboard 200 in 65ms
- GET /dashboard 200 in 65ms
- GET /api/auth/session 200 in 35ms
- GET /api/auth/session 200 in 36ms
- GET /dashboard 200 in 71ms
- GET /admin/features 200 in 77ms
- POST /api/auth/_log 200 in 30ms
- POST /api/auth/_log 200 in 38ms
- GET /api/auth/session 200 in 27ms
- GET /api/auth/session 200 in 31ms
- GET /api/auth/session 200 in 28ms
- GET /api/auth/session 200 in 78ms
- GET /api/auth/session 200 in 79ms
- GET /admin/features 200 in 120ms
- GET /dashboard 200 in 126ms
- GET /chat 200 in 126ms
- GET /dashboard 200 in 126ms
- GET /analytics 200 in 129ms
- POST /api/auth/_log 200 in 75ms
- POST /api/auth/_log 200 in 97ms
- POST /api/auth/_log 200 in 96ms
- POST /api/auth/_log 200 in 96ms
- POST /api/auth/_log 200 in 96ms
- GET /login 200 in 130ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/features/all 200 in 8ms
- GET /api/auth/session 200 in 14ms
- GET /api/auth/session 200 in 20ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 18ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 23ms
- GET /api/features/all 200 in 15ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 13ms
- GET /api/admin/stats 200 in 64ms
- GET /profile 200 in 38ms
- POST /api/auth/_log 200 in 15ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 11ms
- GET /api/features/all 200 in 8ms
- GET /login 200 in 18ms
- GET /api/features/all 200 in 14ms
- GET /api/auth/providers 200 in 7ms
- GET /api/auth/csrf 200 in 4ms
- GET /api/admin/stats 200 in 49ms
- GET /login 200 in 10ms
- PUT /api/features/config/chat 200 in 36ms
- POST /api/auth/callback/credentials 200 in 164ms
- ✓ Compiled /api/user/permissions in 132ms (1348 modules)
- ✓ Compiled in 0ms (1350 modules)
- ✓ Compiled in 0ms (1350 modules)
- GET /login 200 in 303ms
- ✓ Compiled in 0ms (1350 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 371ms
- GET /api/auth/session 200 in 393ms
- GET /api/auth/session 200 in 511ms
- ✓ Compiled in 1ms (1350 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- ✓ Compiled in 0ms (1350 modules)
- ✓ Compiled in 0ms (1350 modules)
- ✓ Compiled in 0ms (1350 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 450ms
- GET /api/auth/providers 200 in 348ms
- GET /api/auth/session 200 in 482ms
- GET /api/auth/csrf 200 in 481ms
- ✓ Compiled in 0ms (1350 modules)
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 487ms
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 112ms
- GET /api/auth/providers 200 in 100ms
- POST /api/auth/_log 200 in 97ms
- POST /api/auth/_log 200 in 97ms
- POST /api/auth/callback/credentials 200 in 238ms
- GET /?_rsc=r3yhw 200 in 244ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/session 200 in 6ms
- POST /api/auth/callback/credentials 200 in 10ms
- GET /dashboard 200 in 29ms
- GET /api/auth/session 200 in 14ms
- GET /?_rsc=r3yhw 200 in 22ms
- GET /?_rsc=r3yhw 200 in 20ms
- GET /login?callbackUrl=%2Fdashboard 200 in 48ms
- GET /login?callbackUrl=%2Fdashboard 200 in 23ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 8ms
- GET /admin/features 200 in 17ms
- GET /api/auth/session 200 in 4ms
- POST /api/auth/_log 200 in 10ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 5ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 13ms
- POST /api/auth/_log 200 in 10ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 5ms
- GET /api/features/all 200 in 5ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 2ms
- PUT /api/features/config/chat 200 in 33ms
- GET / 200 in 12ms
- GET / 200 in 11ms
- GET /login 200 in 39ms
- GET /login 200 in 43ms
- GET /login 200 in 46ms
- GET /login 200 in 49ms
- GET /login 200 in 52ms
- GET /login 200 in 58ms
- GET /login 200 in 100ms
- GET /login 200 in 106ms
- GET /api/auth/session 200 in 18ms
- GET /api/auth/session 200 in 26ms
- GET /api/auth/session 200 in 26ms
- GET /api/auth/session 200 in 26ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/providers 200 in 6ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 9ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/csrf 200 in 3ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- POST /api/auth/callback/credentials 200 in 762ms
- GET /api/auth/session 200 in 4ms
- POST /api/auth/callback/credentials 200 in 776ms
- POST /api/auth/callback/credentials 200 in 776ms
- POST /api/auth/callback/credentials 200 in 776ms
- POST /api/auth/callback/credentials 200 in 775ms
- POST /api/auth/callback/credentials 200 in 776ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 6ms
- GET /?_rsc=r3yhw 200 in 11ms
- POST /api/auth/callback/credentials 200 in 815ms
- GET /?_rsc=r3yhw 200 in 12ms
- GET /?_rsc=r3yhw 200 in 17ms
- GET /?_rsc=r3yhw 200 in 18ms
- GET /?_rsc=r3yhw 200 in 18ms
- GET /?_rsc=r3yhw 200 in 18ms
- GET /dashboard 200 in 36ms
- GET /api/auth/session 200 in 23ms
- POST /api/auth/callback/credentials 200 in 853ms
- GET /dashboard 200 in 44ms
- GET /api/auth/session 200 in 35ms
- GET /dashboard 200 in 58ms
- GET /dashboard 200 in 62ms
- GET /dashboard 200 in 63ms
- GET /dashboard 200 in 63ms
- GET /?_rsc=r3yhw 200 in 93ms
- GET /?_rsc=r3yhw 200 in 61ms
- GET /dashboard 200 in 78ms
- GET /dashboard 200 in 93ms
- GET /api/auth/session 200 in 11ms
- GET /admin/features 200 in 31ms
- POST /api/auth/_log 200 in 35ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 20ms
- GET /api/auth/session 200 in 20ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 80ms
- GET /admin/features 200 in 113ms
- GET /chat 200 in 117ms
- GET /analytics 200 in 122ms
- GET /dashboard 200 in 130ms
- GET /dashboard 200 in 130ms
- POST /api/auth/_log 200 in 52ms
- POST /api/auth/_log 200 in 74ms
- POST /api/auth/_log 200 in 63ms
- POST /api/auth/_log 200 in 80ms
- POST /api/auth/_log 200 in 80ms
- GET /api/auth/session 200 in 69ms
- GET /dashboard 200 in 135ms
- GET /api/auth/session 200 in 58ms
- POST /api/auth/_log 200 in 69ms
- GET /api/auth/session 200 in 42ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 8ms
- GET /api/features/all 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 13ms
- GET /api/auth/session 200 in 16ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 15ms
- GET /api/features/all 200 in 13ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 20ms
- GET /profile 200 in 38ms
- GET /api/auth/session 200 in 15ms
- POST /api/auth/_log 200 in 23ms
- GET /api/auth/session 200 in 14ms
- GET /login 200 in 24ms
- GET /api/admin/stats 200 in 56ms
- GET /login 200 in 26ms
- GET /api/features/all 200 in 18ms
- GET /api/features/all 200 in 11ms
- GET /login 200 in 17ms
- GET /login 200 in 10ms
- PUT /api/features/config/chat 200 in 43ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 14ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/providers 200 in 3ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/csrf 200 in 8ms
- GET /api/auth/providers 200 in 11ms
- GET /api/auth/session 200 in 9ms
- GET /api/auth/csrf 200 in 5ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/session 200 in 5ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 17ms
- GET /api/auth/csrf 200 in 8ms
- POST /api/auth/_log 200 in 7ms
- POST /api/auth/_log 200 in 7ms
- POST /api/auth/callback/credentials 200 in 178ms
- GET /api/auth/session 200 in 3ms
- POST /api/auth/callback/credentials 200 in 188ms
- GET /?_rsc=r3yhw 200 in 6ms
- GET /api/auth/session 200 in 4ms
- GET /dashboard 200 in 15ms
- GET /?_rsc=r3yhw 200 in 15ms
- POST /api/auth/callback/credentials 200 in 152ms
- GET /dashboard 200 in 32ms
- GET /api/auth/session 200 in 21ms
- GET /?_rsc=r3yhw 200 in 12ms
- GET /dashboard 200 in 15ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 5ms
- GET /admin/features 200 in 14ms
- GET /api/auth/session 200 in 4ms
- POST /api/auth/_log 200 in 9ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 4ms
- GET /analytics 200 in 12ms
- GET /api/auth/session 200 in 8ms
- GET /admin/features 200 in 22ms
- POST /api/auth/_log 200 in 17ms
+ GET /admin/support 307 in 293ms
+ GET /feature-disabled?feature=support_chat 200 in 16ms
  GET /api/auth/session 200 in 5ms
  GET /api/auth/session 200 in 3ms
- GET /api/features/all 200 in 3ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- GET /api/features/all 200 in 3ms
- PUT /api/features/config/chat 200 in 36ms
- GET /login 200 in 12ms
- GET /api/auth/session 200 in 4ms
- ✓ Compiled /favicon.ico in 258ms (1322 modules)
+ ✓ Compiled /api/support-chat/admin/conversations in 216ms (1289 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 395ms
- GET /api/auth/providers 200 in 327ms
- GET /favicon.ico 200 in 402ms
- GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 299ms
- GET /api/auth/session 200 in 5ms
- GET /?_rsc=r3yhw 200 in 11ms
- ✓ Compiled /dashboard in 76ms (1331 modules)
- GET /favicon.ico 200 in 134ms
+ GET /api/support-chat/admin/conversations 200 in 726ms
+ ✓ Compiled /_not-found in 222ms (2209 modules)
+ POST /api/features/support_chat 404 in 260ms
+ ✓ Compiled /admin/support in 65ms (1279 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'entryCSSFiles')
+    at rT (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:3772)
+    at rz (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:12843)
+    at r1 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:16081)
+    at r8 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:22954)
+    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:726
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Object.wrap (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:36:17827)
+    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:616
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at Object.wrap (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:36:16929)
+    at r5 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:543)
+    at nm.render (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:4661)
+    at doRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1406:44)
+    at cacheEntry.responseCache.get.routeKind (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1567:34)
+    at ResponseCache.get (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/response-cache/index.js:49:26)
+    at DevServer.renderToResponseWithComponentsImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1475:53)
+    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:996:121
+    at NextTracerImpl.trace (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:105:20)
+    at DevServer.renderToResponseWithComponents (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:996:41)
+    at DevServer.renderPageComponent (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1901:35)
+    at async DevServer.renderToResponseImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1939:32)
+    at async DevServer.pipeImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:914:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:810:17)
+    at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:173:21)
+    at async handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:350:24)
+    at async requestHandlerImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:374:13)
+    at async Server.requestListener (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  page: '/admin/support'
+}
+ ✓ Compiled /_error in 395ms (2425 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /dashboard?_rsc=1hhhi 200 in 31ms
- GET /favicon.ico 200 in 3ms
- GET /admin/features 200 in 52ms
- GET /api/auth/session 200 in 5ms
- GET /favicon.ico 200 in 10ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /api/features/all in 103ms (1333 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/features/all 200 in 118ms
- ✓ Compiled /api/features/config/[featureKey] in 133ms (1335 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- PUT /api/features/config/chat 200 in 223ms
- GET / 200 in 35ms
- GET / 200 in 12ms
- GET /login 200 in 50ms
- GET /login 200 in 55ms
- GET /login 200 in 69ms
- GET /login 200 in 72ms
- GET /login 200 in 78ms
- GET /login 200 in 79ms
- GET /login 200 in 84ms
- GET /login 200 in 84ms
- GET /api/auth/session 200 in 16ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 21ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/providers 200 in 10ms
- GET /api/auth/csrf 200 in 6ms
- GET /api/auth/csrf 200 in 10ms
- GET /api/auth/csrf 200 in 10ms
- GET /api/auth/csrf 200 in 10ms
- GET /api/auth/csrf 200 in 10ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 9ms
- POST /api/auth/callback/credentials 200 in 591ms
- GET /api/auth/session 200 in 6ms
- POST /api/auth/callback/credentials 200 in 601ms
- POST /api/auth/callback/credentials 200 in 602ms
- POST /api/auth/callback/credentials 200 in 604ms
- POST /api/auth/callback/credentials 200 in 604ms
- POST /api/auth/callback/credentials 200 in 610ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 8ms
- POST /api/auth/callback/credentials 200 in 627ms
- GET /api/auth/session 200 in 9ms
- GET /?_rsc=r3yhw 200 in 11ms
- GET /api/auth/session 200 in 9ms
- GET /?_rsc=r3yhw 200 in 12ms
- GET /?_rsc=r3yhw 200 in 13ms
- GET /?_rsc=r3yhw 200 in 14ms
- GET /?_rsc=r3yhw 200 in 14ms
- POST /api/auth/callback/credentials 200 in 686ms
- GET /?_rsc=r3yhw 200 in 44ms
- GET /dashboard 200 in 54ms
- GET /api/auth/session 200 in 20ms
- GET /?_rsc=r3yhw 200 in 44ms
- GET /dashboard 200 in 55ms
- GET /dashboard 200 in 59ms
- GET /dashboard 200 in 59ms
- GET /dashboard 200 in 59ms
- GET /dashboard 200 in 133ms
- GET /dashboard 200 in 138ms
- GET /?_rsc=r3yhw 200 in 80ms
- GET /dashboard 200 in 98ms
- GET /api/auth/session 200 in 10ms
- GET /dashboard 200 in 20ms
- GET /api/auth/session 200 in 7ms
- POST /api/auth/_log 200 in 17ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 19ms
- GET /api/auth/session 200 in 20ms
- GET /api/auth/session 200 in 25ms
- GET /dashboard 200 in 76ms
- GET /admin/features 200 in 82ms
- GET /admin/features 200 in 79ms
- GET /api/auth/session 200 in 33ms
- GET /api/auth/session 200 in 64ms
- GET /dashboard 200 in 132ms
- ✓ Compiled /chat in 265ms (1340 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- POST /api/auth/_log 200 in 490ms
- POST /api/auth/_log 200 in 490ms
- POST /api/auth/_log 200 in 490ms
- GET /api/auth/session 200 in 493ms
- POST /api/auth/_log 200 in 372ms
- POST /api/auth/_log 200 in 371ms
- GET /api/auth/session 200 in 358ms
- GET /analytics 200 in 451ms
- GET /api/auth/session 200 in 93ms
- GET /chat 200 in 595ms
- GET /login 200 in 152ms
- GET /api/auth/session 200 in 27ms
- GET /api/auth/session 200 in 38ms
- GET /api/auth/session 200 in 39ms
- POST /api/auth/_log 200 in 37ms
- POST /api/auth/_log 200 in 37ms
- GET /api/auth/session 200 in 25ms
- GET /api/auth/session 200 in 40ms
- GET /api/auth/session 200 in 40ms
- GET /api/features/all 200 in 40ms
- GET /api/features/all 200 in 40ms
- GET /login 200 in 57ms
- GET /api/auth/session 200 in 32ms
- GET /login 200 in 58ms
- GET /api/auth/session 200 in 33ms
- ✓ Compiled /profile in 188ms (1342 modules)
- ✓ Compiled in 1ms (1355 modules)
- ✓ Compiled in 1ms (1355 modules)
- GET /api/admin/stats 200 in 442ms
- ✓ Compiled in 0ms (1355 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 391ms
- GET /api/auth/session 200 in 320ms
- GET /api/auth/providers 200 in 320ms
- GET /api/auth/providers 200 in 275ms
- GET /api/features/all 200 in 511ms
- GET /api/auth/session 200 in 400ms
- GET /api/auth/session 200 in 401ms
- ✓ Compiled in 0ms (1355 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /profile 200 in 531ms
- PUT /api/features/config/chat 200 in 464ms
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 322ms
- GET /api/auth/session 200 in 330ms
- GET /api/auth/csrf 200 in 224ms
- GET /api/auth/csrf 200 in 224ms
- GET /api/auth/session 200 in 224ms
- GET /api/auth/session 200 in 224ms
- POST /api/auth/_log 200 in 100ms
- GET /api/auth/session 200 in 226ms
- GET /api/features/all 200 in 235ms
- GET /login 200 in 278ms
- GET /api/auth/csrf 200 in 20ms
- GET /api/auth/session 200 in 20ms
- POST /api/auth/callback/credentials 200 in 20ms
- POST /api/auth/callback/credentials 200 in 20ms
- POST /api/auth/callback/credentials 200 in 9ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 9ms
- GET /?_rsc=r3yhw 200 in 13ms
- GET /?_rsc=r3yhw 200 in 13ms
- GET /?_rsc=r3yhw 200 in 19ms
- GET /login?callbackUrl=%2Fdashboard 200 in 24ms
- GET /login?callbackUrl=%2Fdashboard 200 in 29ms
- GET /login?callbackUrl=%2Fdashboard 200 in 34ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/providers 200 in 5ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 13ms
- POST /api/auth/_log 200 in 9ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 6ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 27ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 30ms
- GET /api/auth/session 200 in 24ms
- POST /api/auth/_log 200 in 18ms
- POST /api/auth/_log 200 in 27ms
- GET /api/auth/session 200 in 15ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled in 257ms (1290 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=1vpky 200 in 56ms
- ✓ Compiled in 69ms (1290 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=pljn0 200 in 36ms
- GET /login 200 in 35ms
- ✓ Compiled /favicon.ico in 75ms (1294 modules)
- ✓ Compiled (1322 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 120ms
- GET /api/auth/session 200 in 206ms
- GET /favicon.ico 200 in 206ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/csrf 200 in 6ms
- POST /api/auth/callback/credentials 200 in 3ms
- GET /api/auth/session 200 in 3ms
- GET /?_rsc=r3yhw 200 in 8ms
- GET /favicon.ico 200 in 4ms
- ✓ Compiled /api/features/user-features in 125ms (1324 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/features/user-features 200 in 144ms
- ✓ Compiled in 341ms (2285 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=pljn0 200 in 22ms
- ✓ Compiled in 106ms (962 modules)
- GET /admin/features?_rsc=pljn0 200 in 7ms
- ✓ Compiled in 136ms (1289 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=pljn0 200 in 283ms
- GET / 200 in 28ms
- GET / 200 in 12ms
- GET /login 200 in 47ms
- GET /login 200 in 51ms
- GET /login 200 in 63ms
- GET /login 200 in 67ms
- GET /login 200 in 72ms
- GET /login 200 in 73ms
- GET /login 200 in 73ms
- GET /login 200 in 132ms
- ✓ Compiled /api/auth/[...nextauth] in 134ms (1293 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 202ms
- GET /api/auth/session 200 in 202ms
- GET /api/auth/session 200 in 201ms
- GET /api/auth/session 200 in 199ms
- GET /api/auth/session 200 in 199ms
- GET /api/auth/session 200 in 183ms
- GET /api/auth/session 200 in 181ms
- GET /api/auth/session 200 in 204ms
- GET /api/auth/providers 200 in 53ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/providers 200 in 62ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/session 200 in 22ms
- GET /api/auth/csrf 200 in 16ms
- GET /api/auth/csrf 200 in 9ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 13ms
- GET /api/auth/csrf 200 in 12ms
- POST /api/auth/callback/credentials 200 in 8ms
- POST /api/auth/callback/credentials 200 in 9ms
- POST /api/auth/callback/credentials 200 in 13ms
- POST /api/auth/callback/credentials 200 in 13ms
- POST /api/auth/callback/credentials 200 in 13ms
- POST /api/auth/callback/credentials 200 in 13ms
- POST /api/auth/callback/credentials 200 in 13ms
- POST /api/auth/callback/credentials 200 in 13ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /?_rsc=r3yhw 200 in 13ms
- GET /?_rsc=r3yhw 200 in 21ms
- GET /?_rsc=r3yhw 200 in 23ms
- GET /?_rsc=r3yhw 200 in 24ms
- GET /?_rsc=r3yhw 200 in 25ms
- GET /?_rsc=r3yhw 200 in 25ms
- GET /?_rsc=r3yhw 200 in 25ms
- GET /?_rsc=r3yhw 200 in 25ms
- GET /login?callbackUrl=%2Fdashboard 200 in 86ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 87ms
- GET /login?callbackUrl=%2Fdashboard 200 in 90ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 10ms
- GET /login?callbackUrl=%2Fdashboard 200 in 69ms
- GET /login?callbackUrl=%2Fdashboard 200 in 72ms
- GET /login?callbackUrl=%2Fdashboard 200 in 69ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 72ms
- GET /login?callbackUrl=%2Fdashboard 200 in 69ms
- GET /login?callbackUrl=%2Fanalytics 200 in 70ms
- GET /login?callbackUrl=%2Fchat 200 in 70ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 70ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 72ms
- POST /api/auth/_log 200 in 56ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 12ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 9ms
- GET /api/auth/session 200 in 9ms
- GET /api/auth/session 200 in 9ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 7ms
- GET /login 200 in 17ms
- GET /login 200 in 17ms
- GET /login 200 in 22ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 10ms
- GET /api/auth/session 200 in 8ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 6ms
- GET /api/auth/session 200 in 7ms
- GET /api/auth/providers 200 in 4ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/csrf 200 in 3ms
- GET /api/auth/csrf 200 in 4ms
- GET /api/auth/csrf 200 in 4ms
- POST /api/auth/callback/credentials 200 in 470ms
- GET /api/auth/session 200 in 5ms
- POST /api/auth/callback/credentials 200 in 479ms
- GET /api/auth/session 200 in 5ms
- GET /?_rsc=r3yhw 200 in 6ms
- POST /api/auth/callback/credentials 200 in 504ms
- GET /?_rsc=r3yhw 200 in 8ms
- ✓ Compiled /dashboard in 229ms (1302 modules)
- ✓ Compiled in 0ms (1302 modules)
- ✓ Compiled in 0ms (1302 modules)
- ✓ Compiled in 0ms (1302 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 511ms
- ✓ Compiled in 0ms (1302 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /dashboard 200 in 648ms
- GET /dashboard 200 in 681ms
- GET /admin/features?_rsc=pljn0 200 in 440ms
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /?_rsc=r3yhw 200 in 13ms
- GET /dashboard 200 in 33ms
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 13ms
- GET /admin/features 200 in 25ms
- GET /api/auth/session 200 in 9ms
- POST /api/auth/_log 200 in 9ms
- POST /api/auth/_log 200 in 15ms
- GET /api/auth/session 200 in 6ms
- GET /admin/features 200 in 17ms
- GET /api/auth/session 200 in 4ms
- POST /api/auth/_log 200 in 16ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /api/features/all in 148ms (1304 modules)
- ✓ Compiled in 0ms (1304 modules)
- ✓ Compiled in 0ms (1304 modules)
- ✓ Compiled in 0ms (1304 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/features/all 200 in 377ms
- GET /api/auth/session 200 in 234ms
- ✓ Compiled in 0ms (1304 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=39raj 200 in 321ms
- GET /admin/features?_rsc=pljn0 200 in 321ms
- GET /admin/features?_rsc=39raj 200 in 321ms
- GET /login 200 in 329ms
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 192ms
- GET /api/features/all 200 in 185ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/providers 200 in 8ms
- GET /login?callbackUrl=%2Fadmin%2Ffeatures 200 in 22ms
- POST /api/auth/_log 200 in 4ms
- ✓ Compiled /api/features/config/[featureKey] in 121ms (1306 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/features?_rsc=39raj 200 in 21ms
- GET /admin/features?_rsc=pljn0 200 in 22ms
- PUT /api/features/config/chat 200 in 166ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
+ GET /admin/support?_rsc=s9hre 200 in 438ms
+ GET /admin/support?_rsc=1ba1f 200 in 410ms
+ GET /feature-disabled?feature=support_chat 200 in 23ms
+ GET /_next/static/css/app/layout.css?v=1753138089541 404 in 15ms
+ GET /admin/support 307 in 474ms
+ GET /_next/static/chunks/main-app.js?v=1753138089541 404 in 30ms
+ GET /_next/static/chunks/app/(auth)/feature-disabled/page.js 404 in 30ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 30ms
+ GET /_next/static/chunks/app/layout.js 404 in 26ms
+[Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/support-chat/conversations/route' in /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat/conversations/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/support-chat/conversations/route' in '/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/support-chat/conversations/route (expected /Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat/conversations/route.js)
+<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/require.js
+<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/utils.js
+<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
 [?25h
