@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useFeatures } from '@/components/features/FeatureProvider';
 import {
   IconMessageCircle,
   IconUser,
@@ -16,7 +17,8 @@ import {
   IconUserCheck,
   IconTrendingUp,
   IconClock,
-  IconActivity
+  IconActivity,
+  IconKey
 } from '@tabler/icons-react';
 import Link from 'next/link';
 
@@ -96,6 +98,7 @@ export default function UnifiedDashboard() {
   const searchParams = useSearchParams();
   const [view, setView] = useState<'user' | 'admin'>('user');
   const [stats, setStats] = useState<any>(null);
+  const { features } = useFeatures();
 
   const isAdmin = session?.user?.role === 'admin';
 
@@ -121,67 +124,93 @@ export default function UnifiedDashboard() {
 
   if (!session) return null;
 
-  const userCards = [
+  const allUserCards = [
     {
       title: 'Chat',
       description: 'Start a conversation with our AI assistant',
       icon: IconMessageCircle,
       href: '/chat',
-      color: 'bg-purple-600'
+      color: 'bg-purple-600',
+      feature: 'chat'
     },
     {
       title: 'Profile',
       description: 'View and update your profile information',
       icon: IconUser,
       href: '/profile',
-      color: 'bg-blue-600'
+      color: 'bg-blue-600',
+      feature: 'user_profile'
     },
     {
       title: 'Apps',
       description: 'Browse available applications',
       icon: IconApps,
       href: '/apps',
-      color: 'bg-green-600'
+      color: 'bg-green-600',
+      feature: 'apps_marketplace'
     },
     {
       title: 'Settings',
       description: 'Configure your preferences',
       icon: IconSettings,
       href: '/settings',
-      color: 'bg-orange-600'
+      color: 'bg-orange-600',
+      feature: 'user_profile'
     }
   ];
 
-  const adminCards = [
+  // Filter cards based on enabled features (admins see all)
+  const userCards = isAdmin 
+    ? allUserCards 
+    : allUserCards.filter(card => 
+        !card.feature || features.includes(card.feature)
+      );
+
+  const allAdminCards = [
     {
       title: 'Users',
       description: 'Manage user accounts and permissions',
       icon: IconUsers,
       href: '/admin/users',
-      color: 'bg-indigo-600'
+      color: 'bg-indigo-600',
+      feature: 'admin_panel'
     },
     {
       title: 'Permissions',
       description: 'Configure system permissions',
       icon: IconShield,
       href: '/admin/permissions',
-      color: 'bg-red-600'
+      color: 'bg-red-600',
+      feature: 'admin_panel'
     },
     {
       title: 'Chat History',
       description: 'View and analyze chat conversations',
       icon: IconHistory,
       href: '/admin/chat-history',
-      color: 'bg-teal-600'
+      color: 'bg-teal-600',
+      feature: 'admin_panel'
     },
     {
       title: 'Analytics',
       description: 'System metrics and usage statistics',
       icon: IconChartBar,
       href: '/admin/stats',
-      color: 'bg-yellow-600'
+      color: 'bg-yellow-600',
+      feature: 'analytics'
+    },
+    {
+      title: 'Feature Flags',
+      description: 'Manage feature flags and rollouts',
+      icon: IconKey,
+      href: '/admin/features',
+      color: 'bg-pink-600',
+      feature: 'admin_panel'
     }
   ];
+
+  // Admin cards are always all visible for admins
+  const adminCards = allAdminCards;
 
   return (
     <div className="min-h-screen bg-black pt-20 pb-8">

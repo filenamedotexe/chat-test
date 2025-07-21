@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { permissionQueries } from '@/lib/database';
+import { neon } from '@neondatabase/serverless';
+import { featureFlags } from '@/lib/features/feature-flags';
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,31 +14,39 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const url = new URL(req.url);
-    const appSlug = url.searchParams.get('app');
-    const permission = url.searchParams.get('permission');
-
     const userId = parseInt(session.user.id);
+    const sql = neon(process.env.DATABASE_URL!);
+    
+    // Get user's app permissions
+    const appPermissions = await sql`
+      SELECT 
+        uap.app_id,
+        a.name as app_name,
+        a.slug as app_slug,
+        a.icon as app_icon,
+        uap.granted_at,
+        uap.granted_by,
+        u.name as granted_by_name
+      FROM user_app_permissions uap
+      JOIN apps a ON a.id = uap.app_id
+      LEFT JOIN users u ON u.id = uap.granted_by
+      WHERE uap.user_id = ${userId}
+      ORDER BY uap.granted_at DESC
+    `;
 
-    // Get all effective permissions for the user
-    const userPermissions = await permissionQueries.getEffectiveUserPermissions(
-      userId, 
-      appSlug || undefined
-    );
+    // Get enabled features for the user
+    const enabledFeatures = await featureFlags.getUserFeatures(userId);
+    
+    // Filter permissions based on feature flags
+    // If apps_marketplace feature is disabled, don't show any app permissions
+    const filteredPermissions = enabledFeatures.includes('apps_marketplace') 
+      ? appPermissions 
+      : [];
 
-    const response: any = {
-      permissions: userPermissions,
+    const response = {
+      permissions: filteredPermissions,
       role: session.user.role
     };
-
-    // If checking a specific permission
-    if (permission) {
-      response.hasPermission = await permissionQueries.checkUserPermission(
-        userId,
-        permission,
-        appSlug || undefined
-      );
-    }
 
     return NextResponse.json(response);
   } catch (error) {

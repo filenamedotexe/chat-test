@@ -5,12 +5,14 @@ import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { UserDropdown } from './UserDropdown';
+import { useFeatures } from '@/components/features/FeatureProvider';
 import {
   IconMessageCircle,
   IconLayoutDashboard,
   IconApps,
   IconUser,
-  IconSettings
+  IconSettings,
+  IconChartBar
 } from '@tabler/icons-react';
 
 interface NavLinkProps {
@@ -39,39 +41,58 @@ function NavLink({ href, icon: Icon, label, isActive }: NavLinkProps) {
 export function UnifiedNavigation() {
   const pathname = usePathname();
   const { data: session } = useSession();
+  const { features } = useFeatures();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   if (!session) return null;
 
   const isAdmin = session.user?.role === 'admin';
 
-  const mainNavItems = [
+  const allNavItems = [
     {
       href: '/dashboard',
       icon: IconLayoutDashboard,
-      label: 'Dashboard'
+      label: 'Dashboard',
+      feature: null // Always show
     },
     {
       href: '/chat',
       icon: IconMessageCircle,
-      label: 'Chat'
+      label: 'Chat',
+      feature: 'chat'
     },
     {
       href: '/apps',
       icon: IconApps,
-      label: 'Apps'
+      label: 'Apps',
+      feature: 'apps_marketplace'
+    },
+    {
+      href: '/analytics',
+      icon: IconChartBar,
+      label: 'Analytics',
+      feature: 'analytics'
     },
     {
       href: '/profile',
       icon: IconUser,
-      label: 'Profile'
+      label: 'Profile',
+      feature: 'user_profile'
     },
     {
       href: '/settings',
       icon: IconSettings,
-      label: 'Settings'
+      label: 'Settings',
+      feature: 'user_profile'
     }
   ];
+
+  // Filter nav items based on features (admins see all)
+  const mainNavItems = isAdmin 
+    ? allNavItems 
+    : allNavItems.filter(item => 
+        !item.feature || features.includes(item.feature)
+      );
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-800">

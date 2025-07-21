@@ -1,0 +1,115 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "Chat App":
+    - /url: /dashboard
+    - img
+    - text: Chat App
+  - link "Dashboard":
+    - /url: /dashboard
+    - img
+    - text: Dashboard
+  - link "Chat":
+    - /url: /chat
+    - img
+    - text: Chat
+  - link "Apps":
+    - /url: /apps
+    - img
+    - text: Apps
+  - link "Profile":
+    - /url: /profile
+    - img
+    - text: Profile
+  - link "Settings":
+    - /url: /settings
+    - img
+    - text: Settings
+  - button "P Profile Test User User":
+    - text: P Profile Test User User
+    - img
+- img "Profile Test User"
+- heading "Profile Test User" [level=1]
+- text: User
+- paragraph: zwieder22@gmail.com
+- paragraph: Testing profile edit functionality
+- text: "Joined: Jul 19, 2025, 02:12 AM Last Active: Jul 20, 2025, 02:11 AM Chats: 1"
+- button "Edit Profile":
+  - img
+  - text: Edit Profile
+- heading "Account Information" [level=2]
+- paragraph: Manage your account settings and security preferences
+- heading "Security" [level=3]
+- heading "Password" [level=4]
+- paragraph: "Last changed: Recently"
+- button "Change Password"
+- heading "Two-Factor Authentication" [level=4]
+- paragraph: Add an extra layer of security
+- button "Enable 2FA (Coming Soon)" [disabled]
+- heading "Account Actions" [level=3]
+- heading "Export Data" [level=4]
+- paragraph: Download a copy of your account data
+- button "Export Data":
+  - img
+  - text: Export Data
+- heading "Delete Account" [level=4]
+- paragraph: Permanently delete your account and all data
+- button "Delete Account":
+  - img
+  - text: Delete Account
+- heading "Recent Activity" [level=2]
+- paragraph: Your account activity and usage statistics
+- text: 1 Chat Messages 0 App Launches 0 Apps Used
+- heading "Recent Activities" [level=3]
+- img
+- paragraph: Updated chat settings
+- paragraph: Jul 20, 02:11 AM
+- img
+- paragraph: Updated preferences
+- paragraph: Jul 20, 02:11 AM
+- img
+- paragraph: Updated preferences
+- paragraph: Jul 20, 02:10 AM
+- img
+- paragraph: Updated chat settings
+- paragraph: Jul 20, 02:08 AM
+- img
+- paragraph: Updated chat settings
+- paragraph: Jul 20, 01:39 AM
+- img
+- paragraph: Updated preferences
+- paragraph: Jul 20, 01:39 AM
+- img
+- paragraph: Updated chat settings
+- paragraph: Jul 20, 01:36 AM
+- img
+- paragraph: Updated preferences
+- paragraph: Jul 20, 01:36 AM
+- img
+- paragraph: Exported account data
+- paragraph: Jul 20, 01:36 AM
+- img
+- paragraph: Updated chat settings
+- paragraph: Jul 20, 01:34 AM
+- heading "App Permissions" [level=2]
+- paragraph: Apps you have access to
+- text: 📝
+- heading "Notes App" [level=3]
+- paragraph: "Granted: Jul 21, 2025"
+- paragraph: "By: Admin User"
+- text: Access Granted /notes 💬
+- heading "Chat Base Template" [level=3]
+- paragraph: "Granted: Jul 14, 2025"
+- paragraph: "By: Admin User"
+- text: Access Granted /base-template 📊
+- heading "Analytics Dashboard" [level=3]
+- paragraph: "Granted: Jul 7, 2025"
+- paragraph: "By: Admin User"
+- text: Access Granted /dashboard
+- paragraph:
+  - text: Need access to more apps?
+  - link "Browse available apps":
+    - /url: /apps
+- alert
+```

@@ -10,6 +10,7 @@ export async function middleware(request: NextRequest) {
     '/register',
     '/api/auth',
     '/api/public',
+    '/api/features', // Allow all feature flag APIs
     '/api/test-user-chat',
     '/api/test-db',
     '/api/add-permission-group',
@@ -19,7 +20,8 @@ export async function middleware(request: NextRequest) {
     '/api/debug-register',
     '/test-simple',
     '/test-langchain',
-    '/notes'
+    '/notes',
+    '/feature-disabled' // Allow access to feature-disabled page
   ];
   
   const isPublicPath = publicPaths.some(path => pathname.startsWith(path));
@@ -51,9 +53,21 @@ export async function middleware(request: NextRequest) {
       }
     }
 
-    // Allow the request to proceed
-    return NextResponse.next();
+    // For now, just add user ID to headers for feature checking in API routes
+    // Edge runtime doesn't support database connections well
+    const response = NextResponse.next({
+      request: {
+        headers: new Headers(request.headers)
+      }
+    });
+    
+    // Add user info to headers for downstream feature checks
+    response.headers.set('X-User-Id', token.id || token.sub || '');
+    response.headers.set('X-User-Role', token.role || 'user');
+    
+    return response;
   } catch (error) {
+    console.error('Middleware error:', error);
     // If token verification fails, redirect to login
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('callbackUrl', pathname);
