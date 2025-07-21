@@ -1,0 +1,13 @@
+TypeScript Errors Found During Phase 3 Testing:
+=================================================
+
+1. (authenticated)/settings/components/ChatSettings.tsx(100,21): 
+   error TS2345: Argument of type '(prev: ChatSettings) => { model: string; context_size: number; auto_save: boolean; temperature: number; max_tokens: number; show_timestamps: boolean; enable_markdown: boolean; }' is not assignable to parameter of type 'ChatSettings'.
+
+2. (authenticated)/settings/components/PreferenceSettings.tsx(111,20): 
+   error TS2345: Argument of type '(prev: Preferences) => { theme: "light" | "dark" | "system"; language: string; timezone: string; date_format: string; notifications: { email: boolean; in_app: boolean; }; }' is not assignable to parameter of type 'Preferences'.
+
+3. (authenticated)/settings/components/PreferenceSettings.tsx(115,20): 
+   error TS2345: Argument of type '(prev: Preferences) => { notifications: { email: boolean; in_app: boolean; }; theme: "light" | "dark" | "system"; language: string; timezone: string; date_format: string; }' is not assignable to parameter of type 'Preferences'.
+
+These appear to be React setState callback type issues that need to be addressed before the new tsconfig can be applied.

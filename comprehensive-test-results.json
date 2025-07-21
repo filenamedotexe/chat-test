@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-07-21T00:23:05.715Z",
+  "tests": [
+    {
+      "name": "Server responds",
+      "endpoint": "http://localhost:3001",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "API Route: /api/hello",
+      "endpoint": "http://localhost:3001/api/hello",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "API Route: /api/test-db",
+      "endpoint": "http://localhost:3001/api/test-db",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "API Route: /api/auth/providers",
+      "endpoint": "http://localhost:3001/api/auth/providers",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "Login page loads",
+      "endpoint": "http://localhost:3001/login",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "Login page renders email input",
+      "selector": "input[type=\"email\"]",
+      "success": true,
+      "details": "Element is visible."
+    },
+    {
+      "name": "Login page renders password input",
+      "selector": "input[type=\"password\"]",
+      "success": true,
+      "details": "Element is visible."
+    },
+    {
+      "name": "Login page renders submit button",
+      "selector": "button[type=\"submit\"]",
+      "success": true,
+      "details": "Element is visible."
+    },
+    {
+      "name": "Register page loads",
+      "endpoint": "http://localhost:3001/register",
+      "status": 200,
+      "success": true,
+      "details": "Page loaded successfully."
+    },
+    {
+      "name": "Register page renders email input",
+      "selector": "input[type=\"email\"]",
+      "success": true,
+      "details": "Element is visible."
+    },
+    {
+      "name": "Register page renders password input",
+      "selector": "input[type=\"password\"]",
+      "success": true,
+      "details": "Element is visible."
+    },
+    {
+      "name": "Register page renders submit button",
+      "selector": "button[type=\"submit\"]",
+      "success": true,
+      "details": "Element is visible."
+    }
+  ]
+}

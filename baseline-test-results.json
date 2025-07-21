@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-07-21T02:10:18.539Z",
+  "tests": [
+    {
+      "name": "Server responds",
+      "endpoint": "/",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "API Route: /api/hello",
+      "endpoint": "/api/hello",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "API Route: /api/test-db",
+      "endpoint": "/api/test-db",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "API Route: /api/auth/providers",
+      "endpoint": "/api/auth/providers",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "API Route: /api/setup-auth-database",
+      "endpoint": "/api/setup-auth-database",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "API Route: /api/verify-migration",
+      "endpoint": "/api/verify-migration",
+      "status": 200,
+      "success": true
+    },
+    {
+      "name": "Login page renders",
+      "success": true
+    }
+  ]
+}

@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "npm@10.2.4",
+  "workspaces": [
+    "app",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "cd app && npm run dev",
+    "build": "cd app && npm run build",
+    "start": "cd app && npm run start",
+    "lint": "cd app && npm run lint",
     "setup": "node scripts/setup.js",
     "create-admin": "node scripts/create-admin.js",
     "migrate-apps": "node scripts/migrate-apps.js"
@@ -45,9 +49,6 @@
     "eslint-config-next": "14.0.4",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.14",
-    "typescript": "^5",
-    "@jest/globals": "^29.7.0",
-    "jest": "^29.7.0",
-    "playwright": "^1.54.1"
+    "typescript": "^5"
   }
 }
