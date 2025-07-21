@@ -1,0 +1,46 @@
+# Page snapshot
+
+```yaml
+- navigation:
+  - link "Chat App":
+    - /url: /dashboard
+    - img
+    - text: Chat App
+  - link "Dashboard":
+    - /url: /dashboard
+    - img
+    - text: Dashboard
+  - link "Chat":
+    - /url: /chat
+    - img
+    - text: Chat
+  - link "Apps":
+    - /url: /apps
+    - img
+    - text: Apps
+  - link "Analytics":
+    - /url: /analytics
+    - img
+    - text: Analytics
+  - link "Profile":
+    - /url: /profile
+    - img
+    - text: Profile
+  - link "Settings":
+    - /url: /settings
+    - img
+    - text: Settings
+  - button "P Profile Test User User":
+    - text: P Profile Test User User
+    - img
+- heading "Analytics Dashboard" [level=1]
+- heading "Total Chats" [level=3]
+- paragraph: 1,234
+- heading "Active Users" [level=3]
+- paragraph: "567"
+- heading "API Calls" [level=3]
+- paragraph: 89,012
+- heading "Recent Activity" [level=2]
+- paragraph: Analytics data will be displayed here...
+- alert
+```

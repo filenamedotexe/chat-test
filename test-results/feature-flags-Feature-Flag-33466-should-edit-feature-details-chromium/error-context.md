@@ -39,11 +39,11 @@
     - img
 - heading "Feature Flag Management" [level=1]
 - paragraph: Control feature rollouts and availability
-- heading "API Key Management" [level=3]
+- heading "Updated Feature Name" [level=3]
 - paragraph: Create and manage API access keys
 - code: api_keys
 - img
-- text: 0% rollout
+- text: 75% rollout
 - img
 - text: Disabled by default
 - button "Edit":
