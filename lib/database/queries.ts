@@ -7,6 +7,9 @@ const sql = neon(process.env.DATABASE_URL!);
 // Export user pages queries
 export * from './queries/user-pages';
 
+// Export support chat queries
+export * from './queries/support-chat';
+
 // User queries
 export const userQueries = {
   async findByEmail(email: string): Promise<User | null> {
