@@ -7,11 +7,13 @@
   "git": {
     "deploymentEnabled": {
       "main": true,
-      "editing-branch": true
+      "editing-branch": true,
+      "production": true
     }
   },
   "github": {
-    "autoAlias": false
+    "autoAlias": false,
+    "autoJobCancelation": false
   },
   "functions": {
     "app/api/chat-langchain/route.ts": {
