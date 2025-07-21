@@ -45,10 +45,19 @@ When modifying database or core functionality:
 ### Application Structure
 ```
 chat-application/
-├── app/               # Next.js app directory
-├── components/        # React components
-├── lib/              # Utilities
-├── packages/         # Internal packages
+├── app/               # Next.js app directory (routes)
+├── features/          # Modular feature system
+│   ├── chat/         # Chat feature module
+│   ├── apps-marketplace/  # Apps feature
+│   ├── user-profile/ # Profile feature
+│   └── admin/        # Admin feature
+├── components/        # Shared React components
+├── lib/              # Core utilities
+│   ├── features/     # Feature flag system
+│   ├── auth/         # Authentication
+│   ├── database/     # DB utilities
+│   └── theme.ts      # UI theme config
+├── packages/         # Internal packages (legacy)
 ├── public/           # Static assets
 └── package.json      # Project config
 ```
@@ -78,6 +87,35 @@ Never create circular dependencies.
 - Cache when appropriate
 - Optimize bundle size
 
+## 🎩 Feature Flag System (NEW)
+
+### Using Feature Flags
+```typescript
+// Server-side check
+import { featureFlags } from '@/lib/features/feature-flags';
+const isEnabled = await featureFlags.isFeatureEnabled(userId, 'feature_key');
+
+// Client-side hook
+import { useFeatureFlag } from '@/lib/features/hooks';
+const isEnabled = useFeatureFlag('feature_key');
+
+// Component gating
+import { FeatureGate } from '@/components/features/FeatureGate';
+<FeatureGate feature="feature_key">
+  <YourComponent />
+</FeatureGate>
+```
+
+### Feature Module Structure
+```
+features/[feature-name]/
+├── pages/           # Next.js pages (forwarded from app/)
+├── components/      # Feature-specific components  
+├── api/            # API routes (forwarded from app/api/)
+├── lib/            # Feature utilities
+└── config.ts       # Feature configuration
+```
+
 ## 💻 Code Generation Guidelines
 
 ### When Creating New Files
@@ -96,12 +134,16 @@ find . -name "*.tsx" | grep -i component
 
 3. **Use correct imports**:
 ```typescript
-// ✅ Good - workspace imports
-import { Button } from "@chat/ui";
-import { ChatMessage } from "@chat/shared-types";
+// ✅ Good - absolute imports
+import { Button } from "@/components/ui/Button";
+import { featureFlags } from "@/lib/features/feature-flags";
+import type { ChatMessage } from "@chat/shared-types";
 
-// ❌ Bad - relative imports across packages
-import { Button } from "../../../packages/ui/src/Button";
+// ✅ Good - feature imports
+import ChatPage from "@/features/chat/pages/ChatPage";
+
+// ❌ Bad - relative imports across boundaries
+import { Button } from "../../../components/Button";
 ```
 
 ### Component Template
@@ -169,17 +211,20 @@ packages/[package-name]/
 └── tsconfig.json
 ```
 
-### App Structure
+### Current App Structure (Post-Migration)
 ```
-apps/[app-name]/
-├── app/              # Next.js app directory
-│   ├── api/         # API routes
-│   ├── (routes)/    # Page routes
-│   └── layout.tsx   # Root layout
-├── components/      # App-specific components
-├── lib/            # App-specific utilities
-├── public/         # Static assets
-└── package.json
+app/                    # Main Next.js app directory
+├── (auth)/            # Public auth routes
+├── (authenticated)/   # Protected routes
+├── api/              # API endpoints (forwarding)
+├── admin/            # Admin redirects
+├── error.tsx         # Error boundary
+├── layout.tsx        # Root layout
+└── page.tsx          # Landing page
+
+features/             # Feature modules
+├── [feature]/pages/  # Feature pages
+└── [feature]/api/    # Feature APIs
 ```
 
 ## 🔷 TypeScript Conventions
@@ -513,22 +558,37 @@ await sql(`SELECT * FROM users WHERE id = ${userId}`);
 
 ## 📝 Common Tasks
 
-### Adding New Features
-Since this is now a single application, add new features directly:
+### Adding New Features with Feature Flags
 
 ```bash
-# 1. Create new route in app/
-mkdir -p app/new-feature
-touch app/new-feature/page.tsx
+# 1. Add to database
+curl -X POST http://localhost:3000/api/features/create \
+  -H "Content-Type: application/json" \
+  -d '{"feature_key": "new_feature", "display_name": "New Feature"}'
 
-# 2. Add components
-touch components/NewFeature.tsx
+# 2. Create feature module
+mkdir -p features/new-feature/{pages,components,api,lib}
 
-# 3. Update navigation if needed
-# Edit app/(authenticated)/layout.tsx
+# 3. Create feature config
+cat > features/new-feature/config.ts << EOF
+export const newFeatureConfig = {
+  key: 'new_feature',
+  name: 'New Feature',
+  routes: ['/new-feature'],
+  apiRoutes: ['/api/new-feature'],
+  permissions: ['user', 'admin']
+};
+EOF
 
-# 4. Test your changes
-npm run dev
+# 4. Create forwarding route
+mkdir -p app/(authenticated)/new-feature
+cat > app/(authenticated)/new-feature/page.tsx << EOF
+import NewFeaturePage from "@/features/new-feature/pages/page";
+export default NewFeaturePage;
+EOF
+
+# 5. Update navigation with FeatureGate
+# Edit components/navigation/UnifiedNavigation.tsx
 ```
 
 ### Adding a New Package
@@ -687,35 +747,41 @@ Remember: When in doubt, check existing patterns in the codebase!
 
 ### Development Commands
 ```bash
-# Development server (auto-detects available port 3000-3002)
-cd apps/base-template && npm run dev
+# Development server (from root directory)
+npm run dev
 
-# Type checking (run before commits)
-cd apps/base-template && npx tsc --noEmit
+# Type checking (run before commits) 
+npx tsc --noEmit
 
-# Linting (base-template only, other packages have lint issues)
-cd apps/base-template && npm run lint
+# Linting
+npm run lint
 
-# Build all packages
+# Build production
 npm run build
 ```
 
 ### Database Commands
 ```bash
-# User Pages Migration (creates 10 new tables)
-curl -X POST http://localhost:3000/api/migrate-user-pages
+# Initial setup
+curl -X POST http://localhost:3000/api/setup-auth-database
 
-# Verify Migration Success
-curl -X GET http://localhost:3000/api/verify-migration
+# Feature flags migration
+curl -X POST http://localhost:3000/api/migrate-feature-flags
+
+# Verify features
+curl http://localhost:3000/api/features/all
 ```
 
-### Recent Implementation: User Management System
-✅ **Phase 1 Complete** - Backend Foundation:
-- 10 new database tables (user_sessions, user_activity, user_preferences, etc.)
-- 23 API endpoints across Profile, Apps, and Settings
-- Comprehensive data access functions in `packages/database/src/queries/user-pages.ts`
-- All endpoints authenticated with NextAuth sessions
-- TypeScript strict mode compliant
+### Recent Implementation: Feature Flag System
+✅ **Complete Feature Flag Implementation**:
+- Database-driven feature flags with user/group targeting
+- Admin UI for feature management at `/admin/features`
+- User feature settings at `/settings` (Features tab)
+- Modular feature architecture in `/features/` directory
+- Dynamic navigation based on enabled features
+- API endpoints for feature configuration
+- User-specific feature overrides
+- Real-time feature updates without page reload
 
 ### API Endpoints Available
 **Profile APIs** (6 endpoints):
@@ -747,10 +813,33 @@ curl -X GET http://localhost:3000/api/verify-migration
 - `POST /api/user/settings/api-keys` - Create API keys
 - `DELETE /api/user/settings/api-keys/:id` - Revoke API keys
 
-### Known Issues
-- Root `npm run lint` fails on empty packages (ui, database, etc.)
-- Use individual package linting: `cd apps/base-template && npm run lint`
-- Server may use ports 3001-3002 if 3000 is occupied
+### Project Structure Notes
 
-### Next Phase
-**Phase 2**: Profile Page Implementation - Frontend components for user profile management
+#### Current State
+- **Main app**: Lives in `/app` directory (Next.js 14 App Router)
+- **Features**: Modularized in `/features/[feature-name]/`
+- **Legacy packages**: Still in `/packages/` (Phase 7 will consolidate)
+- **No more app/app nesting**: Fixed in Phase 1.5
+
+#### Key Files
+- `/lib/features/feature-flags.ts` - Core feature flag service
+- `/components/features/FeatureGate.tsx` - Component gating
+- `/lib/features/hooks.ts` - React hooks for features
+- `/middleware.ts` - Auth middleware (feature checks in app)
+
+#### Testing Approach
+```bash
+# Test feature flags
+node test-feature-flags.js
+
+# Test with different users
+# Admin: admin@example.com / admin123
+# User: zwieder22@gmail.com / Pooping1!
+```
+
+### Best Practices
+1. **Always use FeatureGate** for conditional UI
+2. **Check features server-side** for API routes
+3. **Use feature modules** for new functionality
+4. **Test with features on/off** before deploying
+5. **Document feature dependencies** in config.ts

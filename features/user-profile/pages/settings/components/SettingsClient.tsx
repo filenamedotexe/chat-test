@@ -7,12 +7,14 @@ import AccountSettings from "./AccountSettings";
 import SecuritySettings from "./SecuritySettings";
 import PreferenceSettings from "./PreferenceSettings";
 import ChatSettings from "./ChatSettings";
+import FeatureSettings from "./FeatureSettings";
 
 const tabs = [
   { id: "account", label: "Account", icon: "👤" },
   { id: "security", label: "Security", icon: "🔒" },
   { id: "preferences", label: "Preferences", icon: "⚙️" },
   { id: "chat", label: "Chat", icon: "💬" },
+  { id: "features", label: "Features", icon: "🚀" },
 ];
 
 export function SettingsClient() {
@@ -89,6 +91,7 @@ export function SettingsClient() {
           {activeTab === "security" && <SecuritySettings />}
           {activeTab === "preferences" && <PreferenceSettings />}
           {activeTab === "chat" && <ChatSettings />}
+          {activeTab === "features" && <FeatureSettings />}
         </motion.div>
         </motion.div>
       </div>

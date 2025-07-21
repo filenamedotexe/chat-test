@@ -113,7 +113,7 @@ export default function SecuritySettings() {
   };
 
   if (isLoading) {
-    return <div className="text-center py-8">Loading security settings...</div>;
+    return <div className="text-center py-8 text-gray-400">Loading security settings...</div>;
   }
 
   return (
@@ -122,10 +122,11 @@ export default function SecuritySettings() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">API Keys</h2>
+        <div className="theme-card-content">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="theme-heading-2">API Keys</h2>
           <button
             onClick={() => setShowCreateKey(true)}
             className="px-4 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors min-h-[44px]"
@@ -135,27 +136,27 @@ export default function SecuritySettings() {
         </div>
 
         {apiKeys.length === 0 ? (
-          <p className="text-gray-500 dark:text-gray-400">No API keys created yet.</p>
+          <p className="theme-text-muted">No API keys created yet.</p>
         ) : (
           <div className="space-y-4">
             {apiKeys.map((key) => (
               <div
                 key={key.id}
-                className="flex items-center justify-between p-4 border rounded-lg dark:border-gray-700"
+                className="flex items-center justify-between p-4 border rounded-lg border-gray-700"
               >
                 <div>
-                  <h4 className="font-medium">{key.name}</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <h4 className="font-medium text-white">{key.name}</h4>
+                  <p className="text-sm theme-text-muted">
                     Key: {key.key_preview}
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-xs theme-text-muted mt-1">
                     Created: {formatDate(key.created_at)}
                     {key.last_used && ` • Last used: ${formatDate(key.last_used)}`}
                   </p>
                 </div>
                 <button
                   onClick={() => handleRevokeKey(key.id)}
-                  className="px-3 py-3 text-red-600 border border-red-600 rounded hover:bg-red-50 dark:hover:bg-red-900/20 min-h-[44px]"
+                  className="px-3 py-3 text-red-400 border border-red-600 rounded hover:bg-red-900/20 min-h-[44px] transition-colors"
                 >
                   Revoke
                 </button>
@@ -163,6 +164,7 @@ export default function SecuritySettings() {
             ))}
           </div>
         )}
+        </div>
       </motion.div>
 
       {/* Login History */}
@@ -170,37 +172,38 @@ export default function SecuritySettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Login History</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Login History</h2>
         {loginHistory.length === 0 ? (
-          <p className="text-gray-500 dark:text-gray-400">No login history available.</p>
+          <p className="theme-text-muted">No login history available.</p>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b dark:border-gray-700">
-                  <th className="text-left py-2 px-4">Date & Time</th>
-                  <th className="text-left py-2 px-4">IP Address</th>
-                  <th className="text-left py-2 px-4">Browser</th>
-                  <th className="text-left py-2 px-4">Location</th>
-                  <th className="text-left py-2 px-4">Status</th>
+                <tr className="border-b border-gray-700">
+                  <th className="text-left py-2 px-4 text-gray-300">Date & Time</th>
+                  <th className="text-left py-2 px-4 text-gray-300">IP Address</th>
+                  <th className="text-left py-2 px-4 text-gray-300">Browser</th>
+                  <th className="text-left py-2 px-4 text-gray-300">Location</th>
+                  <th className="text-left py-2 px-4 text-gray-300">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {loginHistory.slice(0, 10).map((entry) => (
-                  <tr key={entry.id} className="border-b dark:border-gray-700">
-                    <td className="py-2 px-4 text-sm">{formatDate(entry.created_at)}</td>
-                    <td className="py-2 px-4 text-sm">{entry.ip_address}</td>
-                    <td className="py-2 px-4 text-sm">{parseUserAgent(entry.user_agent)}</td>
-                    <td className="py-2 px-4 text-sm">{entry.location || "Unknown"}</td>
+                  <tr key={entry.id} className="border-b border-gray-700">
+                    <td className="py-2 px-4 text-sm text-gray-400">{formatDate(entry.created_at)}</td>
+                    <td className="py-2 px-4 text-sm text-gray-400">{entry.ip_address}</td>
+                    <td className="py-2 px-4 text-sm text-gray-400">{parseUserAgent(entry.user_agent)}</td>
+                    <td className="py-2 px-4 text-sm text-gray-400">{entry.location || "Unknown"}</td>
                     <td className="py-2 px-4">
                       <span
                         className={cn(
                           "text-xs px-2 py-1 rounded",
                           entry.success
-                            ? "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400"
-                            : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"
+                            ? "bg-green-900/20 text-green-400"
+                            : "bg-red-900/20 text-red-400"
                         )}
                       >
                         {entry.success ? "Success" : "Failed"}
@@ -212,6 +215,7 @@ export default function SecuritySettings() {
             </table>
           </div>
         )}
+        </div>
       </motion.div>
 
       {/* Password Change Link */}
@@ -219,18 +223,20 @@ export default function SecuritySettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-4">Password</h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-4">Password</h2>
+          <p className="theme-text-muted mb-4">
           Change your password to keep your account secure.
         </p>
         <a
           href="/profile"
-          className="inline-block px-4 py-3 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors min-h-[44px]"
+          className="inline-block px-4 py-3 bg-gray-700 text-white rounded hover:bg-gray-600 transition-colors min-h-[44px]"
         >
           Change Password in Profile
         </a>
+        </div>
       </motion.div>
 
       {/* Create API Key Modal */}
@@ -239,15 +245,15 @@ export default function SecuritySettings() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full"
+            className="theme-card p-6 max-w-md w-full"
           >
-            <h3 className="text-xl font-semibold mb-4">Create API Key</h3>
+            <h3 className="theme-heading-2 mb-4">Create API Key</h3>
             {newKey ? (
               <div>
-                <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
+                <p className="mb-4 text-sm theme-text-muted">
                   Your API key has been created. Copy it now as you won&apos;t be able to see it again.
                 </p>
-                <div className="bg-gray-100 dark:bg-gray-700 p-3 rounded mb-4 font-mono text-sm break-all">
+                <div className="bg-gray-700 p-3 rounded mb-4 font-mono text-sm break-all">
                   {newKey}
                 </div>
                 <button
@@ -267,7 +273,7 @@ export default function SecuritySettings() {
                   value={keyName}
                   onChange={(e) => setKeyName(e.target.value)}
                   placeholder="Key name (e.g., My App)"
-                  className="w-full px-3 py-3 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
+                  className="w-full px-3 py-3 border rounded mb-4 bg-gray-700 border-gray-600 min-h-[44px] text-base text-white"
                 />
                 <div className="flex space-x-4">
                   <button
@@ -275,7 +281,7 @@ export default function SecuritySettings() {
                       setShowCreateKey(false);
                       setKeyName("");
                     }}
-                    className="flex-1 px-4 py-3 border rounded hover:bg-gray-100 dark:hover:bg-gray-700 min-h-[44px]"
+                    className="flex-1 px-4 py-3 border border-gray-600 rounded hover:bg-gray-700 min-h-[44px] transition-colors"
                   >
                     Cancel
                   </button>

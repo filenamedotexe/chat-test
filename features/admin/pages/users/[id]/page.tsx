@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { userQueries, chatQueries, appQueries, permissionQueries } from '@/lib/database';
 import Link from 'next/link';
 import UserPermissions from './UserPermissions';
+import UserFeatureOverrides from './UserFeatureOverrides';
 
 export default async function UserDetailPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -91,6 +92,9 @@ export default async function UserDetailPage({ params }: { params: { id: string 
         initialPermissions={userApps} 
         isAdmin={user.role === 'admin'} 
       />
+
+      {/* Feature Overrides */}
+      <UserFeatureOverrides userId={userId} />
 
       {/* Recent Activity */}
       <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6">

@@ -1,10 +1,11 @@
-# Chat Application - Enterprise-Grade AI Chat Platform
+# Chat Application - Enterprise-Grade AI Chat Platform with Feature Flags
 
-A production-ready Next.js 14 application for building scalable AI chat experiences with LangChain and Neon Postgres.
+A production-ready Next.js 14 application for building scalable AI chat experiences with LangChain, Neon Postgres, and a sophisticated feature flag system.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-14.2-black)
 ![LangChain](https://img.shields.io/badge/LangChain-0.3-green)
+![Feature Flags](https://img.shields.io/badge/Feature%20Flags-Enabled-purple)
 
 ## 🏗️ Architecture
 
@@ -14,10 +15,19 @@ chat-application/
 │   ├── (auth)/                # Public auth routes
 │   ├── (authenticated)/       # Protected app routes
 │   ├── api/                   # API endpoints
-│   └── admin/                 # Admin dashboard
-├── components/                # React components
-├── lib/                      # Utility functions
-├── packages/                 # Internal packages
+│   └── admin/                 # Admin routes (redirects)
+├── features/                  # Modular feature system 🆕
+│   ├── chat/                  # Chat feature module
+│   ├── apps-marketplace/      # Apps feature module
+│   ├── user-profile/          # Profile feature module
+│   └── admin/                 # Admin feature module
+├── components/                # Shared React components
+├── lib/                      # Core utilities & services
+│   ├── features/             # Feature flag system 🆕
+│   ├── auth/                 # Authentication
+│   ├── database/             # Database utilities
+│   └── theme.ts              # UI theme config
+├── packages/                 # Internal packages (legacy)
 │   ├── ui/                   # UI components library
 │   ├── langchain-core/       # AI & LangChain logic
 │   ├── database/             # Database utilities
@@ -30,24 +40,34 @@ chat-application/
 
 ### Core Features
 - 🔐 **Enterprise Authentication**: NextAuth.js with role-based access control
+- 🚩 **Feature Flag System**: Database-driven feature toggles with user/group targeting
 - 👥 **Multi-User Support**: User profiles, admin dashboard, permissions
 - 🛡️ **Security First**: SQL injection prevention, XSS protection, validation
 - 🎯 **App Registry**: Dynamic app discovery with permission-based access
-- 🤖 **LangChain AI**: GPT-4 powered conversations
+- 🤖 **LangChain AI**: GPT-4 powered conversations with streaming
 - 💾 **Memory Systems**: Buffer (exact) & Summary (condensed) modes
 - 🎭 **8 AI Personalities**: Customizable prompt templates
 - ⚡ **Fast Performance**: ~745ms to first token
 - 🔄 **Real-time Streaming**: Smooth conversation experience
 - 📊 **Neon Postgres**: Serverless database with auto-scaling
-- 🎨 **Modern UI**: Tailwind CSS with Framer Motion
-- 📱 **Responsive**: Mobile-first design
+- 🎨 **Modern UI**: Tailwind CSS with Framer Motion animations
+- 📱 **Responsive**: Mobile-first design with 100% touch compliance
+
+### New Feature Flag System 🆕
+- **Dynamic Feature Control**: Enable/disable features without deployment
+- **User Targeting**: Override features for specific users
+- **Group Management**: Beta programs and feature groups
+- **Rollout Percentages**: Gradual feature deployment
+- **Admin UI**: Complete feature management interface
+- **Real-time Updates**: Features update without page reload
 
 ### Developer Experience
 - 🔥 **Hot Reload**: Instant development feedback
-- 🧪 **TypeScript**: Full type safety
-- 📝 **Well Documented**: Comprehensive guides
+- 🧪 **TypeScript**: Full type safety with strict mode
+- 📝 **Well Documented**: Comprehensive guides and CLAUDE.md
 - 🚀 **Fast Builds**: Optimized Next.js configuration
-- 📦 **Modular**: Clean package structure
+- 📦 **Modular**: Feature-based architecture
+- 🎯 **E2E Testing**: Playwright tests included
 
 ## 📋 Prerequisites
 
@@ -74,7 +94,7 @@ npm install
 
 ### 3. Environment Setup
 
-Create `.env.local` in the `app/` directory:
+Create `.env.local` in the root directory:
 
 ```bash
 # Database
@@ -98,13 +118,24 @@ NEXT_PUBLIC_ANALYTICS_ID="..."
 # Start dev server
 npm run dev
 
-# Setup database
+# Initial setup - creates auth tables and admin user
 curl -X POST http://localhost:3000/api/setup-auth-database
+
+# Feature flags setup - creates feature flag tables
+curl -X POST http://localhost:3000/api/migrate-feature-flags
 ```
 
 Creates default admin user:
 - **Email**: `admin@example.com`
 - **Password**: `admin123`
+
+Creates default features:
+- `chat` - AI Chat Interface (enabled)
+- `apps_marketplace` - Apps Marketplace (enabled)
+- `user_profile` - User Profile Management (enabled)
+- `admin_panel` - Admin Panel (enabled)
+- `analytics` - Analytics Dashboard (disabled)
+- `api_keys` - API Key Management (enabled)
 
 ## 🚀 Development
 
@@ -184,16 +215,31 @@ TypeScript types:
 - `POST /api/auth/signout` - User logout
 - `POST /api/auth/register` - Registration
 
+### Feature Flag APIs 🆕
+- `GET /api/features/user-features` - Get user's enabled features
+- `GET /api/features/all` - Get all features (admin only)
+- `GET /api/features/config/[key]` - Get feature configuration
+- `PUT /api/features/config/[key]` - Update feature config (admin)
+- `GET /api/features/user/[id]/overrides` - Get user overrides (admin)
+- `PUT /api/features/user/[id]/overrides` - Set user overrides (admin)
+
 ### User APIs
-- `GET /api/user/profile` - User profile
-- `GET /api/user/apps` - Available apps
-- `GET /api/user/settings` - User settings
-- `PUT /api/user/profile` - Update profile
+- `GET /api/user/profile` - User profile with activity stats
+- `PUT /api/user/profile` - Update name, bio, avatar
+- `GET /api/user/activity` - User activity history
+- `PUT /api/user/change-password` - Change password
+- `GET /api/user/apps/available` - Available apps
+- `GET /api/user/apps/favorites` - Favorite apps
+- `POST /api/user/apps/launch` - Record app launch
+- `GET /api/user/settings` - All user settings
 
 ### Admin APIs
 - `GET /api/admin/users` - User management
-- `GET /api/admin/stats` - System stats
-- `POST /api/admin/permissions` - Permissions
+- `GET /api/admin/users/[id]` - User details
+- `GET /api/admin/stats` - System statistics
+- `GET /api/admin/features` - Feature management
+- `GET /api/admin/permission-groups` - Permission groups
+- `POST /api/admin/permissions` - Update permissions
 
 ## 🚢 Deployment
 
@@ -219,6 +265,23 @@ NODE_ENV=production
 ```
 
 ## 🔧 Configuration
+
+### Feature Flags
+
+#### Enable/Disable Features Dynamically
+```typescript
+// Check if feature is enabled for user
+const isEnabled = await featureFlags.isFeatureEnabled(userId, 'analytics');
+
+// Get all enabled features for user
+const features = await featureFlags.getUserFeatures(userId);
+```
+
+#### Admin Feature Management
+1. Navigate to `/admin/features`
+2. Toggle features on/off
+3. Set rollout percentages
+4. Configure user overrides
 
 ### Custom AI Personalities
 
@@ -249,11 +312,16 @@ const chain = await createConversationChain({
 # Run all tests
 npm test
 
-# Specific tests
-cd app
-node test-auth-direct.js        # Auth tests
-node test-critical-paths.js     # E2E tests
-node test-build.js             # Build verification
+# E2E tests with Playwright
+node test-critical-paths.js     # Core functionality
+node test-feature-flags.js      # Feature flag system
+node test-admin-features.js     # Admin features
+
+# Type checking
+npx tsc --noEmit
+
+# Linting
+npm run lint
 ```
 
 ## 🐛 Troubleshooting
@@ -261,20 +329,28 @@ node test-build.js             # Build verification
 ### Common Issues
 
 1. **API Key Errors**
-   - Check `.env.local` exists in `app/`
-   - Verify key format
+   - Check `.env.local` exists in root directory
+   - Verify key format starts with `sk-`
 
 2. **Database Connection**
    - Check DATABASE_URL format
    - Verify Neon credentials
+   - Ensure SSL mode is set
 
 3. **Auth Issues**
-   - Set NEXTAUTH_SECRET
-   - Run database setup
+   - Set NEXTAUTH_SECRET (32+ chars)
+   - Run database setup scripts
+   - Check session configuration
 
 4. **Build Errors**
    - Clear `.next` folder
-   - Run `npm install`
+   - Delete `node_modules` and reinstall
+   - Check for TypeScript errors
+
+5. **Feature Flag Issues**
+   - Run migration script
+   - Check user permissions
+   - Verify feature keys match
 
 ### Debug Mode
 
@@ -307,6 +383,47 @@ MIT License - see LICENSE file
 - [NextAuth.js](https://next-auth.js.org) - Authentication
 - [Neon](https://neon.tech) - Database
 - [Vercel](https://vercel.com) - Hosting
+
+---
+
+## 🚩 Feature Flag System Details
+
+### Database Schema
+- `feature_flags` - Feature definitions
+- `user_feature_flags` - User-specific overrides
+- `feature_flag_groups` - Feature groups (beta, etc.)
+- `feature_flag_group_assignments` - Group to feature mapping
+- `user_feature_groups` - User group membership
+
+### Adding New Features
+1. Add feature to database:
+```sql
+INSERT INTO feature_flags (feature_key, display_name, default_enabled) 
+VALUES ('new_feature', 'New Feature Name', false);
+```
+
+2. Create feature module:
+```bash
+mkdir -p features/new-feature/{pages,components,api,lib}
+```
+
+3. Add feature config:
+```typescript
+// features/new-feature/config.ts
+export const newFeatureConfig = {
+  key: 'new_feature',
+  name: 'New Feature',
+  routes: ['/new-feature'],
+  // ...
+};
+```
+
+4. Gate UI with FeatureGate:
+```tsx
+<FeatureGate feature="new_feature">
+  <YourComponent />
+</FeatureGate>
+```
 
 ---
 

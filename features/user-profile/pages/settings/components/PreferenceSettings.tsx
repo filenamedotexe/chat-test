@@ -124,9 +124,10 @@ export default function PreferenceSettings() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Appearance</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Appearance</h2>
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-2">Theme</label>
@@ -138,18 +139,19 @@ export default function PreferenceSettings() {
                   className={cn(
                     "p-4 rounded-lg border-2 transition-colors capitalize min-h-[60px]",
                     preferences.theme === theme
-                      ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
-                      : "border-gray-300 dark:border-gray-600 hover:border-gray-400"
+                      ? "border-blue-500 bg-blue-900/20"
+                      : "border-gray-600 hover:border-gray-400"
                   )}
                 >
                   <div className="text-2xl mb-2">
                     {theme === "light" ? "☀️" : theme === "dark" ? "🌙" : "💻"}
                   </div>
-                  {theme}
+                  <span className="text-white">{theme}</span>
                 </button>
               ))}
             </div>
           </div>
+        </div>
         </div>
       </motion.div>
 
@@ -158,16 +160,17 @@ export default function PreferenceSettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Language & Region</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Language & Region</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label className="block text-sm font-medium mb-2">Language</label>
             <select
               value={preferences.language}
               onChange={(e) => updatePreference("language", e.target.value)}
-              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
+              className="w-full px-3 py-3 border rounded-lg bg-gray-700 border-gray-600 min-h-[44px] text-base text-white"
             >
               {languages.map((lang) => (
                 <option key={lang.code} value={lang.code}>
@@ -182,7 +185,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.timezone}
               onChange={(e) => updatePreference("timezone", e.target.value)}
-              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
+              className="w-full px-3 py-3 border rounded-lg bg-gray-700 border-gray-600 min-h-[44px] text-base text-white"
             >
               {timezones.map((tz) => (
                 <option key={tz} value={tz}>
@@ -197,7 +200,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.date_format}
               onChange={(e) => updatePreference("date_format", e.target.value)}
-              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
+              className="w-full px-3 py-3 border rounded-lg bg-gray-700 border-gray-600 min-h-[44px] text-base text-white"
             >
               {dateFormats.map((format) => (
                 <option key={format.value} value={format.value}>
@@ -207,6 +210,7 @@ export default function PreferenceSettings() {
             </select>
           </div>
         </div>
+        </div>
       </motion.div>
 
       {/* Notifications */}
@@ -214,14 +218,15 @@ export default function PreferenceSettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Notifications</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Notifications</h2>
         <div className="space-y-4">
           <label className="flex items-center justify-between">
             <div>
               <span className="font-medium">Email Notifications</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm theme-text-muted">
                 Receive important updates via email
               </p>
             </div>
@@ -236,7 +241,7 @@ export default function PreferenceSettings() {
           <label className="flex items-center justify-between">
             <div>
               <span className="font-medium">In-App Notifications</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm theme-text-muted">
                 Show notifications within the application
               </p>
             </div>
@@ -247,6 +252,7 @@ export default function PreferenceSettings() {
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
+        </div>
         </div>
       </motion.div>
 

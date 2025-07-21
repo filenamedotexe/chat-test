@@ -105,7 +105,7 @@ export default function ChatSettings() {
   const maxContext = selectedModel?.maxContext || 4096;
 
   if (isLoading) {
-    return <div className="text-center py-8">Loading chat settings...</div>;
+    return <div className="text-center py-8 text-gray-400">Loading chat settings...</div>;
   }
 
   return (
@@ -114,16 +114,17 @@ export default function ChatSettings() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">AI Model</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">AI Model</h2>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Model</label>
+            <label className="block text-sm font-medium mb-2 text-gray-300">Model</label>
             <select
               value={chatSettings.default_model}
               onChange={(e) => updateSetting("default_model", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg bg-gray-700 border-gray-600 text-white min-h-[44px]"
             >
               {models.map((model) => (
                 <option key={model.value} value={model.value}>
@@ -131,12 +132,13 @@ export default function ChatSettings() {
                 </option>
               ))}
             </select>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-sm text-gray-400 mt-1">
               Maximum context: {maxContext.toLocaleString()} tokens
             </p>
           </div>
 
           {/* Removed context size - not in API */}
+        </div>
         </div>
       </motion.div>
 
@@ -145,12 +147,13 @@ export default function ChatSettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Generation Settings</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Generation Settings</h2>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-2 text-gray-300">
               Temperature ({chatSettings.temperature})
             </label>
             <input
@@ -162,14 +165,14 @@ export default function ChatSettings() {
               onChange={(e) => updateSetting("temperature", parseFloat(e.target.value))}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex justify-between text-xs text-gray-400">
               <span>More Focused</span>
               <span>More Creative</span>
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2">
+            <label className="block text-sm font-medium mb-2 text-gray-300">
               Max Response Length ({chatSettings.max_tokens} tokens)
             </label>
             <input
@@ -181,11 +184,12 @@ export default function ChatSettings() {
               onChange={(e) => updateSetting("max_tokens", parseInt(e.target.value))}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+            <div className="flex justify-between text-xs text-gray-400">
               <span>256</span>
               <span>4096</span>
             </div>
           </div>
+        </div>
         </div>
       </motion.div>
 
@@ -194,14 +198,15 @@ export default function ChatSettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
+        className="theme-card"
       >
-        <h2 className="text-xl font-semibold mb-6">Display Settings</h2>
+        <div className="theme-card-content">
+          <h2 className="theme-heading-2 mb-6">Display Settings</h2>
         <div className="space-y-4">
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Save Chat History</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <span className="font-medium text-white">Save Chat History</span>
+              <p className="text-sm text-gray-400">
                 Automatically save chat history
               </p>
             </div>
@@ -215,8 +220,8 @@ export default function ChatSettings() {
 
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Auto-generate Titles</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <span className="font-medium text-white">Auto-generate Titles</span>
+              <p className="text-sm text-gray-400">
                 Automatically create titles for conversations
               </p>
             </div>
@@ -230,8 +235,8 @@ export default function ChatSettings() {
 
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Enable Web Search</span>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <span className="font-medium text-white">Enable Web Search</span>
+              <p className="text-sm text-gray-400">
                 Allow AI to search the web for information
               </p>
             </div>
@@ -243,6 +248,7 @@ export default function ChatSettings() {
             />
           </label>
         </div>
+        </div>
       </motion.div>
 
       {/* Chat History */}
@@ -250,17 +256,17 @@ export default function ChatSettings() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6"
+        className="bg-red-900/20 border border-red-800 rounded-lg p-6"
       >
-        <h2 className="text-xl font-semibold text-red-600 dark:text-red-400 mb-4">
+        <h2 className="text-xl font-semibold text-red-400 mb-4">
           Chat History
         </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-gray-400 mb-4">
           Clear all your chat history. This action cannot be undone.
         </p>
         <button
           onClick={() => setShowClearModal(true)}
-          className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+          className="px-4 py-3 bg-red-600 text-white rounded hover:bg-red-700 transition-colors min-h-[44px]"
         >
           Clear Chat History
         </button>
@@ -272,7 +278,7 @@ export default function ChatSettings() {
           onClick={handleSave}
           disabled={isSaving}
           className={cn(
-            "px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]",
             isSaving && "opacity-50 cursor-not-allowed"
           )}
         >
@@ -286,16 +292,16 @@ export default function ChatSettings() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full"
+            className="bg-gray-800 rounded-lg p-6 max-w-md w-full"
           >
-            <h3 className="text-xl font-semibold mb-4">Clear Chat History</h3>
-            <p className="mb-6 text-gray-600 dark:text-gray-400">
+            <h3 className="text-xl font-semibold mb-4 text-white">Clear Chat History</h3>
+            <p className="mb-6 text-gray-400">
               Are you sure you want to clear all your chat history? This action cannot be undone.
             </p>
             <div className="flex space-x-4">
               <button
                 onClick={() => setShowClearModal(false)}
-                className="flex-1 px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="flex-1 px-4 py-3 border border-gray-600 text-white rounded hover:bg-gray-700 min-h-[44px]"
               >
                 Cancel
               </button>
@@ -303,7 +309,7 @@ export default function ChatSettings() {
                 onClick={handleClearHistory}
                 disabled={isClearing}
                 className={cn(
-                  "flex-1 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700",
+                  "flex-1 px-4 py-3 bg-red-600 text-white rounded hover:bg-red-700 min-h-[44px]",
                   isClearing && "opacity-50 cursor-not-allowed"
                 )}
               >
