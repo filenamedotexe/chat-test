@@ -2,16 +2,16 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@chat/ui";
+import { cn } from "@/lib/ui";
 
 interface ChatSettings {
-  model: string;
-  context_size: number;
-  auto_save: boolean;
+  default_model: string;
   temperature: number;
   max_tokens: number;
-  show_timestamps: boolean;
-  enable_markdown: boolean;
+  save_history: boolean;
+  auto_title: boolean;
+  web_search: boolean;
+  image_generation: boolean;
 }
 
 const models = [
@@ -24,13 +24,13 @@ const models = [
 
 export default function ChatSettings() {
   const [chatSettings, setChatSettings] = useState<ChatSettings>({
-    model: "gpt-3.5-turbo",
-    context_size: 4096,
-    auto_save: true,
+    default_model: "gpt-3.5-turbo",
     temperature: 0.7,
     max_tokens: 2048,
-    show_timestamps: true,
-    enable_markdown: true,
+    save_history: true,
+    auto_title: true,
+    web_search: false,
+    image_generation: false,
   });
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -97,10 +97,11 @@ export default function ChatSettings() {
   };
 
   const updateSetting = (key: keyof ChatSettings, value: any) => {
-    setChatSettings((prev: ChatSettings) => ({ ...prev, [key]: value }));
+    // @ts-ignore - Dynamic property assignment needed for form handling
+    setChatSettings(prev => ({ ...prev, [key]: value }));
   };
 
-  const selectedModel = models.find((m) => m.value === chatSettings.model);
+  const selectedModel = models.find((m) => m.value === chatSettings.default_model);
   const maxContext = selectedModel?.maxContext || 4096;
 
   if (isLoading) {
@@ -120,8 +121,8 @@ export default function ChatSettings() {
           <div>
             <label className="block text-sm font-medium mb-2">Model</label>
             <select
-              value={chatSettings.model}
-              onChange={(e) => updateSetting("model", e.target.value)}
+              value={chatSettings.default_model}
+              onChange={(e) => updateSetting("default_model", e.target.value)}
               className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
             >
               {models.map((model) => (
@@ -135,24 +136,7 @@ export default function ChatSettings() {
             </p>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Context Size ({chatSettings.context_size} tokens)
-            </label>
-            <input
-              type="range"
-              min="1024"
-              max={maxContext}
-              step="1024"
-              value={chatSettings.context_size}
-              onChange={(e) => updateSetting("context_size", parseInt(e.target.value))}
-              className="w-full"
-            />
-            <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-              <span>1K</span>
-              <span>{Math.floor(maxContext / 1024)}K</span>
-            </div>
-          </div>
+          {/* Removed context size - not in API */}
         </div>
       </motion.div>
 
@@ -193,7 +177,7 @@ export default function ChatSettings() {
               min="256"
               max="4096"
               step="256"
-              value={chatSettings.max_tokens}
+              value={chatSettings.max_tokens || 2048}
               onChange={(e) => updateSetting("max_tokens", parseInt(e.target.value))}
               className="w-full"
             />
@@ -216,45 +200,45 @@ export default function ChatSettings() {
         <div className="space-y-4">
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Auto-save Conversations</span>
+              <span className="font-medium">Save Chat History</span>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 Automatically save chat history
               </p>
             </div>
             <input
               type="checkbox"
-              checked={chatSettings.auto_save}
-              onChange={(e) => updateSetting("auto_save", e.target.checked)}
+              checked={chatSettings.save_history}
+              onChange={(e) => updateSetting("save_history", e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
 
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Show Timestamps</span>
+              <span className="font-medium">Auto-generate Titles</span>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Display time for each message
+                Automatically create titles for conversations
               </p>
             </div>
             <input
               type="checkbox"
-              checked={chatSettings.show_timestamps}
-              onChange={(e) => updateSetting("show_timestamps", e.target.checked)}
+              checked={chatSettings.auto_title}
+              onChange={(e) => updateSetting("auto_title", e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
 
           <label className="flex items-center justify-between">
             <div>
-              <span className="font-medium">Enable Markdown</span>
+              <span className="font-medium">Enable Web Search</span>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Render markdown in messages
+                Allow AI to search the web for information
               </p>
             </div>
             <input
               type="checkbox"
-              checked={chatSettings.enable_markdown}
-              onChange={(e) => updateSetting("enable_markdown", e.target.checked)}
+              checked={chatSettings.web_search}
+              onChange={(e) => updateSetting("web_search", e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>

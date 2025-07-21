@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@chat/ui";
+import { cn } from "@/lib/ui";
 
 interface Preferences {
   theme: "light" | "dark" | "system";
   language: string;
   timezone: string;
   date_format: string;
-  notifications: {
-    email: boolean;
-    in_app: boolean;
-  };
+  notifications_enabled: boolean;
+  email_notifications: boolean;
+  show_activity: boolean;
+  keyboard_shortcuts: boolean;
 }
 
 const languages = [
@@ -51,10 +51,10 @@ export default function PreferenceSettings() {
     language: "en",
     timezone: "UTC",
     date_format: "MM/DD/YYYY",
-    notifications: {
-      email: true,
-      in_app: true,
-    },
+    notifications_enabled: true,
+    email_notifications: true,
+    show_activity: true,
+    keyboard_shortcuts: true,
   });
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -108,15 +108,11 @@ export default function PreferenceSettings() {
   };
 
   const updatePreference = (key: keyof Preferences, value: any) => {
-    setPreferences((prev: Preferences) => ({ ...prev, [key]: value }));
+    // @ts-ignore - Dynamic property assignment needed for form handling
+    setPreferences(prev => ({ ...prev, [key]: value }));
   };
 
-  const updateNotification = (key: keyof Preferences["notifications"], value: boolean) => {
-    setPreferences((prev: Preferences) => ({
-      ...prev,
-      notifications: { ...prev.notifications, [key]: value },
-    }));
-  };
+  // Removed updateNotification function - no longer needed
 
   if (isLoading) {
     return <div className="text-center py-8">Loading preferences...</div>;
@@ -140,7 +136,7 @@ export default function PreferenceSettings() {
                   key={theme}
                   onClick={() => updatePreference("theme", theme)}
                   className={cn(
-                    "p-4 rounded-lg border-2 transition-colors capitalize",
+                    "p-4 rounded-lg border-2 transition-colors capitalize min-h-[60px]",
                     preferences.theme === theme
                       ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                       : "border-gray-300 dark:border-gray-600 hover:border-gray-400"
@@ -171,7 +167,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.language}
               onChange={(e) => updatePreference("language", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {languages.map((lang) => (
                 <option key={lang.code} value={lang.code}>
@@ -186,7 +182,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.timezone}
               onChange={(e) => updatePreference("timezone", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {timezones.map((tz) => (
                 <option key={tz} value={tz}>
@@ -201,7 +197,7 @@ export default function PreferenceSettings() {
             <select
               value={preferences.date_format}
               onChange={(e) => updatePreference("date_format", e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+              className="w-full px-3 py-3 border rounded-lg dark:bg-gray-700 dark:border-gray-600 min-h-[44px] text-base"
             >
               {dateFormats.map((format) => (
                 <option key={format.value} value={format.value}>
@@ -231,8 +227,8 @@ export default function PreferenceSettings() {
             </div>
             <input
               type="checkbox"
-              checked={preferences.notifications.email}
-              onChange={(e) => updateNotification("email", e.target.checked)}
+              checked={preferences.email_notifications}
+              onChange={(e) => updatePreference("email_notifications", e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
@@ -246,8 +242,8 @@ export default function PreferenceSettings() {
             </div>
             <input
               type="checkbox"
-              checked={preferences.notifications.in_app}
-              onChange={(e) => updateNotification("in_app", e.target.checked)}
+              checked={preferences.notifications_enabled}
+              onChange={(e) => updatePreference("notifications_enabled", e.target.checked)}
               className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
@@ -260,7 +256,7 @@ export default function PreferenceSettings() {
           onClick={handleSave}
           disabled={isSaving}
           className={cn(
-            "px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors",
+            "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors min-h-[44px]",
             isSaving && "opacity-50 cursor-not-allowed"
           )}
         >
