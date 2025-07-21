@@ -1,0 +1,95 @@
+{
+  "timestamp": "2025-07-21T02:21:27.931Z",
+  "tests": [
+    {
+      "name": "API Route: /api/hello",
+      "endpoint": "/api/hello",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/hello\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/hello\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/test-db",
+      "endpoint": "/api/test-db",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/test-db\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/test-db\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/auth/providers",
+      "endpoint": "/api/auth/providers",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/auth/providers\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/auth/providers\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/setup-auth-database",
+      "endpoint": "/api/setup-auth-database",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/setup-auth-database\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/setup-auth-database\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/verify-migration",
+      "endpoint": "/api/verify-migration",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/verify-migration\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/verify-migration\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/profile",
+      "endpoint": "/api/user/profile",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/profile\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/profile\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/sessions",
+      "endpoint": "/api/user/sessions",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/sessions\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/sessions\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/activity",
+      "endpoint": "/api/user/activity",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/activity\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/activity\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/apps/available",
+      "endpoint": "/api/user/apps/available",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/apps/available\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/apps/available\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/apps/favorites",
+      "endpoint": "/api/user/apps/favorites",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/apps/favorites\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/apps/favorites\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/apps/recent",
+      "endpoint": "/api/user/apps/recent",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/apps/recent\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/apps/recent\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/apps/requests",
+      "endpoint": "/api/user/apps/requests",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/apps/requests\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/apps/requests\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/apps/an-app/details",
+      "endpoint": "/api/apps/an-app/details",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/apps/an-app/details\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/apps/an-app/details\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/settings",
+      "endpoint": "/api/user/settings",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/settings\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/settings\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    },
+    {
+      "name": "API Route: /api/user/settings/login-history",
+      "endpoint": "/api/user/settings/login-history",
+      "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://localhost:3002/api/user/settings/login-history\nCall log:\n\u001b[2m  - navigating to \"http://localhost:3002/api/user/settings/login-history\", waiting until \"load\"\u001b[22m\n",
+      "success": false
+    }
+  ]
+}
