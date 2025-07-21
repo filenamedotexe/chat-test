@@ -4,6 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { featureFlags } from '@/lib/features/feature-flags';
 import { FeatureProvider } from '@/components/features/FeatureProvider';
+import { NotificationProvider } from '@/components/notifications/NotificationProvider';
 
 export default async function AuthenticatedLayout({
   children,
@@ -21,10 +22,12 @@ export default async function AuthenticatedLayout({
 
   return (
     <FeatureProvider features={enabledFeatures}>
-      <UnifiedNavigation />
-      <div className="pt-16">
-        {children}
-      </div>
+      <NotificationProvider>
+        <UnifiedNavigation />
+        <div className="pt-16">
+          {children}
+        </div>
+      </NotificationProvider>
     </FeatureProvider>
   );
 }

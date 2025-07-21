@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { ConversationList } from '../../components/ConversationList';
+import { AdminNotificationCenter } from '../../components/AdminNotificationCenter';
+import { useNotificationIntegration } from '../../hooks/useNotificationIntegration';
 
 export default function SupportDashboard() {
   console.log('🎯 SupportDashboard component mounting');
@@ -18,6 +20,11 @@ export default function SupportDashboard() {
     urgent: 0
   });
   const [selectedConversations, setSelectedConversations] = useState<number[]>([]);
+  
+  // Initialize notification integration for admin dashboard
+  const { connectionStatus, isConnected } = useNotificationIntegration({
+    isActive: false // Dashboard view, not specific conversation
+  });
 
   // Load admin conversations
   async function loadConversations() {
@@ -150,7 +157,12 @@ export default function SupportDashboard() {
               <h1 className="text-2xl sm:text-3xl font-bold text-white">Support Dashboard</h1>
               <p className="text-gray-400 mt-1">Manage customer support conversations and requests</p>
             </div>
-            <div className="flex gap-2 mt-4 sm:mt-0">
+            <div className="flex items-center gap-3 mt-4 sm:mt-0">
+              <AdminNotificationCenter />
+              <div className="flex items-center gap-2 text-sm">
+                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+                <span className="text-gray-400">{connectionStatus}</span>
+              </div>
               <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
                 Bulk Actions
               </button>

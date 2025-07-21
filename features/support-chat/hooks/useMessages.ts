@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useWebSocket } from './useWebSocket';
+import { WSMessage } from '@/lib/websocket/server';
 
 export interface Message {
   id: number;
@@ -43,6 +45,53 @@ export function useMessages(conversationId: number) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [sending, setSending] = useState(false);
+
+  // Handle real-time WebSocket messages
+  const handleRealTimeMessage = (wsMessage: WSMessage) => {
+    console.log('🎯 Received real-time message:', wsMessage.type);
+    
+    if (wsMessage.type === 'message' && wsMessage.data) {
+      const newMessage = wsMessage.data as Message;
+      
+      // Add new message to the list (avoid duplicates)
+      const exists = messages.find((msg: Message) => msg.id === newMessage.id);
+      if (!exists) {
+        setMessages([...messages, newMessage]);
+      }
+    }
+  };
+
+  // WebSocket integration for real-time updates
+  const { 
+    connectionStatus, 
+    isConnected, 
+    sendReadReceipt: wsReadReceipt,
+    typingUsers
+  } = useWebSocket({
+    conversationId,
+    autoConnect: true,
+    onMessage: handleRealTimeMessage,
+    onTyping: (userId, isTyping) => {
+      console.log(`User ${userId} is ${isTyping ? 'typing' : 'stopped typing'}`);
+    },
+    onUserJoined: (userId, userEmail) => {
+      console.log(`User ${userEmail} joined the conversation`);
+    },
+    onUserLeft: (userId, userEmail) => {
+      console.log(`User ${userEmail} left the conversation`);
+    },
+    onReadReceipt: (messageId, readBy) => {
+      console.log(`Message ${messageId} read by user ${readBy}`);
+      // Update message read status
+      setMessages(
+        messages.map((msg: Message) => 
+          msg.id === messageId 
+            ? { ...msg, readAt: new Date().toISOString() }
+            : msg
+        )
+      );
+    }
+  });
 
   const fetchConversation = async () => {
     try {
@@ -139,7 +188,7 @@ export function useMessages(conversationId: number) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
       
-      // Update message read status
+      // Update message read status locally
       setMessages(
         messages.map((msg: Message) => 
           msg.id === messageId 
@@ -147,6 +196,11 @@ export function useMessages(conversationId: number) {
             : msg
         )
       );
+
+      // Send WebSocket read receipt for real-time updates
+      if (isConnected) {
+        wsReadReceipt(messageId);
+      }
       
     } catch (err) {
       console.error('Error marking message as read:', err);
@@ -182,5 +236,9 @@ export function useMessages(conversationId: number) {
     markAsRead,
     addMessage,
     refresh,
+    // WebSocket integration
+    connectionStatus,
+    isConnected,
+    typingUsers,
   };
 }

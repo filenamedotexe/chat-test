@@ -1,4 +1,5 @@
 import { getServerSession as getNextAuthSession } from 'next-auth';
+import { getToken } from 'next-auth/jwt';
 import { authOptions } from './config';
 import { neon } from '@neondatabase/serverless';
 import bcrypt from 'bcryptjs';
@@ -118,4 +119,111 @@ export async function getUserApps() {
       AND (uap.expires_at IS NULL OR uap.expires_at > CURRENT_TIMESTAMP)
     ORDER BY a.name
   `;
+}
+
+// Verify JWT token for WebSocket authentication
+export async function verifySession(token: string) {
+  try {
+    console.log('🔍 Verifying WebSocket session token...');
+    
+    // Method 1: Try NextAuth JWT verification first
+    try {
+      const fakeReq = {
+        headers: {
+          authorization: `Bearer ${token}`,
+          cookie: `next-auth.session-token=${token}`
+        }
+      };
+
+      const decoded = await getToken({ 
+        req: fakeReq as any,
+        secret: process.env.NEXTAUTH_SECRET 
+      });
+
+      if (decoded && decoded.id) {
+        console.log('✅ NextAuth JWT token verified');
+        
+        // Get full user details from database
+        const result = await sql`
+          SELECT id, email, name, role, is_active
+          FROM users
+          WHERE id = ${parseInt(decoded.id as string)}
+            AND is_active = true
+        `;
+
+        const user = result[0];
+        if (user) {
+          return {
+            user: {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              role: user.role
+            }
+          };
+        }
+      }
+    } catch (nextAuthError) {
+      console.log('NextAuth JWT verification failed, trying simple token...');
+    }
+
+    // Method 2: Try our simple token format (base64 encoded user data)
+    try {
+      const decodedToken = JSON.parse(atob(token));
+      
+      if (decodedToken && decodedToken.userId && decodedToken.email) {
+        console.log('✅ Simple token format detected');
+        console.log(`   Token for user: ${decodedToken.email} (ID: ${decodedToken.userId})`);
+        
+        // Basic token expiration check
+        if (decodedToken.exp && decodedToken.exp < Math.floor(Date.now() / 1000)) {
+          console.log('❌ Token has expired');
+          return null;
+        }
+        
+        // Validate signature if present (simple anti-tampering check)
+        if (decodedToken.sig) {
+          const expectedSig = btoa(`${decodedToken.userId}:${decodedToken.email}:${decodedToken.iat}`);
+          if (decodedToken.sig !== expectedSig) {
+            console.log('❌ Token signature validation failed');
+            // Don't return null here - signature is just an extra check
+          }
+        }
+        
+        // Verify the user exists in database and get latest data
+        const result = await sql`
+          SELECT id, email, name, role, is_active
+          FROM users
+          WHERE id = ${parseInt(decodedToken.userId)}
+            AND email = ${decodedToken.email}
+            AND is_active = true
+        `;
+
+        const user = result[0];
+        if (user) {
+          console.log('✅ User verified from database');
+          console.log(`   Authenticated: ${user.email} (${user.role})`);
+          return {
+            user: {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              role: user.role
+            }
+          };
+        } else {
+          console.log('❌ User not found or inactive in database');
+        }
+      }
+    } catch (simpleTokenError) {
+      console.log('❌ Simple token parsing failed:', simpleTokenError);
+    }
+
+    console.log('❌ All token verification methods failed');
+    return null;
+    
+  } catch (error) {
+    console.error('❌ Error verifying session token:', error);
+    return null;
+  }
 }

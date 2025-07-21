@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useConversations } from '../../hooks/useConversations';
 import { ConversationList } from '../../components/ConversationList';
+import { useNotificationIntegration } from '../../hooks/useNotificationIntegration';
+import { UnreadCounter } from '@/components/notifications/UnreadCounter';
 
 interface NewConversationData {
   subject: string;
@@ -20,6 +22,11 @@ export default function ConversationsPage() {
   const [creating, setCreating] = useState(false);
   
   const { conversations, loading, error, createConversation, refresh } = useConversations();
+  
+  // Initialize notification integration for real-time updates
+  const { connectionStatus, isConnected } = useNotificationIntegration({
+    isActive: false // This is the conversation list page, not an active conversation
+  });
 
   const handleCreateConversation = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +71,14 @@ export default function ConversationsPage() {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-white">Support Conversations</h1>
+              <div className="flex items-center gap-3">
+                <h1 className="text-2xl sm:text-3xl font-bold text-white">Support Conversations</h1>
+                <UnreadCounter />
+                <div className="flex items-center gap-2 text-sm">
+                  <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+                  <span className="text-gray-400">{connectionStatus}</span>
+                </div>
+              </div>
               <p className="text-gray-400 mt-1">Manage your support requests and conversations with our team</p>
             </div>
             <button 

@@ -11,6 +11,7 @@ export async function middleware(request: NextRequest) {
     '/api/auth',
     '/api/public',
     '/api/features', // Allow all feature flag APIs
+    '/api/websocket', // Allow WebSocket server initialization
     '/api/test-user-chat',
     '/api/test-db',
     '/api/add-permission-group',
@@ -77,7 +78,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/api/((?!auth|public|test-user-chat|test-db|add-permission-group|setup-auth-database|migrate-user-pages).*)',
+    '/api/((?!auth|public|websocket|test-user-chat|test-db|add-permission-group|setup-auth-database|migrate-user-pages).*)',
     '/admin/:path*',
     '/((?!login|register|public|_next/static|_next/image|favicon.ico).*)'
   ]

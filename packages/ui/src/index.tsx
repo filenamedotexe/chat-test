@@ -10,3 +10,10 @@ export { SessionProvider } from './components/auth/SessionProvider';
 
 // Navigation
 export { Navigation } from './components/Navigation';
+
+// UI components
+export { Button } from './components/ui/button';
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './components/ui/card';
+export { Badge } from './components/ui/badge';
+export { Switch } from './components/ui/switch';
+export { ScrollArea, ScrollBar } from './components/ui/scroll-area';
