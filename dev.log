@@ -7,310 +7,778 @@
   - Environments: .env.local, .env
 
  ✓ Starting...
- ✓ Ready in 986ms
- ✓ Compiled /middleware in 230ms (216 modules)
+ ✓ Ready in 1063ms
+ ✓ Compiled /middleware in 94ms (216 modules)
  ○ Compiling / ...
- ✓ Compiled / in 2.4s (2136 modules)
+ ✓ Compiled /api/support-chat/conversations in 2.3s (2157 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET / 307 in 2557ms
- ✓ Compiled in 202ms (896 modules)
- ✓ Compiled /dashboard in 200ms (2178 modules)
+ HEAD / 200 in 2537ms
+ ✓ Compiled in 226ms (899 modules)
+ GET /api/support-chat/conversations?limit=3 200 in 582ms
+ ✓ Compiled /login in 171ms (2143 modules)
+ GET /login 200 in 217ms
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- ✓ Compiled /api/auth/[...nextauth] in 63ms (1274 modules)
+ GET /api/support-chat/conversations?limit=3 200 in 233ms
+ ✓ Compiled /_not-found in 118ms (2146 modules)
+ GET /api/support-chat/conversations?limit=3 404 in 159ms
+ ✓ Compiled /_error in 446ms (2371 modules)
+ GET /login 404 in 494ms
+ GET /login 404 in 494ms
+ GET /api/support-chat/conversations?limit=3 404 in 37ms
+ GET /api/support-chat/conversations?limit=3 404 in 13ms
+ ✓ Compiled /api/auth/[...nextauth] in 111ms (1251 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 277ms
+ GET /api/auth/session 200 in 332ms
+ GET /api/auth/session 200 in 21ms
+ GET /api/support-chat/conversations?limit=3 200 in 280ms
+ GET /api/support-chat/conversations?limit=3 200 in 186ms
+ GET /api/support-chat/conversations?limit=3 200 in 136ms
+ GET /api/support-chat/conversations?limit=3 200 in 145ms
+ GET /api/support-chat/conversations?limit=3 200 in 120ms
+ GET /api/support-chat/conversations?limit=3 200 in 208ms
+ GET /api/support-chat/conversations?limit=3 200 in 422ms
+ GET /api/support-chat/conversations?limit=3 200 in 227ms
+ GET /api/auth/session 200 in 14ms
  GET /api/auth/session 200 in 5ms
- GET /dashboard 200 in 1197ms
- ✓ Compiled /_not-found in 173ms (2185 modules)
- GET /support 404 in 25ms
+ GET /api/support-chat/conversations?limit=3 200 in 119ms
+ GET /api/support-chat/conversations?limit=3 200 in 39ms
+ ○ Compiling /chat ...
+ ✓ Compiled /chat in 527ms (2418 modules)
+ ✓ Compiled /support in 287ms (2500 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 11ms
- GET /api/auth/session 200 in 3ms
- GET / 200 in 23ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /login in 138ms (2194 modules)
+ GET /support?_rsc=uk94b 200 in 216ms
+ GET /api/support-chat/conversations?unread_only=true 200 in 68ms
+ GET /api/support-chat/conversations?page=1&limit=20 200 in 82ms
+ GET /api/support-chat/conversations?unread_only=true 200 in 40ms
+ GET /api/support-chat/conversations?page=1&limit=20 200 in 35ms
+ GET /api/support-chat/conversations?page=1&limit=20 200 in 37ms
+ GET /api/support-chat/conversations?page=1&limit=20 200 in 38ms
+ ✓ Compiled /profile in 158ms (2521 modules)
+ ✓ Compiled /api/user/permissions in 88ms (1388 modules)
+ ✓ Compiled (1393 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 8ms
- GET /api/auth/csrf 200 in 4ms
- POST /api/auth/callback/credentials 200 in 402ms
- GET /api/auth/session 200 in 6ms
- GET /?_rsc=r3yhw 200 in 13ms
- GET /dashboard?_rsc=1hhhi 200 in 9ms
- GET /api/features/support_chat 404 in 36ms
- GET /support 404 in 9ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 3ms
- GET /login 200 in 24ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/providers 200 in 4ms
- GET /api/auth/csrf 200 in 4ms
- POST /api/auth/callback/credentials 200 in 379ms
- GET /api/auth/session 200 in 6ms
- GET /?_rsc=r3yhw 200 in 6ms
- GET /dashboard?_rsc=1hhhi 200 in 5ms
- GET /admin/support 404 in 9ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 3ms
- GET /dashboard 200 in 42ms
- GET /api/auth/session 200 in 3ms
- GET /api/auth/session 200 in 2ms
- ✓ Compiled in 122ms (925 modules)
- ✓ Compiled /_not-found in 125ms (2179 modules)
- ✓ Compiled in 148ms (2179 modules)
- GET /support 404 in 141ms
- ✓ Compiled /api/auth/[...nextauth] in 168ms (1270 modules)
+ GET /api/user/permissions 200 in 433ms
+ GET /api/user/permissions 200 in 300ms
+ GET /api/user/activity 200 in 593ms
+ GET /api/user/activity 200 in 215ms
+ GET /api/user/profile 200 in 965ms
+ GET /api/user/profile 200 in 582ms
+ ✓ Compiled /settings in 231ms (2562 modules)
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 225ms
- GET /api/auth/session 200 in 4ms
- ✓ Compiled in 77ms (927 modules)
- GET /support 404 in 26ms
- ✓ Compiled in 61ms (927 modules)
- GET /api/auth/session 200 in 7ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /support in 241ms (2409 modules)
+ GET /settings?_rsc=x4clf 200 in 10ms
+ ○ Compiling /api/chat-langchain ...
+ ✓ Compiled /api/chat-langchain in 690ms (1978 modules)
+🚨 LANGCHAIN API CALLED - Handoff detection enabled!
 [next-auth][warn][DEBUG_ENABLED] 
 https://next-auth.js.org/warnings#debug_enabled
- GET /support?_rsc=ajepl 200 in 608ms
- GET /support?_rsc=5kcko 200 in 358ms
- ✓ Compiled /feature-disabled in 161ms (2201 modules)
- ✓ Compiled in 65ms (932 modules)
- ✓ Compiled in 186ms (2431 modules)
- ✓ Compiled in 65ms (932 modules)
- ✓ Compiled in 280ms (2215 modules)
- ✓ Compiled in 84ms (932 modules)
- ✓ Compiled in 143ms (2215 modules)
- ✓ Compiled in 133ms (2215 modules)
- ✓ Compiled in 75ms (932 modules)
- ✓ Compiled in 59ms (932 modules)
- ✓ Compiled in 82ms (932 modules)
- ✓ Compiled in 57ms (932 modules)
- ✓ Compiled in 109ms (2417 modules)
- ✓ Compiled in 67ms (932 modules)
- ✓ Compiled in 57ms (932 modules)
- ✓ Compiled in 104ms (2417 modules)
- ✓ Compiled in 65ms (932 modules)
- ✓ Compiled in 67ms (932 modules)
- ✓ Compiled / in 66ms (1276 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET / 200 in 142ms
- ✓ Compiled /api/auth/[...nextauth] in 62ms (1280 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 106ms
- GET /api/auth/session 200 in 2ms
- ✓ Compiled /login in 67ms (1284 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/csrf 200 in 4ms
- POST /api/auth/callback/credentials 200 in 437ms
- GET /api/auth/session 200 in 5ms
- GET /?_rsc=r3yhw 200 in 10ms
- GET /dashboard?_rsc=1hhhi 200 in 7ms
- GET /dashboard 200 in 62ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /support in 75ms (1291 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /support 307 in 474ms
- GET /feature-disabled?feature=support_chat 200 in 18ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- GET /login 200 in 22ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 2ms
- GET /api/auth/providers 200 in 4ms
- GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 364ms
- GET /api/auth/session 200 in 4ms
- GET /?_rsc=r3yhw 200 in 5ms
- GET /dashboard?_rsc=1hhhi 200 in 5ms
- GET /dashboard 200 in 20ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /admin/support in 178ms (2214 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/support 307 in 452ms
- GET /feature-disabled?feature=support_chat 200 in 17ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 3ms
- GET /?_rsc=1h9g0 200 in 9ms
- GET /support?_rsc=89x0i 200 in 230ms
- ✓ Compiled in 193ms (2190 modules)
- ✓ Compiled in 45ms (919 modules)
- ✓ Compiled in 39ms (919 modules)
- ✓ Compiled in 39ms (919 modules)
- ✓ Compiled in 41ms (919 modules)
- ✓ Compiled in 43ms (919 modules)
- ✓ Compiled / in 84ms (1276 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET / 200 in 173ms
- ✓ Compiled /api/auth/[...nextauth] in 53ms (1280 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 98ms
- GET /api/auth/session 200 in 2ms
- ✓ Compiled /login in 61ms (1284 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 13ms
- GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 652ms
- GET /api/auth/session 200 in 7ms
- GET /?_rsc=r3yhw 200 in 12ms
- GET /dashboard?_rsc=1hhhi 200 in 7ms
- ✓ Compiled /support in 235ms (1292 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /support 307 in 358ms
- GET /feature-disabled?feature=support_chat 200 in 18ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- GET /login 200 in 23ms
- GET /api/auth/session 200 in 4ms
- GET /api/auth/session 200 in 2ms
- GET /api/auth/providers 200 in 5ms
- GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 355ms
- GET /api/auth/session 200 in 4ms
- GET /?_rsc=r3yhw 200 in 7ms
- GET /dashboard?_rsc=1hhhi 200 in 5ms
- ✓ Compiled /admin/support in 86ms (1297 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/support 307 in 207ms
- GET /feature-disabled?feature=support_chat 200 in 14ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 2ms
- ✓ Compiled /api/support-chat/conversations in 119ms (1311 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- POST /api/support-chat/conversations 201 in 326ms
- ✓ Compiled in 439ms (2204 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /dashboard?_rsc=s9hre 200 in 68ms
- ✓ Compiled in 80ms (919 modules)
- ✓ Compiled in 46ms (919 modules)
- ✓ Compiled / in 87ms (1276 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET / 200 in 174ms
- ✓ Compiled /api/auth/[...nextauth] in 53ms (1280 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/session 200 in 98ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /login in 76ms (1284 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/auth/providers 200 in 12ms
- GET /api/auth/csrf 200 in 3ms
- POST /api/auth/callback/credentials 200 in 348ms
- GET /api/auth/session 200 in 5ms
- GET /?_rsc=r3yhw 200 in 11ms
- GET /dashboard?_rsc=1hhhi 200 in 7ms
- ✓ Compiled /admin/support in 168ms (1291 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/support 307 in 293ms
- GET /feature-disabled?feature=support_chat 200 in 16ms
- GET /api/auth/session 200 in 5ms
- GET /api/auth/session 200 in 3ms
- ✓ Compiled /api/support-chat/admin/conversations in 216ms (1289 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /api/support-chat/admin/conversations 200 in 726ms
- ✓ Compiled /_not-found in 222ms (2209 modules)
- POST /api/features/support_chat 404 in 260ms
- ✓ Compiled /admin/support in 65ms (1279 modules)
- ⨯ TypeError: Cannot read properties of undefined (reading 'entryCSSFiles')
-    at rT (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:3772)
-    at rz (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:12843)
-    at r1 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:16081)
-    at r8 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:39:22954)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:726
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
-    at Object.wrap (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:36:17827)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:616
-    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
-    at Object.wrap (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:36:16929)
-    at r5 (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:543)
-    at nm.render (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/compiled/next-server/app-page.runtime.dev.js:42:4661)
-    at doRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1406:44)
-    at cacheEntry.responseCache.get.routeKind (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1567:34)
-    at ResponseCache.get (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/response-cache/index.js:49:26)
-    at DevServer.renderToResponseWithComponentsImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1475:53)
-    at /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:996:121
-    at NextTracerImpl.trace (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/trace/tracer.js:105:20)
-    at DevServer.renderToResponseWithComponents (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:996:41)
-    at DevServer.renderPageComponent (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1901:35)
-    at async DevServer.renderToResponseImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:1939:32)
-    at async DevServer.pipeImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:914:25)
-    at async NextNodeServer.handleCatchallRenderRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/next-server.js:272:17)
-    at async DevServer.handleRequestImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/base-server.js:810:17)
-    at async /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:339:20
-    at async Span.traceAsyncFn (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/trace/trace.js:154:20)
-    at async DevServer.handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
-    at async invokeRender (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:173:21)
-    at async handleRequest (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:350:24)
-    at async requestHandlerImpl (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/router-server.js:374:13)
-    at async Server.requestListener (/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/lib/start-server.js:141:13) {
-  page: '/admin/support'
+🔍 Checking handoff for message: hey im peter
+🔍 Handoff result: { shouldHandoff: false }
+Memory loaded for session session-1753151532801-qjycts8ou (buffer): {
+  "history": []
 }
- ✓ Compiled /_error in 395ms (2425 modules)
-[next-auth][warn][DEBUG_ENABLED] 
-https://next-auth.js.org/warnings#debug_enabled
- GET /admin/support?_rsc=s9hre 200 in 438ms
- GET /admin/support?_rsc=1ba1f 200 in 410ms
- GET /feature-disabled?feature=support_chat 200 in 23ms
- GET /_next/static/css/app/layout.css?v=1753138089541 404 in 15ms
- GET /admin/support 307 in 474ms
- GET /_next/static/chunks/main-app.js?v=1753138089541 404 in 30ms
- GET /_next/static/chunks/app/(auth)/feature-disabled/page.js 404 in 30ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 30ms
- GET /_next/static/chunks/app/layout.js 404 in 26ms
-[Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+[32m[chain/start][39m [[90m[1m1:chain:ConversationChain[22m[39m] Entering Chain run with input: {
+  "input": "hey im peter",
+  "history": []
 }
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+[32m[llm/start][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] Entering LLM run with input: {
+  "messages": [
+    [
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "SystemMessage"
+        ],
+        "kwargs": {
+          "content": "You are a helpful assistant created by Neon.tech and Aceternity. You have access to the full conversation history and can remember previous interactions within this chat session. When users refer to earlier parts of the conversation, you can recall and reference that information. Your job is to answer questions asked by the user in a polite and respectful manner. Always answer in markdown.",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "hey im peter",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      }
+    ]
+  ]
 }
- ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'] {
-  errno: -2,
-  code: 'ENOENT',
-  syscall: 'stat',
-  path: '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
+LLM finished, full content: Hello Peter! How can I assist you today?
+Message added to memory (not persisted individually): HumanMessage {
+  "content": "hey im peter",
+  "additional_kwargs": {},
+  "response_metadata": {}
 }
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/cache/webpack/client-development/8.pack.gz'
-<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat'
-<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/support-chat/conversations/route' in /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat/conversations/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/support-chat/conversations/route' in '/Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
-<w>  at resolve commonjs file ../../../../.next/server/app/api/support-chat/conversations/route (expected /Users/zachwieder/Documents/CODING MAIN/chat-test/.next/server/app/api/support-chat/conversations/route.js)
-<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/require.js
-<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/require.js
-<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/load-components.js
-<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/server/load-components.js
-<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/utils.js
-<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/utils.js
-<w>  at file dependencies /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
-<w>  at file /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
-<w>  at resolve commonjs /Users/zachwieder/Documents/CODING MAIN/chat-test/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
-[?25h
+Message added to memory (not persisted individually): AIMessage {
+  "content": "Hello Peter! How can I assist you today?",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "tool_calls": [],
+  "invalid_tool_calls": []
+}
+ POST /api/chat-langchain 200 in 2247ms
+Conversation saved to database
+[36m[llm/end][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] [1.31s] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "Hello Peter! How can I assist you today?",
+        "generationInfo": {
+          "prompt": 0,
+          "completion": 0,
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_de235176ee",
+          "model_name": "gpt-4-turbo-2024-04-09",
+          "service_tier": "default"
+        },
+        "message": {
+          "lc": 1,
+          "type": "constructor",
+          "id": [
+            "langchain_core",
+            "messages",
+            "AIMessageChunk"
+          ],
+          "kwargs": {
+            "content": "Hello Peter! How can I assist you today?",
+            "additional_kwargs": {},
+            "response_metadata": {
+              "estimatedTokenUsage": {
+                "promptTokens": 90,
+                "completionTokens": 10,
+                "totalTokens": 100
+              },
+              "prompt": 0,
+              "completion": 0,
+              "finish_reason": "stop",
+              "system_fingerprint": "fp_de235176ee",
+              "model_name": "gpt-4-turbo-2024-04-09",
+              "service_tier": "default",
+              "usage": {
+                "prompt_tokens": 86,
+                "completion_tokens": 10,
+                "total_tokens": 96,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "audio_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 0,
+                  "audio_tokens": 0,
+                  "accepted_prediction_tokens": 0,
+                  "rejected_prediction_tokens": 0
+                }
+              }
+            },
+            "tool_call_chunks": [],
+            "id": "chatcmpl-BvzYrP3H7apvMhY3FHYNJetn7W0oy",
+            "usage_metadata": {
+              "input_tokens": 86,
+              "output_tokens": 10,
+              "total_tokens": 96,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            },
+            "tool_calls": [],
+            "invalid_tool_calls": []
+          }
+        }
+      }
+    ]
+  ],
+  "llmOutput": {
+    "estimatedTokenUsage": {
+      "promptTokens": 90,
+      "completionTokens": 10,
+      "totalTokens": 100
+    }
+  }
+}
+[36m[chain/end][39m [[90m[1m1:chain:ConversationChain[22m[39m] [1.31s] Exiting Chain run with output: {
+  "response": "Hello Peter! How can I assist you today?"
+}
+🚨 LANGCHAIN API CALLED - Handoff detection enabled!
+🔍 Checking handoff for message: whats my name
+🔍 Handoff result: { shouldHandoff: false }
+Memory loaded for session session-1753151532801-qjycts8ou (buffer): {
+  "history": [
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "hey im peter",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Hello Peter! How can I assist you today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    }
+  ]
+}
+[32m[chain/start][39m [[90m[1m1:chain:ConversationChain[22m[39m] Entering Chain run with input: {
+  "input": "whats my name",
+  "history": [
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "hey im peter",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Hello Peter! How can I assist you today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    }
+  ]
+}
+[32m[llm/start][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] Entering LLM run with input: {
+  "messages": [
+    [
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "SystemMessage"
+        ],
+        "kwargs": {
+          "content": "You are a helpful assistant created by Neon.tech and Aceternity. You have access to the full conversation history and can remember previous interactions within this chat session. When users refer to earlier parts of the conversation, you can recall and reference that information. Your job is to answer questions asked by the user in a polite and respectful manner. Always answer in markdown.",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "hey im peter",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "AIMessage"
+        ],
+        "kwargs": {
+          "content": "Hello Peter! How can I assist you today?",
+          "tool_calls": [],
+          "invalid_tool_calls": [],
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "whats my name",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      }
+    ]
+  ]
+}
+LLM finished, full content: Your name is Peter. How can I help you further today?
+Message added to memory (not persisted individually): HumanMessage {
+  "content": "whats my name",
+  "additional_kwargs": {},
+  "response_metadata": {}
+}
+Message added to memory (not persisted individually): AIMessage {
+  "content": "Your name is Peter. How can I help you further today?",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "tool_calls": [],
+  "invalid_tool_calls": []
+}
+ POST /api/chat-langchain 200 in 1100ms
+Conversation saved to database
+[36m[llm/end][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] [985ms] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "Your name is Peter. How can I help you further today?",
+        "generationInfo": {
+          "prompt": 0,
+          "completion": 0,
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_de235176ee",
+          "model_name": "gpt-4-turbo-2024-04-09",
+          "service_tier": "default"
+        },
+        "message": {
+          "lc": 1,
+          "type": "constructor",
+          "id": [
+            "langchain_core",
+            "messages",
+            "AIMessageChunk"
+          ],
+          "kwargs": {
+            "content": "Your name is Peter. How can I help you further today?",
+            "additional_kwargs": {},
+            "response_metadata": {
+              "estimatedTokenUsage": {
+                "promptTokens": 113,
+                "completionTokens": 13,
+                "totalTokens": 126
+              },
+              "prompt": 0,
+              "completion": 0,
+              "finish_reason": "stop",
+              "system_fingerprint": "fp_de235176ee",
+              "model_name": "gpt-4-turbo-2024-04-09",
+              "service_tier": "default",
+              "usage": {
+                "prompt_tokens": 108,
+                "completion_tokens": 13,
+                "total_tokens": 121,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "audio_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 0,
+                  "audio_tokens": 0,
+                  "accepted_prediction_tokens": 0,
+                  "rejected_prediction_tokens": 0
+                }
+              }
+            },
+            "tool_call_chunks": [],
+            "id": "chatcmpl-BvzYwsiAV2eihtqmuYxr6vJylWwr6",
+            "usage_metadata": {
+              "input_tokens": 108,
+              "output_tokens": 13,
+              "total_tokens": 121,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            },
+            "tool_calls": [],
+            "invalid_tool_calls": []
+          }
+        }
+      }
+    ]
+  ],
+  "llmOutput": {
+    "estimatedTokenUsage": {
+      "promptTokens": 113,
+      "completionTokens": 13,
+      "totalTokens": 126
+    }
+  }
+}
+[36m[chain/end][39m [[90m[1m1:chain:ConversationChain[22m[39m] [985ms] Exiting Chain run with output: {
+  "response": "Your name is Peter. How can I help you further today?"
+}
+🚨 LANGCHAIN API CALLED - Handoff detection enabled!
+🔍 Checking handoff for message: do i ahve any service tickets open
+🔍 Handoff result: { shouldHandoff: false }
+Memory loaded for session session-1753151532801-qjycts8ou (buffer): {
+  "history": [
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "hey im peter",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Hello Peter! How can I assist you today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "whats my name",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Your name is Peter. How can I help you further today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    }
+  ]
+}
+[32m[chain/start][39m [[90m[1m1:chain:ConversationChain[22m[39m] Entering Chain run with input: {
+  "input": "do i ahve any service tickets open",
+  "history": [
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "hey im peter",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Hello Peter! How can I assist you today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "HumanMessage"
+      ],
+      "kwargs": {
+        "content": "whats my name",
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    },
+    {
+      "lc": 1,
+      "type": "constructor",
+      "id": [
+        "langchain_core",
+        "messages",
+        "AIMessage"
+      ],
+      "kwargs": {
+        "content": "Your name is Peter. How can I help you further today?",
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "additional_kwargs": {},
+        "response_metadata": {}
+      }
+    }
+  ]
+}
+[32m[llm/start][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] Entering LLM run with input: {
+  "messages": [
+    [
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "SystemMessage"
+        ],
+        "kwargs": {
+          "content": "You are a helpful assistant created by Neon.tech and Aceternity. You have access to the full conversation history and can remember previous interactions within this chat session. When users refer to earlier parts of the conversation, you can recall and reference that information. Your job is to answer questions asked by the user in a polite and respectful manner. Always answer in markdown.",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "hey im peter",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "AIMessage"
+        ],
+        "kwargs": {
+          "content": "Hello Peter! How can I assist you today?",
+          "tool_calls": [],
+          "invalid_tool_calls": [],
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "whats my name",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "AIMessage"
+        ],
+        "kwargs": {
+          "content": "Your name is Peter. How can I help you further today?",
+          "tool_calls": [],
+          "invalid_tool_calls": [],
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      },
+      {
+        "lc": 1,
+        "type": "constructor",
+        "id": [
+          "langchain_core",
+          "messages",
+          "HumanMessage"
+        ],
+        "kwargs": {
+          "content": "do i ahve any service tickets open",
+          "additional_kwargs": {},
+          "response_metadata": {}
+        }
+      }
+    ]
+  ]
+}
+LLM finished, full content: I don't have access to personal data or the ability to check service tickets. You might need to check directly on the website or contact customer service of the relevant organization to inquire about any open service tickets. How else may I assist you today?
+Message added to memory (not persisted individually): HumanMessage {
+  "content": "do i ahve any service tickets open",
+  "additional_kwargs": {},
+  "response_metadata": {}
+}
+Message added to memory (not persisted individually): AIMessage {
+  "content": "I don't have access to personal data or the ability to check service tickets. You might need to check directly on the website or contact customer service of the relevant organization to inquire about any open service tickets. How else may I assist you today?",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "tool_calls": [],
+  "invalid_tool_calls": []
+}
+ POST /api/chat-langchain 200 in 1849ms
+Conversation saved to database
+[36m[llm/end][39m [[90m1:chain:ConversationChain > [1m2:llm:ChatOpenAI[22m[39m] [1.57s] Exiting LLM run with output: {
+  "generations": [
+    [
+      {
+        "text": "I don't have access to personal data or the ability to check service tickets. You might need to check directly on the website or contact customer service of the relevant organization to inquire about any open service tickets. How else may I assist you today?",
+        "generationInfo": {
+          "prompt": 0,
+          "completion": 0,
+          "finish_reason": "stop",
+          "system_fingerprint": "fp_de235176ee",
+          "model_name": "gpt-4-turbo-2024-04-09",
+          "service_tier": "default"
+        },
+        "message": {
+          "lc": 1,
+          "type": "constructor",
+          "id": [
+            "langchain_core",
+            "messages",
+            "AIMessageChunk"
+          ],
+          "kwargs": {
+            "content": "I don't have access to personal data or the ability to check service tickets. You might need to check directly on the website or contact customer service of the relevant organization to inquire about any open service tickets. How else may I assist you today?",
+            "additional_kwargs": {},
+            "response_metadata": {
+              "estimatedTokenUsage": {
+                "promptTokens": 143,
+                "completionTokens": 49,
+                "totalTokens": 192
+              },
+              "prompt": 0,
+              "completion": 0,
+              "finish_reason": "stop",
+              "system_fingerprint": "fp_de235176ee",
+              "model_name": "gpt-4-turbo-2024-04-09",
+              "service_tier": "default",
+              "usage": {
+                "prompt_tokens": 137,
+                "completion_tokens": 49,
+                "total_tokens": 186,
+                "prompt_tokens_details": {
+                  "cached_tokens": 0,
+                  "audio_tokens": 0
+                },
+                "completion_tokens_details": {
+                  "reasoning_tokens": 0,
+                  "audio_tokens": 0,
+                  "accepted_prediction_tokens": 0,
+                  "rejected_prediction_tokens": 0
+                }
+              }
+            },
+            "tool_call_chunks": [],
+            "id": "chatcmpl-BvzZ8HHT0f5xra3ayj0sBflFj1elx",
+            "usage_metadata": {
+              "input_tokens": 137,
+              "output_tokens": 49,
+              "total_tokens": 186,
+              "input_token_details": {
+                "audio": 0,
+                "cache_read": 0
+              },
+              "output_token_details": {
+                "audio": 0,
+                "reasoning": 0
+              }
+            },
+            "tool_calls": [],
+            "invalid_tool_calls": []
+          }
+        }
+      }
+    ]
+  ],
+  "llmOutput": {
+    "estimatedTokenUsage": {
+      "promptTokens": 143,
+      "completionTokens": 49,
+      "totalTokens": 192
+    }
+  }
+}
+[36m[chain/end][39m [[90m[1m1:chain:ConversationChain[22m[39m] [1.58s] Exiting Chain run with output: {
+  "response": "I don't have access to personal data or the ability to check service tickets. You might need to check directly on the website or contact customer service of the relevant organization to inquire about any open service tickets. How else may I assist you today?"
+}

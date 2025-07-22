@@ -2,6 +2,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { userQueries, appQueries, chatQueries } from '@/lib/database';
 import ChatStats from './components/ChatStats';
+import { AdminSupportChatCard } from '@/features/support-chat/components/AdminSupportChatCard';
 
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions);
@@ -117,6 +118,11 @@ export default async function AdminDashboard() {
             ))}
           </ul>
         </div>
+      </div>
+
+      {/* Support Chat Admin Card */}
+      <div className="mb-6">
+        <AdminSupportChatCard />
       </div>
 
       {/* Chat Statistics */}

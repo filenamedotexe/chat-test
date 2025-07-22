@@ -5,6 +5,8 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useFeatures } from '@/components/features/FeatureProvider';
+import { SupportChatCard } from '@/features/support-chat/components/SupportChatCard';
+import { AdminSupportChatCard } from '@/features/support-chat/components/AdminSupportChatCard';
 import {
   IconMessageCircle,
   IconUser,
@@ -157,14 +159,6 @@ export default function UnifiedDashboard() {
       href: '/settings',
       color: 'bg-orange-600',
       feature: 'user_profile'
-    },
-    {
-      title: 'Support Chat',
-      description: 'Get help from our support team',
-      icon: IconHeadset,
-      href: '/support',
-      color: 'bg-indigo-600',
-      feature: 'support_chat'
     }
   ];
 
@@ -174,6 +168,9 @@ export default function UnifiedDashboard() {
     : allUserCards.filter(card => 
         !card.feature || features.includes(card.feature)
       );
+
+  // Check if support chat feature is enabled
+  const supportChatEnabled = isAdmin || features.includes('support_chat');
 
   const allAdminCards = [
     {
@@ -215,14 +212,6 @@ export default function UnifiedDashboard() {
       href: '/admin/features',
       color: 'bg-pink-600',
       feature: 'admin_panel'
-    },
-    {
-      title: 'Support Dashboard',
-      description: 'Manage customer support conversations',
-      icon: IconHeadset,
-      href: '/admin/support',
-      color: 'bg-cyan-600',
-      feature: 'support_chat'
     }
   ];
 
@@ -293,6 +282,13 @@ export default function UnifiedDashboard() {
                 delay={index * 0.1}
               />
             ))}
+            
+            {/* Sophisticated Support Chat Card */}
+            {supportChatEnabled && (
+              <div className="sm:col-span-2 lg:col-span-2">
+                <SupportChatCard delay={(userCards.length) * 0.1} />
+              </div>
+            )}
           </div>
         </section>
 
@@ -320,6 +316,13 @@ export default function UnifiedDashboard() {
                     delay={(index + 4) * 0.1}
                   />
                 ))}
+                
+                {/* Sophisticated Admin Support Chat Card */}
+                {supportChatEnabled && (
+                  <div className="sm:col-span-2 lg:col-span-2">
+                    <AdminSupportChatCard delay={(adminCards.length + 4) * 0.1} />
+                  </div>
+                )}
               </div>
             </section>
 

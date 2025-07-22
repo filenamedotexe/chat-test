@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     `;
 
     // Check for user-specific overrides if user is logged in
-    let userOverrides = [];
+    let userOverrides: any[] = [];
     if (userId && userEmail) {
       userOverrides = await sql`
         SELECT feature_key, enabled

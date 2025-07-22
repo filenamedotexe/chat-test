@@ -735,32 +735,7 @@ interface HandoffContext {
 - [ ] Security restrictions work (file types, sizes)
 - [ ] Files persist correctly
 
----
 
-#### Chunk 7.2: Conversation Search and Management
-**Tasks**:
-1. Add full-text search API for conversations
-2. Implement conversation tagging system
-3. Add conversation archiving
-4. Create conversation templates for common issues
-5. Add conversation export functionality
-6. Implement conversation merging for duplicates
-
-**Search and Management Features**:
-- Search messages and conversation subjects
-- Tag conversations by topic/category
-- Archive old conversations
-- Template responses for common questions
-- Export conversation history
-- Merge duplicate conversations
-
-**Verification**:
-- [ ] Search returns relevant results quickly
-- [ ] Tagging system works correctly
-- [ ] Archive/restore functionality works
-- [ ] Templates speed up admin responses
-- [ ] Export generates correct format
-- [ ] Conversation merging preserves history
 
 ---
 

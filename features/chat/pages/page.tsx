@@ -261,7 +261,7 @@ export default function ChatPage() {
                 <div className="flex justify-between items-center mb-6">
                   <div>
                     <h1 className="text-xl font-semibold text-white">AI Assistant</h1>
-                    <p className="text-sm text-gray-400">Session: {sessionId.split('-').pop()}</p>
+                    <p className="text-sm text-gray-400">Session: {sessionId.toString().split('-').pop()}</p>
                   </div>
                   <button
                     onClick={handleNewConversation}
