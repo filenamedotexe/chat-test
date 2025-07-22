@@ -62,8 +62,8 @@ export async function GET(req: NextRequest) {
           name: conv.admin_name || 'Admin'
         } : null,
         priority: conv.priority,
-        created_at: conv.created_at,
-        updated_at: conv.updated_at
+        createdAt: conv.created_at,
+        updatedAt: conv.updated_at
       })),
       pagination: {
         page,
@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
         status: conversation.status,
         priority: conversation.priority,
         type: conversation.type,
-        created_at: conversation.created_at,
+        createdAt: conversation.created_at,
         context: conversation.context_json
       }
     }, { status: 201 });

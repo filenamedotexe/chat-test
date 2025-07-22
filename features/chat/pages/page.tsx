@@ -3,6 +3,7 @@
 import { useChat } from "ai/react";
 import { useSession } from "next-auth/react";
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Markdown from "react-markdown";
 import { 
   IconArrowNarrowUp, 
@@ -10,20 +11,36 @@ import {
   IconSeo,
   IconTerminal2,
   IconBrandMessenger,
-  IconAssembly 
+  IconAssembly,
+  IconHeadset
 } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ChatPage() {
   const { data: session } = useSession();
+  const router = useRouter();
   const [sessionId] = useState(() => {
     // Generate sessionId only on client to avoid hydration mismatch
     if (typeof window !== 'undefined') {
-      return `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      // Try to get existing sessionId from localStorage first
+      let existingSessionId = localStorage.getItem('chat-session-id');
+      
+      if (!existingSessionId) {
+        // Generate new sessionId and store it
+        existingSessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        localStorage.setItem('chat-session-id', existingSessionId);
+        console.log('🆕 Created new persistent session ID:', existingSessionId);
+      } else {
+        console.log('♻️ Reusing existing session ID:', existingSessionId);
+      }
+      
+      return existingSessionId;
     }
     return 'session-temp';
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [handoffSuggested, setHandoffSuggested] = useState<any>(null);
+  const [isHandingOff, setIsHandingOff] = useState(false);
   
   const {
     messages,
@@ -46,8 +63,38 @@ export default function ChatPage() {
     onResponse: (response) => {
       console.log('Chat response:', response);
     },
-    onFinish: (message) => {
-      console.log('Chat finished:', message);
+    onFinish: (message: any, options?: any) => {
+      console.log('🎯 Chat finished:', message);
+      console.log('🎯 Options:', options);
+      console.log('🎯 Finish reason:', options?.finishReason);
+      console.log('🎯 Usage data:', options?.usage);
+      
+      // Check if handoff was suggested - check multiple possible locations
+      const finishReason = options?.finishReason;
+      console.log('🎯 Full options object:', JSON.stringify(options, null, 2));
+      
+      const handoffData = options?.usage?.handoff || 
+                         options?.experimental_providerMetadata?.handoff ||
+                         options?.handoff ||
+                         options?.data?.handoff;
+      
+      console.log('🎯 Handoff data found:', handoffData);
+      
+      if (finishReason === 'handoff_suggested') {
+        console.log('🎯 Setting handoff suggestion - creating context from current conversation');
+        // Since metadata isn't passing through, create handoff context from current conversation
+        const simpleHandoffContext = {
+          context: {
+            aiChatHistory: messages,
+            userIntent: 'User requested human support',
+            urgency: 'high',
+            category: 'other', 
+            summary: 'User conversation with AI chat before requesting human support',
+            handoffReason: 'User triggered handoff during AI conversation'
+          }
+        };
+        setHandoffSuggested(simpleHandoffContext);
+      }
     },
   });
 
@@ -83,6 +130,52 @@ export default function ChatPage() {
     handleSubmit();
   };
 
+  const handleTalkToHuman = async () => {
+    if (!handoffSuggested?.context) {
+      console.error('No handoff context available');
+      return;
+    }
+
+    setIsHandingOff(true);
+    try {
+      const response = await fetch('/api/support-chat/handoff', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          context: handoffSuggested.context,
+          sessionId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to transfer to human support');
+      }
+
+      const result = await response.json();
+      
+      // Redirect to the support conversation
+      router.push(`/support/${result.conversationId}`);
+    } catch (error) {
+      console.error('Handoff error:', error);
+      alert('Failed to transfer to human support. Please try again.');
+    } finally {
+      setIsHandingOff(false);
+    }
+  };
+
+  const handleDeclineHandoff = () => {
+    setHandoffSuggested(null);
+  };
+
+  const handleNewConversation = () => {
+    // Clear localStorage session and reload page to start fresh
+    localStorage.removeItem('chat-session-id');
+    console.log('🗑️ Cleared session ID, starting new conversation');
+    window.location.reload();
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="flex flex-col h-[calc(100vh-4rem)]">
@@ -91,6 +184,42 @@ export default function ChatPage() {
           <div className="bg-red-900/50 border border-red-500 text-red-300 p-4 m-4 rounded-xl text-sm">
             Error: {error.message || 'Something went wrong'}
           </div>
+        )}
+
+        {/* Handoff Suggestion */}
+        {handoffSuggested && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-purple-900/50 border border-purple-400 text-purple-100 p-4 m-4 rounded-xl"
+          >
+            <div className="flex items-start gap-3">
+              <IconHeadset className="h-5 w-5 text-purple-400 mt-0.5 flex-shrink-0" />
+              <div className="flex-1">
+                <p className="text-sm font-medium mb-2">
+                  Would you like to speak with a human support agent?
+                </p>
+                <p className="text-xs text-purple-200 mb-3">
+                  {handoffSuggested.context?.handoffReason || 'I think a human agent might be able to help you better with your specific needs.'}
+                </p>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleTalkToHuman}
+                    disabled={isHandingOff}
+                    className="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg text-xs font-medium transition-colors"
+                  >
+                    {isHandingOff ? 'Connecting...' : 'Talk to Human'}
+                  </button>
+                  <button
+                    onClick={handleDeclineHandoff}
+                    className="px-3 py-1.5 bg-gray-600 hover:bg-gray-700 rounded-lg text-xs font-medium transition-colors"
+                  >
+                    Continue with AI
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         )}
         
         {/* Messages Area */}
@@ -128,6 +257,19 @@ export default function ChatPage() {
               </div>
             ) : (
               <>
+                {/* Chat Header with New Conversation Button */}
+                <div className="flex justify-between items-center mb-6">
+                  <div>
+                    <h1 className="text-xl font-semibold text-white">AI Assistant</h1>
+                    <p className="text-sm text-gray-400">Session: {sessionId.split('-').pop()}</p>
+                  </div>
+                  <button
+                    onClick={handleNewConversation}
+                    className="px-3 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium transition-colors text-white"
+                  >
+                    New Conversation
+                  </button>
+                </div>
                 {messages.map((message, index) => (
                   <motion.div
                     key={message.id}
@@ -160,6 +302,33 @@ export default function ChatPage() {
         {/* Input Area */}
         <div className="border-t border-gray-700 bg-gray-900/80 backdrop-blur-sm">
           <div className="container mx-auto px-4 sm:px-6 py-4 max-w-4xl">
+            {/* Manual Talk to Human Button */}
+            <div className="flex justify-center mb-3">
+              <button
+                onClick={() => {
+                  if (messages.length === 0) {
+                    // If no conversation yet, create a simple handoff context
+                    const simpleContext = {
+                      aiChatHistory: [],
+                      userIntent: 'User requested human support',
+                      urgency: 'normal' as const,
+                      category: 'other' as const,
+                      summary: 'User directly requested to speak with human support',
+                      handoffReason: 'User explicitly requested to speak with a human'
+                    };
+                    setHandoffSuggested({ context: simpleContext });
+                  } else {
+                    // Trigger handoff with current conversation
+                    handleInputChange({ target: { value: 'I would like to speak to a human support agent' } } as any);
+                    handleSubmit();
+                  }
+                }}
+                className="text-xs text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-1"
+              >
+                <IconHeadset className="h-3 w-3" />
+                Need human support?
+              </button>
+            </div>
             <form onSubmit={handleSubmit} className="flex items-end gap-3">
               <div className="flex-1">
                 <input

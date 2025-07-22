@@ -5,6 +5,7 @@ import { useMessages } from '../../hooks/useMessages';
 import { ConversationHeader } from '../../components/ConversationHeader';
 import { MessageThread } from '../../components/MessageThread';
 import { MessageComposer } from '../../components/MessageComposer';
+import { AIHandoffContext } from '../../components/AIHandoffContext';
 
 interface ConversationPageProps {
   params: {
@@ -76,6 +77,11 @@ export default function ConversationPage({ params }: ConversationPageProps) {
         <div className="flex flex-col h-full">
           {/* Conversation Header */}
           <ConversationHeader conversationId={conversationId} conversation={conversation} />
+          
+          {/* AI Handoff Context (if applicable) */}
+          {conversation?.type === 'ai_handoff' && conversation?.context_json && (
+            <AIHandoffContext contextData={conversation.context_json} />
+          )}
           
           {/* Message Thread - Scrollable */}
           <div className="flex-1 overflow-hidden">

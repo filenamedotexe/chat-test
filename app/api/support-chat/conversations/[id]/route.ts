@@ -61,9 +61,9 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         status: conversationData.status,
         priority: conversationData.priority,
         type: conversationData.type,
-        created_at: conversationData.created_at,
-        updated_at: conversationData.updated_at,
-        context: conversationData.context_json,
+        createdAt: conversationData.created_at,
+        updatedAt: conversationData.updated_at,
+        context_json: conversationData.context_json,
         user: {
           id: conversationData.user_id,
           name: conversationData.user_name || 'User'
@@ -81,8 +81,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
           id: msg.sender_id,
           name: msg.sender_name || (msg.sender_type === 'admin' ? 'Admin' : 'User')
         },
-        created_at: msg.created_at,
-        read_at: msg.read_at
+        createdAt: msg.created_at,
+        readAt: msg.read_at
       }))
     };
 

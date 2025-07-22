@@ -49,19 +49,27 @@ export function ConversationHeader({ conversationId, isAdmin = false, conversati
   };
 
   const formatDate = (date: Date | string) => {
-    const dateObj = typeof date === 'string' ? new Date(date) : date;
-    
-    if (!dateObj || isNaN(dateObj.getTime())) {
-      return 'Invalid date';
+    try {
+      const dateObj = typeof date === 'string' ? new Date(date) : date;
+      
+      if (!dateObj || isNaN(dateObj.getTime())) {
+        return 'Unknown date';
+      }
+      
+      // Use user's timezone
+      const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      
+      return dateObj.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: userTimeZone
+      });
+    } catch (error) {
+      return 'Unknown date';
     }
-    
-    return dateObj.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
   };
 
   return (

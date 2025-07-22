@@ -10,8 +10,10 @@ import {
   withRetry 
 } from "@/lib/langchain-core";
 import { getServerSession } from "@/lib/auth";
+import { detectSupportHandoff } from "@/lib/support-chat/handoff-detection";
 
 export async function POST(req: Request) {
+  console.log('🚨 LANGCHAIN API CALLED - Handoff detection enabled!');
   try {
     // Check authentication
     const session = await getServerSession();
@@ -27,6 +29,64 @@ export async function POST(req: Request) {
       promptTemplateId = "default",
       userId
     } = await req.json();
+    
+    // Extract the last user message for handoff detection
+    const lastUserMessage = messages[messages.length - 1];
+    
+    // Check for support handoff triggers
+    console.log('🔍 Checking handoff for message:', lastUserMessage?.content);
+    const handoffResult = await detectSupportHandoff(messages, lastUserMessage?.content || '');
+    console.log('🔍 Handoff result:', handoffResult);
+    
+    // If handoff is needed, return special response with handoff context
+    if (handoffResult.shouldHandoff) {
+      console.log('🎯 HANDOFF TRIGGERED! Returning handoff suggestion to client');
+      const encoder = new TextEncoder();
+      const handoffResponse = {
+        type: 'handoff_suggested',
+        message: 'I understand you might need additional help. Would you like to speak with a human support agent?',
+        context: handoffResult.context
+      };
+      
+      const handoffStream = new ReadableStream({
+        start(controller) {
+          try {
+            // Send the handoff suggestion message as a single chunk
+            const message = handoffResponse.message;
+            const escapedMessage = message
+              .replace(/\\/g, '\\\\')
+              .replace(/"/g, '\\"')
+              .replace(/\n/g, '\\n')
+              .replace(/\r/g, '\\r')
+              .replace(/\t/g, '\\t');
+            
+            const formattedChunk = encoder.encode(`0:"${escapedMessage}"\n`);
+            controller.enqueue(formattedChunk);
+            
+            // Send handoff metadata
+            const handoffData = {
+              finishReason: "handoff_suggested",
+              usage: { promptTokens: 0, completionTokens: message.length },
+              handoff: handoffResponse,
+              isContinued: false
+            };
+            controller.enqueue(encoder.encode(`e:${JSON.stringify(handoffData)}\n`));
+            controller.enqueue(encoder.encode(`d:${JSON.stringify(handoffData)}\n`));
+            controller.close();
+          } catch (error) {
+            console.error('Handoff stream error:', error);
+            controller.error(error);
+          }
+        }
+      });
+      
+      return new Response(handoffStream, {
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'X-Vercel-AI-Data-Stream': 'v1',
+        },
+      });
+    }
     
     // Validate input
     if (!messages || !Array.isArray(messages)) {

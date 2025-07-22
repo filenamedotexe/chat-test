@@ -62,22 +62,48 @@ export function MessageThread({ conversationId, messages: propMessages }: Messag
     }
   ];
 
-  const formatTime = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const formatTime = (dateString: string | Date) => {
+    try {
+      const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
+      if (!date || isNaN(date.getTime())) {
+        return '--:--';
+      }
+      // Use user's timezone by default (browser handles this automatically)
+      return date.toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone 
+      });
+    } catch (error) {
+      return '--:--';
+    }
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const today = new Date();
-    const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
-    
-    if (date.toDateString() === today.toDateString()) {
-      return 'Today';
-    } else if (date.toDateString() === yesterday.toDateString()) {
-      return 'Yesterday';
-    } else {
-      return date.toLocaleDateString();
+  const formatDate = (dateString: string | Date) => {
+    try {
+      const date = typeof dateString === 'string' ? new Date(dateString) : dateString;
+      if (!date || isNaN(date.getTime())) {
+        return 'Unknown date';
+      }
+      
+      const today = new Date();
+      const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+      
+      // Use user's timezone for date comparison
+      const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const dateInUserTZ = new Date(date.toLocaleString('en-US', { timeZone: userTimeZone }));
+      const todayInUserTZ = new Date(today.toLocaleString('en-US', { timeZone: userTimeZone }));
+      const yesterdayInUserTZ = new Date(yesterday.toLocaleString('en-US', { timeZone: userTimeZone }));
+      
+      if (dateInUserTZ.toDateString() === todayInUserTZ.toDateString()) {
+        return 'Today';
+      } else if (dateInUserTZ.toDateString() === yesterdayInUserTZ.toDateString()) {
+        return 'Yesterday';
+      } else {
+        return date.toLocaleDateString([], { timeZone: userTimeZone });
+      }
+    } catch (error) {
+      return 'Unknown date';
     }
   };
 

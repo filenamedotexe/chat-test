@@ -21,7 +21,9 @@ export interface ConversationDetails {
   subject: string;
   status: string;
   priority: string;
+  type?: string;
   createdAt: string;
+  context_json?: any; // AI handoff context data
   admin?: {
     id: number;
     name: string;

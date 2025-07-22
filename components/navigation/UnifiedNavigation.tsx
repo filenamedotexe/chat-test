@@ -143,6 +143,7 @@ export function UnifiedNavigation() {
               </div>
             )}
 
+
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

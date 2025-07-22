@@ -30,10 +30,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Only show for admins
-  if (session?.user?.role !== 'admin') {
-    return null;
-  }
+  // Only show for admins - moved after all hooks
+  const isAdmin = session?.user?.role === 'admin';
 
   // Load notifications
   useEffect(() => {
@@ -53,8 +51,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
           type: 'new_conversation',
           title: 'New Support Conversation',
           message: 'Zach Wieder started a conversation about "Login Issues"',
-          conversationId: 1,
-          userId: 1,
+          conversationId: 31, // Use real conversation ID
+          userId: 54,
           timestamp: new Date(Date.now() - 5 * 60 * 1000), // 5 minutes ago
           read: false,
           urgent: false
@@ -64,8 +62,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
           type: 'urgent_message',
           title: 'Urgent Message',
           message: 'User reported critical bug in payment system',
-          conversationId: 2,
-          userId: 2,
+          conversationId: 30, // Use real conversation ID
+          userId: 54,
           timestamp: new Date(Date.now() - 15 * 60 * 1000), // 15 minutes ago
           read: false,
           urgent: true
@@ -75,8 +73,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
           type: 'user_waiting',
           title: 'User Waiting',
           message: 'Customer has been waiting for response for 30 minutes',
-          conversationId: 3,
-          userId: 3,
+          conversationId: 28, // Use real conversation ID with chat history
+          userId: 54,
           timestamp: new Date(Date.now() - 30 * 60 * 1000), // 30 minutes ago
           read: true,
           urgent: true
@@ -121,8 +119,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
     await markAsRead(notification.id);
     
     if (notification.conversationId) {
-      // Navigate to conversation
-      window.location.href = `/support/conversations/${notification.conversationId}`;
+      // Navigate to conversation - using correct URL structure
+      window.location.href = `/support/${notification.conversationId}`;
     }
   };
 
@@ -144,6 +142,11 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
   const unreadCount = notifications.filter(n => !n.read).length;
   const urgentCount = notifications.filter(n => n.urgent && !n.read).length;
 
+  // Return null for non-admins after all hooks are called
+  if (!isAdmin) {
+    return null;
+  }
+
   return (
     <div className={`relative ${className}`}>
       {/* Notification Button */}
@@ -156,8 +159,8 @@ export function AdminNotificationCenter({ className }: AdminNotificationCenterPr
         <Bell className="h-4 w-4" />
         {unreadCount > 0 && (
           <Badge 
-            variant={urgentCount > 0 ? 'destructive' : 'default'} 
-            className="absolute -top-2 -right-2 min-w-5 h-5 flex items-center justify-center p-0 text-xs"
+            variant="destructive"
+            className="absolute -top-2 -right-2 min-w-5 h-5 flex items-center justify-center p-0 text-xs bg-red-500 text-white border-red-600"
           >
             {unreadCount}
           </Badge>
